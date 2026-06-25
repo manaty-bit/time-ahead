@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #FFD500;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/* 起動画面 */
+.container {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 200;
+    letter-spacing: 10px;
+
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+button {
+    background: none;
+
+    color: #FFD500;
+
+    border: 2px solid #FFD500;
+
+    padding: 20px 60px;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #FFD500;
+    color: #000;
+}
+
+/* 非表示 */
+.hidden {
+    display: none !important;
+}
+
+/* 時計画面 */
+.clock-screen {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+}
+
+/* 時計本体 */
+.clock {
+    width: min(72vw, 72vh, 520px);
+    height: min(72vw, 72vh, 520px);
+
+    border: 3px solid #FFD500;
+    border-radius: 50%;
+
+    position: relative;
+
+    box-shadow: 0 0 24px rgba(255, 213, 0, 0.35);
+}
+
+/* 目盛り */
+.ticks span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 3px;
+    height: 4.6%;
+
+    background: #FFD500;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(calc(var(--i) * 30deg))
+        translateY(calc(-1 * min(33vw, 33vh, 235px)));
+
+    transform-origin: center;
+}
+
+/* 12・3・6・9 */
+.ticks span:nth-child(3n + 1) {
+    height: 6.8%;
+    width: 4px;
+}
+
+/* 針 */
+.hand {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform-origin: left center;
+
+    background: #FFD500;
+}
+
+.hour-hand {
+    width: 27%;
+    height: 6px;
+}
+
+.minute-hand {
+    width: 38%;
+    height: 4px;
+}
+
+/* 中心点 */
+.center-dot {
+    width: 16px;
+    height: 16px;
+
+    background: #FFD500;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+/* STOPボタン */
+.stop-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    padding: 10px 24px;
+
+    font-size: 16px;
+    letter-spacing: 2px;
+
+    border: 1px solid #FFD500;
+    color: #FFD500;
+    background: transparent;
+
+    opacity: 0.35;
+}
+
+.stop-btn:hover {
+    opacity: 1;
+    background: #FFD500;
+    color: #000;
+}
+
+/* 結果画面 */
+.result-screen {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+}
+
+.result-box {
+    text-align: center;
+    color: #FFD500;
+}
+
+.result-label {
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 6px;
+    margin-bottom: 32px;
+}
+
+.result-time {
+    font-size: clamp(72px, 16vw, 140px);
+    font-weight: 200;
+    letter-spacing: 4px;
+
+    margin-bottom: 64px;
+
+    text-shadow: 0 0 24px rgba(255, 213, 0, 0.45);
+}
+
+.restart-btn {
+    padding: 14px 36px;
+
+    font-size: 20px;
+    letter-spacing: 3px;
+
+    border: 1px solid #FFD500;
+    color: #FFD500;
+    background: transparent;
+}
+
+.restart-btn:hover {
+    background: #FFD500;
+    color: #000;
+}
+
+/* スマホ用の微調整 */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 40px;
+        letter-spacing: 5px;
+        margin-bottom: 44px;
+    }
+
+    button {
+        font-size: 22px;
+        padding: 16px 44px;
+    }
+
+    .clock {
+    width: 74vw;
+    height: 74vw;
+    margin-top: -80px;
+}
+
+    .stop-btn {
+        right: 16px;
+        bottom: 24px;
+
+        font-size: 12px;
+        padding: 7px 16px;
+        opacity: 0.25;
+    }
+
+    .result-label {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+
+    .result-time {
+        font-size: 72px;
+    }
+}

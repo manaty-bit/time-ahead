@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Ahead</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" id="startScreen">
+        <h1>TIME AHEAD</h1>
+        <button id="startBtn">START</button>
+    </div>
+
+    <div class="clock-screen hidden" id="clockScreen">
+   <div class="clock">
+    <div class="ticks">
+        <span style="--i:0"></span>
+        <span style="--i:1"></span>
+        <span style="--i:2"></span>
+        <span style="--i:3"></span>
+        <span style="--i:4"></span>
+        <span style="--i:5"></span>
+        <span style="--i:6"></span>
+        <span style="--i:7"></span>
+        <span style="--i:8"></span>
+        <span style="--i:9"></span>
+        <span style="--i:10"></span>
+        <span style="--i:11"></span>
+    </div>
+
+    <div class="hand hour-hand" id="hourHand"></div>
+    <div class="hand minute-hand" id="minuteHand"></div>
+    <div class="center-dot"></div>
+</div>
+
+    <button id="stopBtn" class="stop-btn">STOP</button>
+</div>
+<div class="result-screen hidden" id="resultScreen">
+    <div class="result-box">
+        <div class="result-label">TIME RECLAIMED</div>
+        <div class="result-time" id="reclaimedTime">+00 min</div>
+
+        <button id="restartBtn" class="restart-btn">RESTART</button>
+    </div>
+</div>
+    <script src="app.js"></script>
+
+</body>
+</html>
