@@ -29,7 +29,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
 </head>
 <body>
 <div class="app">
-<header class="topbar"><div class="logo"><span class="logoMark">🎵</span><div><h1>LUX MELODY</h1><small>てのひらで ドレミ♪ <span style="color:#df9a63">v0.5</span></small></div></div><div class="topButtons"><button class="subbtn" id="soundBtn" aria-label="おとの オン オフ">🔊 おと</button><button class="subbtn" id="homeBtn" hidden>⌂ もどる</button></div></header>
+<header class="topbar"><div class="logo"><span class="logoMark">🎵</span><div><h1>LUX MELODY</h1><small>てのひらで ドレミ♪ <span style="color:#df9a63">v0.6</span></small></div></div><div class="topButtons"><button class="subbtn" id="soundBtn" aria-label="おとの オン オフ">🔊 おと</button><button class="subbtn" id="homeBtn" hidden>⌂ もどる</button></div></header>
 <main class="shell">
 <section class="page home" id="home">
  <div class="homeTop"><div class="bubbly">🌈 おうたを <em>えらぼう！</em></div><p class="lead">てを うごかして ♪ に あわせよう</p></div>
@@ -49,7 +49,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  <div class="playBar"><div class="nowNote" id="currentNote">♪ ド</div><div class="playTools"><div class="playHint" id="playHint">🎵 おんがくが ながれるよ</div><button class="backingBtn" id="backingBtn" aria-label="ばんそうの オン オフ" aria-pressed="true">🎹 ばんそう ON</button></div></div><div class="progress"><b id="progressFill"></b></div>
  <div class="touchControls" id="touchControls"><button class="moveBtn down" id="downBtn">▼ ひくく</button><div class="controlMiddle"><strong id="touchPitch">ド</strong><span>ゆびで ♪ を うごかそう</span></div><button class="moveBtn" id="upBtn">▲ たかく</button></div>
  <div class="camControls" id="camControls" hidden>✋ パーで あわせてね　・　✊ グーで おやすみ</div>
- <div class="footerTips">🎶 あうと そのまま すすむよ！　ちがうときは ♪ が まつよ</div>
+ <div class="footerTips">🎶 ながい おとは なが〜く♪　あうと ながれる・ちがうと まつよ</div>
 </section>
 <section class="page game freeBoard" id="free" hidden>
  <div class="gameHead"><div class="gameName">🌈 じゆう えんそう</div><div class="counter">15おん 🎶</div></div>
@@ -72,8 +72,8 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  // 音番号=0:ド4 1:レ4 ... 7:高ド5。高い音から低い音への動きを目で見て覚える。
  const SONGS=[
   {id:'steps',name:'ドレミかいだん',ico:'🌱',group:'basic',level:1,notes:[0,1,2,1,0,0,1,2,2,1,0],beats:[1,1,1.6,1,1.6,1,1,1.6,1,1,2],sub:'はじめての 3おん・オリジナル'},
-  {id:'twinkle',name:'きらきらぼし',ico:'⭐',group:'basic',level:2,notes:[0,0,4,4,5,5,4,3,3,2,2,1,1,0],beats:[1,1,1,1,1,1,2,1,1,1,1,1,1,2],sub:'ドから ラまで'},
-  {id:'butterfly',name:'ちょうちょう',ico:'🦋',group:'basic',level:2,notes:[4,2,2,3,1,1,0,1,2,3,4,4,4],sub:'ソ ミ ミ ファ レ レ♪'},
+  {id:'twinkle',name:'きらきらぼし',ico:'⭐',group:'basic',level:2,notes:[0,0,4,4,5,5,4,3,3,2,2,1,1,0],beats:[1,1,1,1,1,1,2,1,1,1,1,1,1,2],bpm:98,instrument:'musicbox',harmony:[[0,'C'],[4,'F'],[6,'C'],[8,'F'],[10,'C'],[12,'G'],[14,'C']],sub:'ドから ラまで・リズムつき'},
+  {id:'butterfly',name:'ちょうちょう',ico:'🦋',group:'basic',level:2,notes:[4,2,2,3,1,1,0,1,2,3,4,4,4],beats:[1,.5,1.5,1,.5,1.5,1,1,1,1,1,1,2],bpm:106,instrument:'piano',harmony:[[0,'C'],[4,'G'],[8,'C'],[12,'G']],sub:'ソ ミ ミ ファ レ レ♪'},
   {id:'frog',name:'かえるの がっしょう',ico:'🐸',group:'basic',level:2,notes:[0,1,2,3,2,1,0,2,3,4,5,4,3,2],sub:'すこしずつ うえへ'},
   {id:'spring',name:'はるが きた',ico:'🌷',group:'spring',level:2,notes:[4,2,3,4,5,4,2,3,4,7,5,4,2,0,1],sub:'はるの うた'},
   {id:'stream',name:'はるの おがわ',ico:'🏞️',group:'spring',level:3,notes:[2,4,5,4,2,4,7,7,5,5,4,2,0,1,2],sub:'さらさら おがわ'},
@@ -83,7 +83,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   {id:'maple',name:'もみじ',ico:'🍁',group:'autumn',level:3,notes:[5,4,3,4,5,3,7,3,2,3,4,7,5,4,3,4],sub:'あきの おうた'},
   {id:'crickets',name:'むしの こえ',ico:'🦗',group:'autumn',level:3,notes:[4,2,5,5,4,4,2,7,7,5,5,4],sub:'すずむし りんりん'},
   {id:'snow',name:'ゆき',ico:'⛄',group:'winter',level:2,notes:[4,5,4,5,4,2,2,3,2,3,2,0],sub:'ゆきや こんこ'},
-  {id:'jingle',name:'ジングルベル',ico:'🔔',group:'winter',level:3,notes:[2,2,2,2,2,2,2,4,0,1,2,3,3,3,3,3,2,2,2,2,1,1,2,1,4],sub:'ふゆの ベル♪'},
+  {id:'jingle',name:'ジングルベル',ico:'🔔',group:'winter',level:3,notes:[2,2,2,2,2,2,2,4,0,1,2,3,3,3,3,3,2,2,2,2,1,1,2,1,4],beats:[1,1,2,1,1,2,1,1,1,1,4,.5,.5,.5,.5,1,.5,.5,.5,.5,1,1,1,1,2],bpm:124,instrument:'bells',harmony:[[0,'C'],[4,'C'],[8,'C'],[12,'G'],[16,'C'],[20,'F'],[24,'C'],[28,'G'],[32,'C']],sub:'ミ ミ ミー♪　ながさを あわせよう'},
   {id:'free',name:'じゆう えんそう',ico:'🎹',group:'basic',level:3,notes:[],sub:'2オクターブ 15おん'}
  ];
  let filter='all',selectedSong=SONGS[0],song=null,phase='home',source='touch',currentPitch=0,scrollOffset=0,goodIndex=0,stickerHandle=0,noteBeats=[],backingStep=0,backingOn=true,finishTimer=0;
@@ -103,36 +103,74 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  function getBest(id){try{return Number(localStorage.getItem('luxmelody-v04-'+id))||0}catch(e){return 0}}
  function setBest(id,count){try{localStorage.setItem('luxmelody-v04-'+id,String(Math.max(count,getBest(id))))}catch(e){}}
  function audioReady(){try{if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});}catch(e){}}
- function playBell(p,seconds=.48){if(!soundOn)return;audioReady();if(!audio||audio.state!=='running')return;const t=audio.currentTime;const base=freqOf(clamp(p,0,14));for(const [type,mult,amp] of [['sine',1,.19],['triangle',2,.035]]){const osc=audio.createOscillator(),env=audio.createGain();osc.type=type;osc.frequency.setValueAtTime(base*mult,t);env.gain.setValueAtTime(.0001,t);env.gain.exponentialRampToValueAtTime(amp,t+.025);env.gain.exponentialRampToValueAtTime(.0001,t+seconds);osc.connect(env);env.connect(audio.destination);osc.start(t);osc.stop(t+seconds+.03)}}
- // BGM is driven by scroll distance, not wall-clock time. It naturally pauses at a wrong note.
- const CHORDS=[[0,4,7],[5,9,12],[7,11,14],[0,4,7]];
- function softTone(hz,volume,seconds,type='sine'){
-  if(!soundOn||!backingOn||!audio||audio.state!=='running')return;
-  const t=audio.currentTime,osc=audio.createOscillator(),env=audio.createGain();
-  osc.type=type;osc.frequency.setValueAtTime(hz,t);
-  env.gain.setValueAtTime(.0001,t);
-  env.gain.exponentialRampToValueAtTime(Math.max(.0002,volume),t+.022);
-  env.gain.exponentialRampToValueAtTime(.0001,t+seconds);
-  osc.connect(env);env.connect(audio.destination);osc.start(t);osc.stop(t+seconds+.03);
+ // Web Audio: simple musical instruments, short room tails, and song-specific harmony.
+ // All sounds are synthesized here; no recorded or licensed audio is downloaded.
+ function synth(semitones,length=.4,kind='musicbox',volume=.12){
+  if(!soundOn)return;
+  audioReady();if(!audio||audio.state!=='running')return;
+  const t=audio.currentTime+.006,base=261.625565*Math.pow(2,semitones/12),dur=clamp(length,.12,2.6);
+  const partials=kind==='bells'?[[1,.72,1],[2.01,.24,.58],[3.92,.10,.32]]:
+    kind==='piano'?[[1,.76,1],[2,.19,.54],[3,.06,.34]]:
+    kind==='bass'?[[1,.87,1],[2,.13,.62]]:
+    kind==='pad'?[[1,.75,1],[2,.12,.8]]:
+    [[1,.76,1],[2,.20,.45],[3,.07,.28]];
+  const attack=kind==='pad'?.07:.012;
+  for(const [mult,part,decay] of partials){
+   const o=audio.createOscillator(),g=audio.createGain();
+   o.type=kind==='piano'&&mult===1?'triangle':kind==='bass'?'triangle':'sine';
+   o.frequency.setValueAtTime(base*mult,t);
+   const amp=Math.max(.0001,volume*part);
+   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(amp,t+attack);
+   const tail=kind==='bells'?.44:kind==='musicbox'?.28:kind==='pad'?.18:.10;
+   const until=dur*decay+tail;
+   g.gain.exponentialRampToValueAtTime(.0001,t+Math.max(attack+.04,until));
+   o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+Math.max(attack+.05,until)+.03);
+  }
+ }
+ function playBell(p,seconds=.48){
+  const instrument=song?.instrument||'musicbox';
+  synth(SCALE[clamp(p,0,14)],seconds,instrument,instrument==='bells'?.17:.16);
+ }
+ const CHORD_TONES={C:[0,4,7],F:[5,9,12],G:[7,11,14],Am:[9,12,16],Dm:[2,5,9]};
+ const DEFAULT_HARMONY=[[0,'C'],[4,'F'],[8,'G'],[12,'C'],[16,'F'],[20,'G'],[24,'C']];
+ function chordAt(beat){
+  const score=song?.harmony||DEFAULT_HARMONY;
+  if(!score.length)return 'C';
+  // For short practice snippets, use a simple repeating accompaniment.
+  const cycle=score===DEFAULT_HARMONY?28:Infinity;
+  const position=beat<0?0:beat%cycle;
+  let name=score[0][1];for(const [at,ch] of score){if(at>position)break;name=ch}return name;
  }
  function backingPulse(tick){
   if(!backingOn||!soundOn||phase!=='game')return;
-  const musicalBeat=Math.max(0,tick/2-2),bar=Math.floor(musicalBeat/4);
-  const chord=CHORDS[bar%CHORDS.length];
-  const arpeggio=[0,1,2,1,0,1,2,1][tick%8];
-  softTone(261.625565*Math.pow(2,chord[arpeggio]/12),.048,.20,'sine');
-  if(tick%2===0){
-   softTone(130.812783*Math.pow(2,chord[0]/12),.072,.43,'triangle');
-   if(tick%8===0)softTone(261.625565*Math.pow(2,chord[1]/12),.033,.72,'sine');
+  const beat=tick/2-2,chord=CHORD_TONES[chordAt(beat)]||CHORD_TONES.C;
+  const half=((tick%8)+8)%8,tempo=beatLength();
+  const instrument=song.instrument==='bells'?'bells':'musicbox';
+  // A chord's bass + upbeat notes make the actual song recognizable.
+  if(tick%2===0){synth(chord[0]-12,Math.min(tempo*.9,.8),'bass',.09);}
+  if(half===0||half===4){
+    chord.forEach((v,i)=>synth(v-7,.52,'pad',i===0?.026:.018));
+  }
+  if(tick%2===1){
+   const p=chord[[1,2,0,2][Math.floor(half/2)%4]];
+   synth(p,Math.min(.32,tempo*.65),instrument,.056);
   }
  }
- function beatLength(){return song.level===1?0.69:song.level===2?0.57:0.51}
- function noteDuration(index){return song.beats?.[index]??((index===song.notes.length-1||index%7===6)?1.7:1)}
- function setupRhythm(){noteBeats=[];let beat=0;for(let i=0;i<song.notes.length;i++){noteBeats.push(beat);beat+=noteDuration(i)}backingStep=0}
+ function beatLength(){return 60/(song?.bpm||(song?.level===1?90:song?.level===2?105:116))}
+ function noteDuration(index){return song.beats?.[index]??((index===song.notes.length-1||index%7===6)?2:1)}
+ function noteGap(index){return song.gaps?.[index]||0}
+ function setupRhythm(){
+  noteBeats=[];let beat=0;
+  for(let i=0;i<song.notes.length;i++){noteBeats.push(beat);beat+=noteDuration(i)+noteGap(i)}
+  backingStep=0;
+ }
  function backingAlongScroll(spacing,origin,judge){
-  // Two-beat gentle introduction before the first note reaches the judge line.
+  // Playback advances by musical beats and freezes only at an incorrect pitch.
   const first=origin-judge-2*spacing;
-  while(backingStep<600&&first+backingStep*spacing/2<=scrollOffset+.0001){backingPulse(backingStep);backingStep++}
+  let limit=0;
+  while(backingStep<600&&first+backingStep*spacing/2<=scrollOffset+.0001&&limit++<4){
+   backingPulse(backingStep);backingStep++;
+  }
  }
  function stopVoice(){if(!voice||!audio)return;const t=audio.currentTime;try{gain.gain.cancelScheduledValues(t);gain.gain.setTargetAtTime(.0001,t,.018);voice.stop(t+.1);}catch(e){}voice=null;gain=null;voiceNote=-1}
  function startVoice(p){if(!soundOn){stopVoice();return;}audioReady();if(!audio||audio.state!=='running')return;const t=audio.currentTime;if(!voice){voice=audio.createOscillator();gain=audio.createGain();voice.type='sine';voice.frequency.value=freqOf(p);gain.gain.value=.0001;voice.connect(gain);gain.connect(audio.destination);voice.start()}if(voiceNote!==p){voice.frequency.setTargetAtTime(freqOf(p),t,.035);voiceNote=p}gain.gain.setTargetAtTime(.15,t,.028)}
@@ -145,7 +183,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  function refreshCounter(){$('counter').textContent=goodIndex+' / '+song.notes.length+' ⭐';$('progressFill').style.width=(goodIndex/song.notes.length*100)+'%';$('boardPrompt').textContent=goodIndex<song.notes.length?'つぎは「'+nameOf(song.notes[goodIndex])+'」の たかさ♪':'よく できました！'}
  function spark(){if(goodIndex%4!==0)return;const e=$('sticker');e.textContent='✨';e.classList.remove('shown');void e.offsetWidth;e.classList.add('shown');clearTimeout(stickerHandle);stickerHandle=setTimeout(()=>e.classList.remove('shown'),340)}
  function finishSong(){setBest(song.id,goodIndex);setPage('finish');$('doneTitle').textContent=song.ico+' '+song.name+'　かんせい！';fillCards();[0,2,4,7].forEach((p,i)=>setTimeout(()=>{if(phase==='finish')playBell(p,.26)},i*165));}
- function advance(now){const p=song.notes[goodIndex];playBell(p,Math.min(.86,noteDuration(goodIndex)*beatLength()*.87));goodIndex++;spark();refreshCounter();if(goodIndex>=song.notes.length){const finishedSong=song;finishTimer=setTimeout(()=>{if(phase==='game'&&song===finishedSong)finishSong()},900)}}
+ function advance(now){const p=song.notes[goodIndex];playBell(p,Math.min(2.2,noteDuration(goodIndex)*beatLength()*.90));goodIndex++;spark();refreshCounter();if(goodIndex>=song.notes.length){const finishedSong=song;finishTimer=setTimeout(()=>{if(phase==='game'&&song===finishedSong)finishSong()},Math.max(800,noteDuration(goodIndex-1)*beatLength()*1000))}}
  function updateGame(now,dt){
   if(phase!=='game'||!song||goodIndex>=song.notes.length)return;
   const spacing=clamp(cw*.24,78,114),origin=cw+35,judge=cw*.25;
@@ -172,7 +210,13 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   g.strokeStyle='#ffb272';g.lineWidth=4;g.setLineDash([7,8]);g.beginPath();g.moveTo(judge,45);g.lineTo(judge,h-19);g.stroke();g.setLineDash([]);
   g.font='900 11px sans-serif';g.textAlign='center';g.fillStyle='#a9805d';g.fillText('ここで あわせる',judge,38);
   // 横から流れてくる音符
-  for(let i=goodIndex;i<Math.min(song.notes.length,goodIndex+8);i++){const x=origin+noteBeats[i]*spacing-scrollOffset;if(x>w+40||x<-60)continue;const p=song.notes[i],y=pitchY(p);g.save();g.globalAlpha=i===goodIndex?1:.8;g.shadowColor=colorOf(p);g.shadowBlur=i===goodIndex?14:2;g.fillStyle=colorOf(p);g.beginPath();g.ellipse(x,y,19,16,-.26,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#ffffff';g.lineWidth=3;g.stroke();g.fillStyle=colorOf(p);g.fillRect(x+15,y-42,5,44);g.fillStyle='#33486d';g.textAlign='center';g.font='1000 16px sans-serif';g.fillText(nameOf(p),x,y+31);g.restore()}
+  for(let i=goodIndex;i<Math.min(song.notes.length,goodIndex+8);i++){const x=origin+noteBeats[i]*spacing-scrollOffset;if(x>w+40||x<-60)continue;const p=song.notes[i],y=pitchY(p);g.save();g.globalAlpha=i===goodIndex?1:.8;
+  const tail=Math.max(9,Math.min(spacing*3,noteDuration(i)*spacing*.76));
+  g.fillStyle=colorOf(p);g.globalAlpha=i===goodIndex?.25:.17;
+  g.beginPath();g.roundRect(x-5,y-7,tail,14,7);g.fill();
+  g.globalAlpha=i===goodIndex?1:.8;
+  if(noteGap(i)>0){g.fillStyle='#ac8ab7';g.font='900 12px sans-serif';g.fillText('𝄽',x+tail+8,y);}
+  g.shadowColor=colorOf(p);g.shadowBlur=i===goodIndex?14:2;g.fillStyle=colorOf(p);g.beginPath();g.ellipse(x,y,19,16,-.26,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#ffffff';g.lineWidth=3;g.stroke();g.fillStyle=colorOf(p);g.fillRect(x+15,y-42,5,44);g.fillStyle='#33486d';g.textAlign='center';g.font='1000 16px sans-serif';g.fillText(nameOf(p),x,y+31);g.restore()}
   const myY=pitchY(currentPitch);g.shadowColor='#f5aa52';g.shadowBlur=20;g.fillStyle='#ffca75';g.beginPath();g.arc(judge,myY,17,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#fff';g.lineWidth=4;g.stroke();g.fillStyle='#70562f';g.font='1000 25px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('♪',judge,myY-1);
   if(isAt&&song.notes[goodIndex]!==currentPitch){const y=pitchY(song.notes[goodIndex]);g.fillStyle='#966fb5';g.font='1000 13px sans-serif';g.textAlign='center';g.fillText(song.notes[goodIndex]>currentPitch?'⬆ もっと たかく！':'⬇ もっと ひくく！',w*.66,h-17)}
   else if(isAt){g.fillStyle='#5f9c86';g.font='1000 13px sans-serif';g.textAlign='center';g.fillText('✋ パーで おとが なるよ♪',w*.67,h-17)}
