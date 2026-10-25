@@ -15,27 +15,27 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
 .shell{position:relative;min-height:0;flex:1;background:#ffffffa8;border:4px solid white;border-radius:27px;box-shadow:0 15px 35px #6885af20;overflow:hidden}.page{position:absolute;inset:0;display:flex;flex-direction:column}.home{padding:17px 17px 0}.homeTop{text-align:center;flex:none}.bubbly{font-size:clamp(25px,5.2vw,35px);margin:2px 0 3px;line-height:1.25;font-weight:1000;letter-spacing:.01em}.bubbly em{font-style:normal;color:#ed8a7c}.lead{margin:0;color:#738ba5;font-weight:900;font-size:clamp(12px,2.8vw,16px)}
 .seasons{display:flex;gap:7px;overflow-x:auto;padding:15px 1px 10px;flex:none;scrollbar-width:none}.seasons::-webkit-scrollbar{display:none}.tab{border:2px solid #fff;flex:none;background:#f6f8ff;color:#667a94;border-radius:15px;padding:9px 13px;font-size:13px;font-weight:1000;box-shadow:0 3px 0 #d2dfed77}.tab[aria-pressed=true]{background:#fff0b8;color:#7b642a;border-color:#ffdc84}
 .songGrid{overflow-y:auto;flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:min-content;align-content:start;gap:9px;padding:4px 3px 20px}.songCard{border:3px solid white;border-radius:21px;min-height:110px;background:var(--bg,#fff5eb);text-align:left;display:flex;align-items:center;gap:11px;padding:10px 12px;color:#465a7a;box-shadow:0 5px 0 #d6dee9aa;transition:transform .12s}.songCard[aria-pressed=true]{border-color:#f6ac82;box-shadow:0 5px 0 #f0b49baa;transform:translateY(-2px)}.songIcon{font-size:clamp(27px,4.1vw,37px);display:grid;place-items:center;width:54px;height:54px;flex:none;background:#ffffffa0;border-radius:17px}.songWords{min-width:0;display:flex;flex-direction:column;gap:4px}.songWords b{font-size:clamp(14px,2vw,17px);line-height:1.35;font-weight:1000}.songWords small{color:#7588a1;font-weight:850;font-size:11px;line-height:1.4}.songCard .medal{font-size:12px;color:#d59a2a;font-weight:1000}
-.homeFoot{border-top:2px dashed #e9e1d7;padding:11px 2px 12px;background:#fffdf9bb;flex:none;display:grid;grid-template-columns:1fr 1fr;gap:9px}.choiceName{grid-column:1/-1;text-align:center;color:#637996;font-weight:900;font-size:12px}.mainBtn{border:0;border-radius:20px;min-height:58px;padding:10px 9px;color:white;font-weight:1000;font-size:clamp(13px,3vw,17px);box-shadow:0 6px 0 #d7a6a0;letter-spacing:.02em}.mainBtn.cam{background:linear-gradient(155deg,#ffb77a,#ff8d8d);box-shadow:0 5px 0 #ec8b7b}.mainBtn.touch{background:linear-gradient(145deg,#64d1bd,#53b6d4);box-shadow:0 5px 0 #40a4ac}.mainBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #c6ccd2}
+.homeFoot{border-top:2px dashed #e9e1d7;padding:11px 2px 12px;background:#fffdf9bb;flex:none;display:grid;grid-template-columns:1fr 1fr;gap:9px}.choiceRow{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:34px}.choiceName{flex:1;text-align:center;color:#637996;font-weight:900;font-size:12px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.previewBtn{flex:none;border:2px solid #fff;background:#fce7ff;color:#976bb0;border-radius:12px;min-height:34px;padding:5px 10px;font-weight:1000;font-size:12px;box-shadow:0 3px 0 #e9d9ef}.previewBtn:disabled{opacity:.5;cursor:default}.mainBtn{border:0;border-radius:20px;min-height:58px;padding:10px 9px;color:white;font-weight:1000;font-size:clamp(13px,3vw,17px);box-shadow:0 6px 0 #d7a6a0;letter-spacing:.02em}.mainBtn.cam{background:linear-gradient(155deg,#ffb77a,#ff8d8d);box-shadow:0 5px 0 #ec8b7b}.mainBtn.touch{background:linear-gradient(145deg,#64d1bd,#53b6d4);box-shadow:0 5px 0 #40a4ac}.mainBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #c6ccd2}
 .game{padding:10px;gap:8px}.gameHead{display:flex;gap:7px;align-items:center;justify-content:space-between}.gameName{font-size:clamp(14px,3vw,19px);font-weight:1000;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.counter{flex:none;border:2px solid #fff;background:#fff8df;padding:6px 10px;border-radius:14px;color:#906f38;font-size:13px;font-weight:1000}.playBoard{flex:1;min-height:225px;border-radius:24px;overflow:hidden;position:relative;background:linear-gradient(180deg,#ebf8ff 0%,#f4f0ff 72%,#f9f4ff);border:3px solid white;box-shadow:inset 0 4px 15px #cbdfee60;touch-action:none;user-select:none}.playBoard canvas{width:100%;height:100%;display:block;touch-action:none}.boardPrompt{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:#fffdf3e9;padding:6px 14px;border-radius:30px;white-space:nowrap;font-size:clamp(12px,2.7vw,17px);font-weight:1000;color:#687d93;border:2px solid white;pointer-events:none;max-width:95%;overflow:hidden;text-overflow:ellipsis}.sticker{position:absolute;left:52%;top:41%;transform:translate(-50%,-50%);font-size:clamp(22px,7vw,47px);font-weight:1000;color:#e78361;text-shadow:2px 3px 0 white;pointer-events:none;opacity:0;transition:opacity .14s}.sticker.shown{opacity:1;animation:pop .32s ease-out}@keyframes pop{50%{transform:translate(-50%,-65%) scale(1.2)}}
-.playBar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 4px}.playTools{display:flex;align-items:center;gap:8px}.backingBtn{border:2px solid white;background:#fff0bd;border-radius:12px;color:#866527;white-space:nowrap;font-weight:1000;font-size:12px;min-height:36px;padding:6px 9px;box-shadow:0 3px 0 #e5d2a0}.backingBtn[aria-pressed=false]{background:#edf0f5;color:#8292a5;box-shadow:0 3px 0 #dfe5ed}.nowNote{font-size:clamp(17px,3.7vw,23px);font-weight:1000}.playHint{color:#6987a0;font-size:clamp(11px,2.4vw,14px);font-weight:850;text-align:right}.progress{height:10px;background:#e6eaf3;border-radius:20px;overflow:hidden;flex:none}.progress b{display:block;width:0;height:100%;background:linear-gradient(90deg,#7bcfba,#f8c46f);transition:width .2s;border-radius:20px}.touchControls{flex:none;background:#ffffffdf;border:2px solid white;border-radius:21px;padding:8px 9px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:61px}.moveBtn{white-space:nowrap;border:0;border-radius:16px;background:#c7eaf8;color:#357eaa;min-height:53px;min-width:104px;padding:6px 10px;font-size:16px;font-weight:1000;box-shadow:0 3px 0 #98c4e4}.moveBtn.down{background:#fce2bd;color:#a97a45;box-shadow:0 3px 0 #edc79e}.controlMiddle{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:#7e90a5;font-weight:1000;min-width:88px;text-align:center}.controlMiddle strong{font-size:18px;color:#4e6585}.camControls{background:#fff7e5;border:2px solid white;border-radius:16px;text-align:center;padding:10px;color:#796d80;font-weight:1000;font-size:15px;min-height:60px;display:grid;place-items:center}.footerTips{color:#8697ae;text-align:center;font-size:11px;font-weight:850;padding:0 8px 2px}
+.playBar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 4px}.playTools{display:flex;align-items:center;gap:8px}.backingBtn{border:2px solid white;background:#fff0bd;border-radius:12px;color:#866527;white-space:nowrap;font-weight:1000;font-size:12px;min-height:36px;padding:6px 9px;box-shadow:0 3px 0 #e5d2a0}.backingBtn[aria-pressed=false]{background:#edf0f5;color:#8292a5;box-shadow:0 3px 0 #dfe5ed}#slowBtn[aria-pressed=true]{background:#cbefe2;color:#428c7f;box-shadow:0 3px 0 #9acebf}.nowNote{font-size:clamp(17px,3.7vw,23px);font-weight:1000}.playHint{color:#6987a0;font-size:clamp(11px,2.4vw,14px);font-weight:850;text-align:right}.progress{height:10px;background:#e6eaf3;border-radius:20px;overflow:hidden;flex:none}.progress b{display:block;width:0;height:100%;background:linear-gradient(90deg,#7bcfba,#f8c46f);transition:width .2s;border-radius:20px}.touchControls{flex:none;background:#ffffffdf;border:2px solid white;border-radius:21px;padding:8px 9px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:61px}.moveBtn{white-space:nowrap;border:0;border-radius:16px;background:#c7eaf8;color:#357eaa;min-height:53px;min-width:104px;padding:6px 10px;font-size:16px;font-weight:1000;box-shadow:0 3px 0 #98c4e4}.moveBtn.down{background:#fce2bd;color:#a97a45;box-shadow:0 3px 0 #edc79e}.controlMiddle{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:#7e90a5;font-weight:1000;min-width:88px;text-align:center}.controlMiddle strong{font-size:18px;color:#4e6585}.camControls{background:#fff7e5;border:2px solid white;border-radius:16px;text-align:center;padding:10px;color:#796d80;font-weight:1000;font-size:15px;min-height:60px;display:grid;place-items:center}.footerTips{color:#8697ae;text-align:center;font-size:11px;font-weight:850;padding:0 8px 2px}
 .finish{align-items:center;justify-content:center;padding:22px;gap:16px;text-align:center;background:radial-gradient(circle at 50% 28%,#ffedb9 0,transparent 41%)}.finish .big{font-size:85px;line-height:1.1}.finish h2{font-size:clamp(27px,6vw,41px);margin:0;font-weight:1000;color:#ec8875}.finish p{font-size:19px;color:#758e9f;font-weight:900}.finishButtons{width:min(360px,100%);display:grid;gap:12px}
 .setup{align-items:center;justify-content:center;gap:13px;text-align:center;padding:22px}.setupArt{font-size:clamp(60px,12vw,110px);line-height:1}.setup h2{font-size:clamp(23px,5vw,34px);margin:0}.setup p{font-size:clamp(13px,3vw,17px);color:#7388a5;font-weight:900;max-width:390px;margin:0}.meter{width:min(340px,90%);height:18px;border:3px solid white;border-radius:99px;background:#e4eaf4;overflow:hidden}.meter b{display:block;width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#6fd3c5,#f5bf6f)}.setupFoot{width:min(340px,100%);display:grid;gap:10px}.setupError{font-size:12px;color:#ad635c;font-weight:900}
 .freeBoard{padding:10px;gap:8px}.freeMain{flex:1;min-height:150px;display:flex;align-items:center;justify-content:center;gap:18px;flex-direction:column;text-align:center}.freeOrb{display:grid;place-items:center;border-radius:50%;background:#ffcf76;color:white;border:8px solid white;width:min(32vh,170px);height:min(32vh,170px);font-size:clamp(46px,11vw,78px);font-weight:1000;box-shadow:0 7px 0 #ead8ba}.freeTrack{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;padding:8px;background:white;border-radius:20px}.freeKey{border:0;border-radius:13px;height:60px;background:var(--note);color:#374b68;font-size:17px;font-weight:1000;box-shadow:0 3px 0 #aaa4;touch-action:none}.freeKey small{display:block;font-size:9px}.freeKey.active{outline:4px solid #698bc5;transform:translateY(3px);box-shadow:none}.freeHelp{text-align:center;font-size:13px;font-weight:900;color:#667e96}
 @media(max-width:760px){.songGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.songCard{min-height:90px;padding:9px 8px;gap:8px}.songIcon{width:41px;height:44px;font-size:27px}.home{padding:10px 10px 0}.seasons{padding:10px 0}.tab{padding:9px 11px}.songWords b{font-size:13px}.songWords small{font-size:10px}.app{padding-left:7px;padding-right:7px}.mainBtn{min-height:55px}.logoMark{height:38px;width:38px}.shell{border-radius:21px}}
 @media(max-height:690px){.homeTop .bubbly{font-size:23px}.homeTop .lead{font-size:12px}.seasons{padding:7px 0}.songCard{min-height:72px}.homeFoot{padding:7px 0 10px}.game{gap:6px}.touchControls{min-height:52px;padding:5px}.moveBtn{min-height:46px}}
-@media(max-width:400px){.playTools{gap:3px}.playHint{display:none}.backingBtn{font-size:11px;padding:5px 7px}.topButtons .subbtn{font-size:11px;padding:8px}.logo h1{font-size:18px}.controlMiddle{min-width:67px}.moveBtn{min-width:80px;padding:6px 8px}.freeKey{font-size:14px;height:53px}}
+@media(max-width:400px){.playTools{gap:3px}.playHint{display:none}.backingBtn{font-size:10px;padding:5px 5px}.topButtons .subbtn{font-size:11px;padding:8px}.logo h1{font-size:18px}.controlMiddle{min-width:67px}.moveBtn{min-width:80px;padding:6px 8px}.freeKey{font-size:14px;height:53px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01s!important;transition-duration:.01s!important}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="topbar"><div class="logo"><span class="logoMark">🎵</span><div><h1>LUX MELODY</h1><small>てのひらで ドレミ♪ <span style="color:#df9a63">v0.6</span></small></div></div><div class="topButtons"><button class="subbtn" id="soundBtn" aria-label="おとの オン オフ">🔊 おと</button><button class="subbtn" id="homeBtn" hidden>⌂ もどる</button></div></header>
+<header class="topbar"><div class="logo"><span class="logoMark">🎵</span><div><h1>LUX MELODY</h1><small>てのひらで ドレミ♪ <span style="color:#df9a63">v0.7</span></small></div></div><div class="topButtons"><button class="subbtn" id="soundBtn" aria-label="おとの オン オフ">🔊 おと</button><button class="subbtn" id="homeBtn" hidden>⌂ もどる</button></div></header>
 <main class="shell">
 <section class="page home" id="home">
  <div class="homeTop"><div class="bubbly">🌈 おうたを <em>えらぼう！</em></div><p class="lead">てを うごかして ♪ に あわせよう</p></div>
  <nav class="seasons" id="tabs" aria-label="きょくの なかま"></nav>
  <div class="songGrid" id="songGrid" aria-label="あそべる おうた"></div>
- <div class="homeFoot"><div class="choiceName" id="chosenText">🎵 どれで あそぶ？</div><button class="mainBtn cam" id="camBtn">✋ てで あそぶ</button><button class="mainBtn touch" id="touchBtn">👆 タッチで あそぶ</button></div>
+ <div class="homeFoot"><div class="choiceRow"><div class="choiceName" id="chosenText">🎵 どれで あそぶ？</div><button class="previewBtn" id="previewBtn" type="button">▶ おてほん</button></div><button class="mainBtn cam" id="camBtn">✋ てで あそぶ</button><button class="mainBtn touch" id="touchBtn">👆 タッチで あそぶ</button></div>
 </section>
 <section class="page setup" id="setup" hidden>
  <div class="setupArt" id="setupArt">📱✋</div><h2 id="setupTitle">てを みつけているよ</h2><p id="setupMsg">おとなのひとと いっしょに カメラを きょかしてね</p>
@@ -46,7 +46,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
 <section class="page game" id="game" hidden>
  <div class="gameHead"><div class="gameName" id="gameName">⭐ きらきらぼし</div><div class="counter" id="counter">0 / 14 ⭐</div></div>
  <div class="playBoard" id="playBoard"><canvas id="canvas" aria-label="おとの たかさが わかる ゲーム がめん"></canvas><div class="boardPrompt" id="boardPrompt">♪ を おなじ たかさに しよう</div><div class="sticker" id="sticker">やったね！ ⭐</div></div>
- <div class="playBar"><div class="nowNote" id="currentNote">♪ ド</div><div class="playTools"><div class="playHint" id="playHint">🎵 おんがくが ながれるよ</div><button class="backingBtn" id="backingBtn" aria-label="ばんそうの オン オフ" aria-pressed="true">🎹 ばんそう ON</button></div></div><div class="progress"><b id="progressFill"></b></div>
+ <div class="playBar"><div class="nowNote" id="currentNote">♪ ド</div><div class="playTools"><div class="playHint" id="playHint">🎵 おんがくが ながれるよ</div><button class="backingBtn" id="slowBtn" aria-pressed="false">🐢 ゆっくり</button><button class="backingBtn" id="backingBtn" aria-label="ばんそうの オン オフ" aria-pressed="true">🎹 ばんそう ON</button></div></div><div class="progress"><b id="progressFill"></b></div>
  <div class="touchControls" id="touchControls"><button class="moveBtn down" id="downBtn">▼ ひくく</button><div class="controlMiddle"><strong id="touchPitch">ド</strong><span>ゆびで ♪ を うごかそう</span></div><button class="moveBtn" id="upBtn">▲ たかく</button></div>
  <div class="camControls" id="camControls" hidden>✋ パーで あわせてね　・　✊ グーで おやすみ</div>
  <div class="footerTips">🎶 ながい おとは なが〜く♪　あうと ながれる・ちがうと まつよ</div>
@@ -73,7 +73,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  const SONGS=[
   {id:'steps',name:'ドレミかいだん',ico:'🌱',group:'basic',level:1,notes:[0,1,2,1,0,0,1,2,2,1,0],beats:[1,1,1.6,1,1.6,1,1,1.6,1,1,2],sub:'はじめての 3おん・オリジナル'},
   {id:'twinkle',name:'きらきらぼし',ico:'⭐',group:'basic',level:2,notes:[0,0,4,4,5,5,4,3,3,2,2,1,1,0],beats:[1,1,1,1,1,1,2,1,1,1,1,1,1,2],bpm:98,instrument:'musicbox',harmony:[[0,'C'],[4,'F'],[6,'C'],[8,'F'],[10,'C'],[12,'G'],[14,'C']],sub:'ドから ラまで・リズムつき'},
-  {id:'butterfly',name:'ちょうちょう',ico:'🦋',group:'basic',level:2,notes:[4,2,2,3,1,1,0,1,2,3,4,4,4],beats:[1,.5,1.5,1,.5,1.5,1,1,1,1,1,1,2],bpm:106,instrument:'piano',harmony:[[0,'C'],[4,'G'],[8,'C'],[12,'G']],sub:'ソ ミ ミ ファ レ レ♪'},
+  {id:'butterfly',name:'ちょうちょう',ico:'🦋',group:'basic',level:2,notes:[4,2,2,3,1,1,0,1,2,3,4,4,4],beats:[1,1,2,1,1,2,1,1,1,1,1,1,2],bpm:106,instrument:'piano',harmony:[[0,'C'],[4,'G'],[8,'C'],[12,'G']],sub:'ソ ミ ミ ファ レ レ♪'},
   {id:'frog',name:'かえるの がっしょう',ico:'🐸',group:'basic',level:2,notes:[0,1,2,3,2,1,0,2,3,4,5,4,3,2],sub:'すこしずつ うえへ'},
   {id:'spring',name:'はるが きた',ico:'🌷',group:'spring',level:2,notes:[4,2,3,4,5,4,2,3,4,7,5,4,2,0,1],sub:'はるの うた'},
   {id:'stream',name:'はるの おがわ',ico:'🏞️',group:'spring',level:3,notes:[2,4,5,4,2,4,7,7,5,5,4,2,0,1,2],sub:'さらさら おがわ'},
@@ -83,32 +83,32 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   {id:'maple',name:'もみじ',ico:'🍁',group:'autumn',level:3,notes:[5,4,3,4,5,3,7,3,2,3,4,7,5,4,3,4],sub:'あきの おうた'},
   {id:'crickets',name:'むしの こえ',ico:'🦗',group:'autumn',level:3,notes:[4,2,5,5,4,4,2,7,7,5,5,4],sub:'すずむし りんりん'},
   {id:'snow',name:'ゆき',ico:'⛄',group:'winter',level:2,notes:[4,5,4,5,4,2,2,3,2,3,2,0],sub:'ゆきや こんこ'},
-  {id:'jingle',name:'ジングルベル',ico:'🔔',group:'winter',level:3,notes:[2,2,2,2,2,2,2,4,0,1,2,3,3,3,3,3,2,2,2,2,1,1,2,1,4],beats:[1,1,2,1,1,2,1,1,1,1,4,.5,.5,.5,.5,1,.5,.5,.5,.5,1,1,1,1,2],bpm:124,instrument:'bells',harmony:[[0,'C'],[4,'C'],[8,'C'],[12,'G'],[16,'C'],[20,'F'],[24,'C'],[28,'G'],[32,'C']],sub:'ミ ミ ミー♪　ながさを あわせよう'},
+  {id:'jingle',name:'ジングルベル',ico:'🔔',group:'winter',level:3,notes:[2,2,2,2,2,2,2,4,0,1,2,3,3,3,3,3,2,2,2,2,1,1,2,1,4],beats:[1,1,2,1,1,2,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,2,2],bpm:124,instrument:'bells',harmony:[[0,'C'],[4,'C'],[8,'C'],[12,'G'],[16,'C'],[20,'F'],[24,'C'],[28,'G'],[32,'C']],sub:'ミ ミ ミー♪　ながさを あわせよう'},
   {id:'free',name:'じゆう えんそう',ico:'🎹',group:'basic',level:3,notes:[],sub:'2オクターブ 15おん'}
  ];
- let filter='all',selectedSong=SONGS[0],song=null,phase='home',source='touch',currentPitch=0,scrollOffset=0,goodIndex=0,stickerHandle=0,noteBeats=[],backingStep=0,backingOn=true,finishTimer=0;
+ let filter='all',selectedSong=SONGS[0],song=null,phase='home',source='touch',currentPitch=0,scrollOffset=0,goodIndex=0,stickerHandle=0,noteBeats=[],backingStep=0,backingOn=true,slowMode=false,finishTimer=0,previewTimer=0,previewBus=null,previewing=false,previewSerial=0;
  let ctx=$('canvas').getContext('2d'),cw=300,ch=350,pxRatio=1,prevFrame=0,loopId=0,pressHold=0;
  let soundOn=true,audio=null,voice=null,gain=null,voiceNote=-1;
  let handPose='unknown',candidate='unknown',candCount=0,lastPoseChange=0,stream=null,engine=null,videoLoop=0,visionBusy=false,lastVision=0,lastHand=0,handSize=NaN,smoothSize=NaN,nearSize=NaN,farSize=NaN,calStage='',runId=0;
  function nameOf(p){return SOL[((p%7)+7)%7]+(p>=7?'↑':'')}
  function colorOf(p){return CSSCOL[((p%7)+7)%7]}
  function freqOf(p){return 261.625565*Math.pow(2,SCALE[p]/12)}
- function setPage(id){phase=id;['home','setup','game','free','finish'].forEach(n=>$(n).hidden=n!==id);$('homeBtn').hidden=id==='home';if(id!=='free')stopVoice();if(id==='game')requestAnimationFrame(resizeCanvas)}
+ function setPage(id){if(id!=='home')stopPreview();phase=id;['home','setup','game','free','finish'].forEach(n=>$(n).hidden=n!==id);$('homeBtn').hidden=id==='home';if(id!=='free')stopVoice();if(id==='game')requestAnimationFrame(resizeCanvas)}
  function fillTabs(){const el=$('tabs');el.replaceChildren();for(const [key,label] of TABS){const b=document.createElement('button');b.className='tab';b.textContent=label;b.setAttribute('aria-pressed',String(filter===key));b.addEventListener('click',()=>{filter=key;fillTabs();fillCards()});el.append(b)}}
  function fillCards(){const parent=$('songGrid');parent.replaceChildren();for(const s of SONGS.filter(x=>filter==='all'||x.group===filter)){
   const b=document.createElement('button');b.className='songCard';b.style.setProperty('--bg',{basic:'#e6f8f6',spring:'#fff0f3',summer:'#e7f5ff',autumn:'#fff2dc',winter:'#eff2ff'}[s.group]);b.setAttribute('aria-pressed',String(selectedSong===s));
   const i=document.createElement('span');i.className='songIcon';i.textContent=s.ico;
-  const w=document.createElement('span');w.className='songWords';const n=document.createElement('b');n.textContent=s.name;const sub=document.createElement('small');sub.textContent=s.sub;w.append(n,sub);if(getBest(s.id)>0){const m=document.createElement('span');m.className='medal';m.textContent='⭐ あそんだよ！';w.append(m)}b.append(i,w);b.addEventListener('click',()=>{selectedSong=s;fillCards();$('chosenText').textContent=s.ico+' '+s.name+' で あそぶ♪';});parent.append(b)
-  }$('chosenText').textContent=selectedSong.ico+' '+selectedSong.name+' で あそぶ♪'}
+  const w=document.createElement('span');w.className='songWords';const n=document.createElement('b');n.textContent=s.name;const sub=document.createElement('small');sub.textContent=s.sub;w.append(n,sub);if(getBest(s.id)>0){const m=document.createElement('span');m.className='medal';m.textContent='⭐ あそんだよ！';w.append(m)}b.append(i,w);b.addEventListener('click',()=>{stopPreview();selectedSong=s;fillCards();$('chosenText').textContent=s.ico+' '+s.name+' で あそぶ♪';});parent.append(b)
+  }$('chosenText').textContent=selectedSong.ico+' '+selectedSong.name+' で あそぶ♪';$('previewBtn').disabled=selectedSong.id==='free'}
  function getBest(id){try{return Number(localStorage.getItem('luxmelody-v04-'+id))||0}catch(e){return 0}}
  function setBest(id,count){try{localStorage.setItem('luxmelody-v04-'+id,String(Math.max(count,getBest(id))))}catch(e){}}
  function audioReady(){try{if(!audio)audio=new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')audio.resume().catch(()=>{});}catch(e){}}
  // Web Audio: simple musical instruments, short room tails, and song-specific harmony.
  // All sounds are synthesized here; no recorded or licensed audio is downloaded.
- function synth(semitones,length=.4,kind='musicbox',volume=.12){
+ function synth(semitones,length=.4,kind='musicbox',volume=.12,startAt=null,bus=null){
   if(!soundOn)return;
   audioReady();if(!audio||audio.state!=='running')return;
-  const t=audio.currentTime+.006,base=261.625565*Math.pow(2,semitones/12),dur=clamp(length,.12,2.6);
+  const t=startAt??audio.currentTime+.006,base=261.625565*Math.pow(2,semitones/12),dur=clamp(length,.12,2.6);
   const partials=kind==='bells'?[[1,.72,1],[2.01,.24,.58],[3.92,.10,.32]]:
     kind==='piano'?[[1,.76,1],[2,.19,.54],[3,.06,.34]]:
     kind==='bass'?[[1,.87,1],[2,.13,.62]]:
@@ -124,11 +124,12 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
    const tail=kind==='bells'?.44:kind==='musicbox'?.28:kind==='pad'?.18:.10;
    const until=dur*decay+tail;
    g.gain.exponentialRampToValueAtTime(.0001,t+Math.max(attack+.04,until));
-   o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+Math.max(attack+.05,until)+.03);
+   o.connect(g);g.connect(bus||audio.destination);o.start(t);o.stop(t+Math.max(attack+.05,until)+.03);
   }
  }
+ function instrumentFor(s){return s?.instrument||({spring:'piano',summer:'musicbox',autumn:'piano',winter:'bells'}[s?.group]||'musicbox')}
  function playBell(p,seconds=.48){
-  const instrument=song?.instrument||'musicbox';
+  const instrument=instrumentFor(song);
   synth(SCALE[clamp(p,0,14)],seconds,instrument,instrument==='bells'?.17:.16);
  }
  const CHORD_TONES={C:[0,4,7],F:[5,9,12],G:[7,11,14],Am:[9,12,16],Dm:[2,5,9]};
@@ -145,7 +146,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   if(!backingOn||!soundOn||phase!=='game')return;
   const beat=tick/2-2,chord=CHORD_TONES[chordAt(beat)]||CHORD_TONES.C;
   const half=((tick%8)+8)%8,tempo=beatLength();
-  const instrument=song.instrument==='bells'?'bells':'musicbox';
+  const instrument=instrumentFor(song)==='bells'?'bells':'musicbox';
   // A chord's bass + upbeat notes make the actual song recognizable.
   if(tick%2===0){synth(chord[0]-12,Math.min(tempo*.9,.8),'bass',.09);}
   if(half===0||half===4){
@@ -156,7 +157,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
    synth(p,Math.min(.32,tempo*.65),instrument,.056);
   }
  }
- function beatLength(){return 60/(song?.bpm||(song?.level===1?90:song?.level===2?105:116))}
+ function beatLength(){return (slowMode?1.38:1)*60/(song?.bpm||(song?.level===1?90:song?.level===2?105:116))}
  function noteDuration(index){return song.beats?.[index]??((index===song.notes.length-1||index%7===6)?2:1)}
  function noteGap(index){return song.gaps?.[index]||0}
  function setupRhythm(){
@@ -172,6 +173,35 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
    backingPulse(backingStep);backingStep++;
   }
  }
+ function stopPreview(){
+  previewSerial++;clearTimeout(previewTimer);
+  if(previewBus){const oldBus=previewBus;try{oldBus.gain.cancelScheduledValues(audio.currentTime);oldBus.gain.setValueAtTime(.0001,audio.currentTime+.015);setTimeout(()=>{try{oldBus.disconnect()}catch(e){}},80)}catch(e){}previewBus=null}
+  previewing=false;const b=$('previewBtn');if(b)b.textContent='▶ おてほん';
+ }
+ async function previewSong(){
+  if(previewing){stopPreview();return}
+  if(selectedSong.id==='free')return;
+  audioReady();if(!audio)return;
+  try{if(audio.state!=='running')await audio.resume()}catch(e){return}
+  stopPreview();const serial=previewSerial;
+  previewing=true;$('previewBtn').textContent='■ とめる';
+  const s=selectedSong,t0=audio.currentTime+.065,beatSeconds=60/(s.bpm||(s.level===1?90:s.level===2?105:116)),kind=instrumentFor(s);
+  previewBus=audio.createGain();previewBus.gain.value=.85;previewBus.connect(audio.destination);
+  let beat=0;const howMany=Math.min(s.notes.length,kind==='bells'?16:14);
+  for(let i=0;i<howMany;i++){
+   const dur=s.beats?.[i]??((i===s.notes.length-1||i%7===6)?2:1);
+   const at=t0+beat*beatSeconds;
+   synth(SCALE[s.notes[i]],Math.min(2.5,dur*beatSeconds*.88),kind,kind==='bells'?.17:.155,at,previewBus);
+   if(i===0||Math.floor(beat/2)>Math.floor((beat-(s.beats?.[i-1]||1))/2)){
+    const score=s.harmony||DEFAULT_HARMONY;let c=score[0][1];for(const [step,name] of score){if(step>beat)break;c=name}
+    const tones=CHORD_TONES[c]||CHORD_TONES.C;
+    synth(tones[0]-12,Math.min(.8,beatSeconds*1.65),'bass',.07,at,previewBus);
+    tones.forEach((v,j)=>synth(v,Math.min(1.25,beatSeconds*2.4),'pad',j===0?.025:.016,at,previewBus));
+   }
+   beat+=dur+(s.gaps?.[i]||0);
+  }
+  previewTimer=setTimeout(()=>{if(previewSerial===serial&&previewing)stopPreview()},(beat*beatSeconds+.4)*1000);
+ }
  function stopVoice(){if(!voice||!audio)return;const t=audio.currentTime;try{gain.gain.cancelScheduledValues(t);gain.gain.setTargetAtTime(.0001,t,.018);voice.stop(t+.1);}catch(e){}voice=null;gain=null;voiceNote=-1}
  function startVoice(p){if(!soundOn){stopVoice();return;}audioReady();if(!audio||audio.state!=='running')return;const t=audio.currentTime;if(!voice){voice=audio.createOscillator();gain=audio.createGain();voice.type='sine';voice.frequency.value=freqOf(p);gain.gain.value=.0001;voice.connect(gain);gain.connect(audio.destination);voice.start()}if(voiceNote!==p){voice.frequency.setTargetAtTime(freqOf(p),t,.035);voiceNote=p}gain.gain.setTargetAtTime(.15,t,.028)}
  function resizeCanvas(){const canvas=$('canvas'),r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;pxRatio=Math.min(2,window.devicePixelRatio||1);cw=r.width;ch=r.height;canvas.width=Math.round(cw*pxRatio);canvas.height=Math.round(ch*pxRatio);ctx.setTransform(pxRatio,0,0,pxRatio,0,0)}
@@ -179,7 +209,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
  function levels(){const [lo,hi]=getRange();return hi-lo+1}
  function pitchY(p){const [lo,hi]=getRange();const top=57,bottom=ch-38;return bottom-(p-lo)/(Math.max(1,hi-lo))*(bottom-top)}
  function selectPitch(n){if(phase==='free'){currentPitch=clamp(n,0,14);refreshFree();if(source==='touch')playBell(currentPitch,.2);return;}if(phase!=='game')return;const [lo,hi]=getRange();currentPitch=clamp(n,lo,hi);$('currentNote').textContent='♪ いま：'+nameOf(currentPitch);$('touchPitch').textContent=nameOf(currentPitch);$('currentNote').style.color=colorOf(currentPitch)}
- function startMusic(input){clearTimeout(finishTimer);source=input;audioReady();song=selectedSong;goodIndex=0;scrollOffset=0;currentPitch=0;prevFrame=0;setupRhythm();if(song.id==='free'){setPage('free');buildFree();return;}const min=Math.min(...song.notes),max=Math.max(...song.notes);currentPitch=Math.round((min+max)/2);setPage('game');$('gameName').textContent=song.ico+' '+song.name;$('touchControls').hidden=source==='camera';$('camControls').hidden=source!=='camera';$('playHint').textContent='🎵 おんがくが ながれるよ';selectPitch(currentPitch);refreshCounter();resizeCanvas()}
+ function startMusic(input){stopPreview();clearTimeout(finishTimer);source=input;audioReady();song=selectedSong;goodIndex=0;scrollOffset=0;currentPitch=0;prevFrame=0;setupRhythm();if(song.id==='free'){setPage('free');buildFree();return;}const min=Math.min(...song.notes),max=Math.max(...song.notes);currentPitch=Math.round((min+max)/2);setPage('game');$('gameName').textContent=song.ico+' '+song.name;$('touchControls').hidden=source==='camera';$('camControls').hidden=source!=='camera';$('playHint').textContent='🎵 おんがくが ながれるよ';selectPitch(currentPitch);refreshCounter();resizeCanvas()}
  function refreshCounter(){$('counter').textContent=goodIndex+' / '+song.notes.length+' ⭐';$('progressFill').style.width=(goodIndex/song.notes.length*100)+'%';$('boardPrompt').textContent=goodIndex<song.notes.length?'つぎは「'+nameOf(song.notes[goodIndex])+'」の たかさ♪':'よく できました！'}
  function spark(){if(goodIndex%4!==0)return;const e=$('sticker');e.textContent='✨';e.classList.remove('shown');void e.offsetWidth;e.classList.add('shown');clearTimeout(stickerHandle);stickerHandle=setTimeout(()=>e.classList.remove('shown'),340)}
  function finishSong(){setBest(song.id,goodIndex);setPage('finish');$('doneTitle').textContent=song.ico+' '+song.name+'　かんせい！';fillCards();[0,2,4,7].forEach((p,i)=>setTimeout(()=>{if(phase==='finish')playBell(p,.26)},i*165));}
@@ -202,6 +232,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   }else{$('playHint').textContent='🎵 おんがくが ながれるよ'}
   drawGame(now,spacing,origin,judge);
  }
+
  function drawGame(now,spacing,origin,judge){const g=ctx,w=cw,h=ch;if(w<20||h<20)return;g.clearRect(0,0,w,h);const grad=g.createLinearGradient(0,0,w,h);grad.addColorStop(0,'#e9f8ff');grad.addColorStop(.75,'#f9f1ff');grad.addColorStop(1,'#fff7dc');g.fillStyle=grad;g.fillRect(0,0,w,h);
   // ふわふわ雲
   for(let k=0;k<4;k++){const x=((w*.14+k*w*.34-(now*.011*(k%2+1)))%(w+150)+(w+150))%(w+150)-70;const y=24+(k%2)*44;g.fillStyle='#ffffffa8';g.beginPath();g.ellipse(x,y,36,15,0,0,7);g.ellipse(x+23,y-8,27,20,0,0,7);g.fill()}
@@ -216,7 +247,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   g.beginPath();g.roundRect(x-5,y-7,tail,14,7);g.fill();
   g.globalAlpha=i===goodIndex?1:.8;
   if(noteGap(i)>0){g.fillStyle='#ac8ab7';g.font='900 12px sans-serif';g.fillText('𝄽',x+tail+8,y);}
-  g.shadowColor=colorOf(p);g.shadowBlur=i===goodIndex?14:2;g.fillStyle=colorOf(p);g.beginPath();g.ellipse(x,y,19,16,-.26,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#ffffff';g.lineWidth=3;g.stroke();g.fillStyle=colorOf(p);g.fillRect(x+15,y-42,5,44);g.fillStyle='#33486d';g.textAlign='center';g.font='1000 16px sans-serif';g.fillText(nameOf(p),x,y+31);g.restore()}
+  g.shadowColor=colorOf(p);g.shadowBlur=i===goodIndex?14:2;g.fillStyle=colorOf(p);g.beginPath();g.ellipse(x,y,19,16,-.26,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#ffffff';g.lineWidth=3;g.stroke();g.fillStyle=colorOf(p);g.fillRect(x+15,y-42,5,44);g.fillStyle='#33486d';g.textAlign='center';g.font='1000 16px sans-serif';g.fillText(nameOf(p),x,y+31);if(noteDuration(i)>=2){g.fillStyle='#815e9d';g.font='900 11px sans-serif';g.fillText('のばす',x+tail/2,y-18)}g.restore()}
   const myY=pitchY(currentPitch);g.shadowColor='#f5aa52';g.shadowBlur=20;g.fillStyle='#ffca75';g.beginPath();g.arc(judge,myY,17,0,Math.PI*2);g.fill();g.shadowBlur=0;g.strokeStyle='#fff';g.lineWidth=4;g.stroke();g.fillStyle='#70562f';g.font='1000 25px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('♪',judge,myY-1);
   if(isAt&&song.notes[goodIndex]!==currentPitch){const y=pitchY(song.notes[goodIndex]);g.fillStyle='#966fb5';g.font='1000 13px sans-serif';g.textAlign='center';g.fillText(song.notes[goodIndex]>currentPitch?'⬆ もっと たかく！':'⬇ もっと ひくく！',w*.66,h-17)}
   else if(isAt){g.fillStyle='#5f9c86';g.font='1000 13px sans-serif';g.textAlign='center';g.fillText('✋ パーで おとが なるよ♪',w*.67,h-17)}
@@ -242,20 +273,22 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   const v={loading:['📱✨','カメラを じゅんびしているよ','カメラの きょかを おねがいします'],near:['✋⬇️','てを ちかづけてね','15cmくらいの いちで パー！'],far:['✋⬆️','てを とおざけてね','40cmくらいの いちで パー！'],error:['☁️','カメラが つかえなかったよ','タッチでも あそべるよ！']}[stage];$('setupArt').textContent=v[0];$('setupTitle').textContent=v[1];$('setupMsg').textContent=v[2];$('calNext').textContent=stage==='near'?'① ちかい ところを きろく':'② とおい ところを きろく'}
  function stopCamera(){stopVoice();cancelAnimationFrame(videoLoop);videoLoop=0;visionBusy=false;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}const v=$('camera');v.pause();v.srcObject=null;const e=engine;engine=null;if(e)Promise.resolve(e.close()).catch(()=>{});onPose('unknown')}
  async function ensureVision(){if(window.Hands)return;await new Promise((resolve,reject)=>{const scr=document.createElement('script');scr.src='https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js';scr.crossOrigin='anonymous';scr.onload=resolve;scr.onerror=()=>reject(new Error('てを みる じゅんびに しっぱいしたよ'));document.head.append(scr)})}
- async function cameraStart(){const id=++runId;stopCamera();showCal('loading');source='camera';audioReady();try{if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia)throw Error('Safari または Chrome の HTTPSページで ひらいてね');stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:480},height:{ideal:360},frameRate:{ideal:20,max:24}},audio:false});if(id!==runId)return;const v=$('camera');v.srcObject=stream;await v.play();await ensureVision();if(id!==runId)return;engine=new window.Hands({locateFile:file=>'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'+file});engine.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.55,minTrackingConfidence:.50});engine.onResults(handleHands);lastVision=0;lastHand=0;handSize=NaN;smoothSize=NaN;nearSize=NaN;farSize=NaN;candidate='unknown';candCount=0;onPose('unknown');showCal('near');cameraLoop();}catch(e){if(id===runId){const m=e?.name==='NotAllowedError'?'カメラの きょかを おねがいします':e?.message||'カメラの じゅんびが できなかったよ';stopCamera();showCal('error',m)}}}
+ async function cameraStart(){stopPreview();const id=++runId;stopCamera();showCal('loading');source='camera';audioReady();try{if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia)throw Error('Safari または Chrome の HTTPSページで ひらいてね');stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:480},height:{ideal:360},frameRate:{ideal:20,max:24}},audio:false});if(id!==runId)return;const v=$('camera');v.srcObject=stream;await v.play();await ensureVision();if(id!==runId)return;engine=new window.Hands({locateFile:file=>'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'+file});engine.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.55,minTrackingConfidence:.50});engine.onResults(handleHands);lastVision=0;lastHand=0;handSize=NaN;smoothSize=NaN;nearSize=NaN;farSize=NaN;candidate='unknown';candCount=0;onPose('unknown');showCal('near');cameraLoop();}catch(e){if(id===runId){const m=e?.name==='NotAllowedError'?'カメラの きょかを おねがいします':e?.message||'カメラの じゅんびが できなかったよ';stopCamera();showCal('error',m)}}}
  function cameraLoop(){if(!stream||!engine)return;videoLoop=requestAnimationFrame(cameraLoop);const now=performance.now();if(now-lastHand>650){if(handPose!=='unknown')onPose('unknown');if(phase==='free')stopVoice()};if(visionBusy||now-lastVision<95||$('camera').readyState<2)return;lastVision=now;visionBusy=true;Promise.resolve(engine.send({image:$('camera')})).catch(()=>{}).finally(()=>{visionBusy=false})}
  function takeCalibration(){if(!Number.isFinite(smoothSize)||performance.now()-lastHand>1200||handPose!=='open'){$('setupError').textContent='✋ パーの てを うつしてね';return}if(calStage==='near'){nearSize=smoothSize;showCal('far')}else if(calStage==='far'){farSize=smoothSize;if(nearSize-farSize<Math.max(.018,nearSize*.15)){showCal('far','もう すこし はなしてね');return}startMusic('camera')}}
  function touchStart(){++runId;stopCamera();startMusic('touch')}
- function goHome(){++runId;stopCamera();setPage('home');fillCards()}
+ function goHome(){stopPreview();++runId;stopCamera();setPage('home');fillCards()}
  $('camBtn').addEventListener('click',cameraStart);$('touchBtn').addEventListener('click',touchStart);$('fallback').addEventListener('click',touchStart);$('calNext').addEventListener('click',takeCalibration);$('homeBtn').addEventListener('click',goHome);
  $('againBtn').addEventListener('click',()=>startMusic(source));$('pickBtn').addEventListener('click',goHome);
+ $('previewBtn').addEventListener('click',()=>{previewSong().catch(()=>stopPreview())});
+ $('slowBtn').addEventListener('click',()=>{slowMode=!slowMode;$('slowBtn').setAttribute('aria-pressed',String(slowMode));$('slowBtn').textContent=slowMode?'🐇 ふつう':'🐢 ゆっくり'});
  $('backingBtn').addEventListener('click',()=>{backingOn=!backingOn;$('backingBtn').textContent=backingOn?'🎹 ばんそう ON':'🎹 ばんそう OFF';$('backingBtn').setAttribute('aria-pressed',String(backingOn));});
- $('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'🔊 おと':'🔇 おとなし';if(!soundOn)stopVoice();else audioReady()});
+ $('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=soundOn?'🔊 おと':'🔇 おとなし';if(!soundOn){stopVoice();stopPreview()}else audioReady()});
  $('upBtn').addEventListener('click',()=>{audioReady();selectPitch(currentPitch+1)});$('downBtn').addEventListener('click',()=>{audioReady();selectPitch(currentPitch-1)});
  $('playBoard').addEventListener('pointerdown',e=>{if(source!=='touch'||phase!=='game')return;e.preventDefault();audioReady();$('playBoard').setPointerCapture(e.pointerId);selectPitch(pointerToPitch(e))});
  $('playBoard').addEventListener('pointermove',e=>{if(source!=='touch'||phase!=='game'||!(e.buttons&1))return;e.preventDefault();selectPitch(pointerToPitch(e))});
  window.addEventListener('resize',()=>{if(phase==='game')resizeCanvas()});window.addEventListener('keydown',e=>{if(phase!=='game'||source!=='touch')return;if(e.key==='ArrowUp'){e.preventDefault();selectPitch(currentPitch+1)}else if(e.key==='ArrowDown'){e.preventDefault();selectPitch(currentPitch-1)}});
- document.addEventListener('visibilitychange',()=>{if(document.hidden){stopVoice();if(audio?.state==='running')audio.suspend().catch(()=>{})}else prevFrame=0});window.addEventListener('pagehide',()=>{++runId;stopCamera()});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){stopPreview();stopVoice();if(audio?.state==='running')audio.suspend().catch(()=>{})}else prevFrame=0});window.addEventListener('pagehide',()=>{stopPreview();++runId;stopCamera()});
  fillTabs();fillCards();setPage('home');loopId=requestAnimationFrame(animate);
 })();
 </script>
