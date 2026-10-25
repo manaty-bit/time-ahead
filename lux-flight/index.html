@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080f25">
+  <meta name="description" content="光度が上がると、高度も上がる。スマホのインカメラに手をかざして遊ぶ横スクロールゲーム。">
+  <title>光度＝高度 | LUX FLIGHT</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg:#070c1c; --panel:#101d36; --line:#2c4865; --muted:#a1b6cf;
+      --white:#eef7ff; --cyan:#64e9ed; --gold:#ffc874; --pink:#ff7496;
+      font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; min-height:100%; background:var(--bg); color:var(--white)}
+    body{background:radial-gradient(ellipse at 50% -20%,#204568 0,transparent 58%),linear-gradient(180deg,#0a1329,#060a18);}
+    button{font:inherit; cursor:pointer; -webkit-tap-highlight-color:transparent;}
+    button:focus-visible{outline:3px solid #ffdd82;outline-offset:4px}
+    .page{width:min(1100px,calc(100% - 30px)); margin:0 auto; padding:24px 0 25px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:16px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}
+    .brand-mark{display:grid;place-items:center;border-radius:14px;width:42px;height:42px;flex:none;background:linear-gradient(145deg,#6eeced,#377db8);color:#052235;font-size:23px;font-weight:900;box-shadow:0 0 24px #23dce145}
+    .brand-name{font-size:20px;letter-spacing:.10em;font-weight:900;white-space:nowrap;line-height:1.1}
+    .brand-sub{font-size:11px;color:#9bc7de;letter-spacing:.10em;margin-top:4px}
+    .version{font:700 11px ui-monospace,SFMono-Regular,monospace;letter-spacing:.11em;color:#a2d9df;border:1px solid #2c5369;padding:8px 10px;border-radius:30px;white-space:nowrap}
+    .tagline{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.6}
+    .tagline strong{color:var(--gold)}
+    .shell{position:relative;width:100%;aspect-ratio:16 / 9;overflow:hidden;border:1px solid #4a8194;border-radius:20px;background:#0d2443;box-shadow:0 25px 70px #0008, inset 0 0 0 1px #ffffff0a;isolation:isolate}
+    #game{display:block;width:100%;height:100%;touch-action:none}
+    .hud{position:absolute;z-index:3;left:15px;right:15px;top:13px;display:flex;align-items:flex-start;gap:9px;pointer-events:none}
+    .hud-chip{padding:7px 12px;background:#071328d9;border:1px solid #79cddb4a;border-radius:11px;min-width:87px;box-shadow:0 6px 18px #0002;backdrop-filter:blur(12px)}
+    .hud-chip span{display:block;font-size:9px;letter-spacing:.13em;color:#a7c5da;margin-bottom:3px;font-weight:800}
+    .hud-chip strong{font-family:ui-monospace,SFMono-Regular,monospace;font-size:20px;font-weight:900;line-height:1;color:white;font-variant-numeric:tabular-nums}
+    .hud-spacer{flex:1}
+    .hud-action{pointer-events:auto;display:none;padding:10px 13px;min-width:44px;min-height:43px;border-radius:11px;color:white;background:#071328db;border:1px solid #79cddb69;font-size:13px;font-weight:800}
+    .hud-action:hover{background:#23445a}
+    .hud-action.visible{display:block}
+    .overlay{position:absolute;z-index:6;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(90deg,#061028d7,#0a1b35b5);backdrop-filter:blur(5px);overflow-y:auto}
+    .overlay[hidden]{display:none}
+    .dialog{width:min(460px,100%);max-height:100%;overflow-y:auto;text-align:center;padding:21px 24px;border:1px solid #70d5d65c;border-radius:18px;background:linear-gradient(160deg,#112b46f5,#0b1731f7);box-shadow:0 22px 70px #0008}
+    .eyebrow{font:800 10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.23em;color:var(--cyan);margin:0 0 8px}
+    .dialog h1,.dialog h2{font-size:clamp(21px,3.3vw,32px);font-weight:900;line-height:1.25;letter-spacing:.035em;margin:0 0 8px;text-wrap:balance}
+    .dialog p{margin:7px auto 12px;line-height:1.6;color:#bfd2e3;font-size:13px;max-width:370px}
+    .two-ways{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0 18px}
+    .way{border:1px solid #426578;background:#081b33;border-radius:12px;padding:10px 5px;font-size:12px;line-height:1.5}
+    .way .way-icon{font-size:22px;display:block;margin-bottom:2px}
+    .way strong{color:#fff}
+    .way span:last-child{display:block;color:#b5c8d9;font-size:11px}
+    .buttons{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+    .btn{border:1px solid #678aa3;padding:11px 20px;border-radius:11px;font-size:13px;font-weight:850;color:white;background:#193b55;min-height:44px}
+    .btn.primary{background:linear-gradient(115deg,#71f2e4,#43c7d4);border:1px solid #8ff9fa;color:#082b3b;box-shadow:0 7px 23px #12dce333}
+    .btn.secondary:hover{background:#2c5572}
+    .btn.primary:hover{filter:brightness(1.07)}
+    .btn:disabled{cursor:wait;opacity:.6}
+    .helper{color:#aac4d5!important;font-size:11px!important;margin-top:11px!important}
+    .notice{font-size:12px;color:#fcd899;background:#634c263b;border:1px solid #e4ab554d;border-radius:10px;padding:10px;margin-top:12px;line-height:1.5}
+    .small-meter{background:#061629;border:1px solid #3b6177;border-radius:11px;padding:10px;margin:13px auto;max-width:330px;text-align:left}
+    .small-meter-header{display:flex;justify-content:space-between;font-size:11px;color:#bfd2e3;margin-bottom:8px}
+    .meter-track{height:10px;border-radius:99px;background:linear-gradient(90deg,#132640,#46607d);overflow:hidden}
+    .meter-fill{height:100%;width:50%;background:linear-gradient(90deg,#347cb8,#66e7ed,#ffd27d);border-radius:99px;transition:width .12s linear}
+    .bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin:13px 0 0}
+    .light-readout{display:flex;align-items:center;gap:13px;flex:1;min-width:190px}
+    .light-emoji{font-size:24px;filter:drop-shadow(0 0 7px #fdd1786e)}
+    .readout-main{flex:1;min-width:0;max-width:320px}
+    .readout-top{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:#b1c8d8;letter-spacing:.03em;margin-bottom:7px}
+    .readout-top b{font-family:ui-monospace,SFMono-Regular,monospace;color:#f5faff}
+    .status{font-size:12px;color:#b1cada;display:flex;align-items:center;gap:7px}
+    .status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#8690a1;box-shadow:0 0 0 3px #8690a119}
+    .status-dot.online{background:#74f4cc;box-shadow:0 0 0 3px #60ebc533}
+    .status-dot.demo{background:#ffd17a;box-shadow:0 0 0 3px #ffda8a25}
+    .foot{display:flex;justify-content:space-between;align-items:center;gap:15px;color:#839db5;font-size:11px;margin-top:16px;line-height:1.6}
+    .foot strong{color:#b4d4e7}
+    .foot em{font-style:normal;color:#bcebdc}
+    @media(max-width:660px){
+      .page{width:calc(100% - 22px);padding:12px 0 16px}
+      .top{margin-bottom:8px}
+      .brand-mark{width:36px;height:36px;border-radius:11px}
+      .brand-name{font-size:17px}
+      .brand-sub{font-size:9px}
+      .version{padding:6px 8px;font-size:9px}
+      .tagline{font-size:11px;margin-bottom:10px}
+      .shell{border-radius:15px}
+      .hud{top:8px;left:8px;right:8px;gap:5px}
+      .hud-chip{padding:6px 8px;min-width:70px;border-radius:9px}
+      .hud-chip span{font-size:8px}
+      .hud-chip strong{font-size:16px}
+      .hud-action{font-size:12px;padding:7px 9px;min-height:35px;min-width:35px}
+      .overlay{padding:9px}
+      .dialog{padding:16px;border-radius:14px}
+      .dialog h1,.dialog h2{font-size:22px}
+      .dialog p{font-size:12px}
+      .way{font-size:11px}
+      .buttons{gap:7px}
+      .btn{padding:10px 13px;font-size:12px}
+      .bottom{margin-top:12px}
+      .foot{font-size:10px}
+    }
+    @media (max-width:660px) and (orientation:portrait){
+      .shell{aspect-ratio:5 / 6}
+      .overlay{align-items:center}
+    }
+    @media (max-height:530px) and (orientation:landscape){
+      .page{padding:6px 0 12px}
+      .top{margin-bottom:5px}
+      .brand-mark{width:27px;height:27px;border-radius:8px;font-size:15px}
+      .brand-name{font-size:13px}.brand-sub{display:none}
+      .tagline{display:none}.version{padding:4px 6px}
+      .shell{max-height:calc(100dvh - 87px);width:auto;max-width:100%;margin:auto}
+      .dialog{padding:12px 18px}.dialog h1,.dialog h2{font-size:21px}
+      .dialog p{margin:4px auto 7px;line-height:1.45;font-size:11px}
+      .two-ways{margin:7px 0;gap:7px}.way{padding:6px}
+      .way .way-icon{font-size:16px}
+      .small-meter{margin:5px auto;padding:7px}.btn{min-height:35px;padding:7px 12px}
+      .buttons{margin-top:7px}.helper{margin-top:6px!important}
+      .bottom{margin-top:6px}.foot{display:none}
+    }
+    @media (prefers-reduced-motion: reduce){.meter-fill{transition:none}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">✦</div><div><div class="brand-name">LUX FLIGHT</div><div class="brand-sub">光度 ＝ 高度</div></div></div>
+      <span class="version">PROTOTYPE 01</span>
+    </header>
+    <p class="tagline"><strong>明るいほど上昇。暗いほど下降。</strong> スマホのインカメラに手をかざして、光で飛ぼう。</p>
+    <section id="gameShell" class="shell" aria-label="横スクロールゲーム">
+      <canvas id="game" aria-label="ゲーム画面。デモモードでは上下に指を動かすと機体が上下します"></canvas>
+      <div class="hud">
+        <div class="hud-chip"><span>SCORE</span><strong id="score">0000</strong></div>
+        <div class="hud-chip"><span>BEST</span><strong id="best">0000</strong></div>
+        <div class="hud-spacer"></div>
+        <button id="soundBtn" type="button" class="hud-action" aria-label="音のオンオフ">♪ ON</button>
+        <button id="pauseBtn" type="button" class="hud-action" aria-label="一時停止">Ⅱ</button>
+      </div>
+      <div class="overlay" id="overlay"><div class="dialog" id="dialog"></div></div>
+    </section>
+    <section class="bottom" aria-label="光量と操作状態">
+      <div class="light-readout">
+        <div class="light-emoji" aria-hidden="true">☀</div>
+        <div class="readout-main">
+          <div class="readout-top"><span>相対光度 / BRIGHTNESS</span><b id="lightText">-- %</b></div>
+          <div class="meter-track"><div class="meter-fill" id="lightFill" style="width:50%"></div></div>
+        </div>
+      </div>
+      <div class="status"><span id="statusDot" class="status-dot"></span><span id="statusText">スタンバイ中</span></div>
+    </section>
+    <footer class="foot"><span><strong>操作：</strong>手を離す ⇧ 上昇 ｜ カメラを手で覆う ⇩ 下降</span><span><em>映像は端末内だけで処理・外部送信なし</em></span></footer>
+  </main>
+  <video id="camera" autoplay playsinline muted style="position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;z-index:-1" aria-hidden="true"></video>
+  <script>
+  (() => {
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const canvas = $('game'), ctx = canvas.getContext('2d');
+    const shell = $('gameShell'), overlay = $('overlay'), dialog = $('dialog');
+    const video = $('camera');
+    const lumCanvas = document.createElement('canvas');
+    lumCanvas.width = 40; lumCanvas.height = 30;
+    const lumCtx = lumCanvas.getContext('2d', {willReadFrequently:true});
+    const clamp = (x,a,b) => Math.max(a,Math.min(b,x));
+    const rand = (min,max) => min + Math.random() * (max-min);
+    const pad = n => String(n).padStart(4,'0');
+    let phase='welcome', mode='demo', collecting=false;
+    let W=900,H=506,dpr=1,clock=0,last=0,elapsed=0,spawnIn=1.6;
+    let stream=null, cameraTimer=null, rawLight=128,rawSamples=[], hasReading=false;
+    let brightCal=190, darkCal=40, light=.56, demoLight=.56, smoothedLight=.56;
+    let player={x:190,y:250,r:14,tilt:0}, gates=[], sparks=[], score=0,passed=0;
+    let best=0,sound=true,audio=null;
+    const pressed=new Set();
+    const stars=Array.from({length:78},()=>({x:Math.random(),y:Math.random(),r:rand(.5,2),d:rand(.3,1.1),p:rand(0,7)}));
+    try {best=Math.max(0,Number(localStorage.getItem('lux-flight-best'))||0);} catch(e){}
+    $('best').textContent=pad(best);
+
+    function resize(){
+      const b=canvas.getBoundingClientRect();
+      W=Math.max(240,b.width||900); H=Math.max(180,b.height||506);
+      dpr=Math.min(2,window.devicePixelRatio||1);
+      canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      player.x=W*.23;player.r=clamp(Math.min(W,H)*.025,10,16);
+      if(!Number.isFinite(player.y)) player.y=H*.50;
+      else player.y=clamp(player.y,player.r+15,H-player.r-15);
+    }
+    window.addEventListener('resize',resize,{passive:true});
+    if('ResizeObserver' in window) new ResizeObserver(resize).observe(shell);
+    resize();
+
+    function setStatus(label,tone='off'){
+      $('statusText').textContent=label;
+      $('statusDot').className='status-dot'+(tone==='camera'?' online':tone==='demo'?' demo':'');
+    }
+    function updateLightUI(){
+      const value=clamp(Math.round(smoothedLight*100),0,100);
+      $('lightText').textContent= (phase==='welcome'||phase==='connecting'||phase==='bright'||phase==='dark') && !hasReading && mode==='camera' ? '-- %':value+' %';
+      $('lightFill').style.width=value+'%';
+      const small=$('calFill'), smallN=$('calText');
+      if(small){small.style.width=hasReading?Math.round(rawLight/255*100)+'%':'0%';}
+      if(smallN){smallN.textContent=hasReading?Math.round(rawLight/255*100)+'%':'測定中…';}
+    }
+    function reading(){
+      if(!stream || video.readyState<2 || !video.videoWidth) return;
+      try{
+        lumCtx.drawImage(video,0,0,40,30);
+        const data=lumCtx.getImageData(0,0,40,30).data;
+        let sum=0,n=0;
+        // 全体を粗くサンプリング。カメラ映像を保存・送信しない。
+        for(let i=0;i<data.length;i+=16){sum+=(data[i]*.2126+data[i+1]*.7152+data[i+2]*.0722);n++;}
+        const sample=sum/n;
+        rawLight=hasReading?rawLight*.45+sample*.55:sample;
+        hasReading=true;
+        rawSamples.push(sample);
+        if(rawSamples.length>35) rawSamples.shift();
+      }catch(e){ /* カメラフレームが一時的に利用不可の場合は次を待つ */ }
+    }
+    function normalizedLight(){
+      if(mode==='demo')return demoLight;
+      return clamp((rawLight-darkCal)/Math.max(8,brightCal-darkCal),0,1);
+    }
+    function renderOverlay(){
+      if(phase==='playing'){overlay.hidden=true;return;}
+      overlay.hidden=false;
+      const actions=(main,others='')=>`<div class="buttons">${main}${others}</div>`;
+      const btn=(key,text,primary=false)=>`<button type="button" class="btn ${primary?'primary':'secondary'}" data-action="${key}" ${collecting?'disabled':''}>${text}</button>`;
+      let html='';
+      if(phase==='welcome'){
+        html=`<div class="eyebrow">LIGHT × ALTITUDE × ARCADE</div>
+          <h1>光をあやつれ。<br>高度を制せ。</h1>
+          <p>明るいと上へ、暗いと下へ。<br>光で飛ぶ、タッチ不要の横スクロールゲーム。</p>
+          <div class="two-ways"><div class="way"><span class="way-icon">☀</span><strong>明るい → 上へ</strong><span>カメラから手を離す</span></div><div class="way"><span class="way-icon">◕</span><strong>暗い → 下へ</strong><span>カメラに手をかざす</span></div></div>
+          ${actions(btn('camera','📷 カメラで遊ぶ',true),btn('demo','デモで試す'))}
+          <p class="helper">スマホを画面上向きで机に置こう。カメラ許可は最初の1回だけ。</p>`;
+      }else if(phase==='connecting'){
+        html=`<div class="eyebrow">CONNECTING</div><h2>カメラを起動中…</h2><p>ブラウザのカメラ使用許可を「許可」にしてください。</p>${actions(btn('demo','デモで遊ぶ'))}`;
+      }else if(phase==='bright'||phase==='dark'){
+        const isBright=phase==='bright';
+        html=`<div class="eyebrow">CALIBRATION · STEP ${isBright?'1':'2'} / 2</div>
+          <h2>${isBright?'① 手を離して測定':'② 手で覆って測定'}</h2>
+          <p>${isBright?'インカメラから手を離し、周囲の光が入る状態にしてください。':'インカメラの上に手をかざし、暗くしてください。'}<br>その状態でボタンを押して約1秒測定します。</p>
+          <div class="small-meter"><div class="small-meter-header"><span>現在のカメラ明るさ（参考値）</span><b id="calText">測定中…</b></div><div class="meter-track"><div class="meter-fill" id="calFill" style="width:0%"></div></div></div>
+          <p id="captureNote" class="helper">${collecting?'測定しています…':'手の位置を決めてから測定してください'}</p>
+          ${actions(btn(isBright?'capture-bright':'capture-dark',isBright?'☀ 明るい状態を記録':'◕ 暗い状態を記録',true),btn(isBright?'welcome':'bright','戻る'))}`;
+      }else if(phase==='ready'){
+        const delta=Math.round(brightCal-darkCal);
+        html=`<div class="eyebrow">READY TO FLY</div><h2>調整完了！</h2>
+          <p>明るさの差：<b style="color:#78f1e9">${delta}</b> / 255<br>ゲーム中は<strong>明るいほど高く</strong>飛びます。</p>
+          ${delta<18?'<div class="notice">明暗の差が小さめです。反応が鈍いときは、照明の下で手をしっかりかざして再測定してください。</div>':''}
+          ${actions(btn('start','▶ 飛び始める',true),btn('bright','測り直す'))}
+          <p class="helper">障害物のすき間を通り抜けよう。衝突したら終了！</p>`;
+      }else if(phase==='paused'){
+        html=`<div class="eyebrow">PAUSED</div><h2>一時停止</h2><p>スコア ${score} 点。続きから再開できます。</p>
+          ${actions(btn('resume','▶ 再開',true),btn('restart','最初から'),mode==='camera'?btn('bright','明暗を再調整'):'')}
+          <p class="helper"><button type="button" class="btn secondary" data-action="welcome">タイトルに戻る</button></p>`;
+      }else if(phase==='over'){
+        html=`<div class="eyebrow">FLIGHT ENDED</div><h2>GAME OVER</h2>
+          <p>今回のスコア</p><div style="font:900 clamp(36px,8vw,58px) ui-monospace,SFMono-Regular,monospace;color:#ffe3a1;line-height:1.1">${score}</div>
+          <p>${score>=best&&score>0?'✦ ベストスコア更新！':'ベストスコア '+best+' 点'}<br>光の操作を極めて、もっと遠くへ。</p>
+          ${actions(btn('restart','↻ もう一度',true),btn('welcome','モード選択'))}`;
+      }else if(phase==='error'){
+        html=`<div class="eyebrow">CAMERA UNAVAILABLE</div><h2>カメラを使えませんでした</h2><p id="cameraError">${cameraErrorText}</p>
+          ${actions(btn('camera','もう一度試す',true),btn('demo','デモで遊ぶ'))}
+          <p class="helper">カメラはHTTPS（GitHub Pagesなど）で開き、ブラウザから許可してください。</p>`;
+      }
+      dialog.innerHTML=html;
+      updateLightUI();
+    }
+    let cameraErrorText='カメラの利用設定を確認してください。';
+    function go(phaseName){phase=phaseName;renderOverlay();updateActionButtons();}
+    function updateActionButtons(){
+      $('pauseBtn').classList.toggle('visible',phase==='playing');
+      $('soundBtn').classList.toggle('visible',phase==='playing');
+      $('soundBtn').textContent=sound?'♪ ON':'♪ OFF';
+      $('pauseBtn').textContent='Ⅱ';
+    }
+
+    async function cameraStart(){
+      mode='camera';go('connecting');setStatus('カメラを準備中');
+      if(!navigator.mediaDevices?.getUserMedia){
+        cameraErrorText='この環境ではカメラAPIが利用できません。HTTPSのページをSafariまたはChromeで開いてください。';go('error');return;
+      }
+      try{
+        stopCamera();
+        stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:320},height:{ideal:240},frameRate:{ideal:24,max:30}},audio:false});
+        video.srcObject=stream;
+        video.muted=true;
+        await video.play();
+        hasReading=false;rawSamples=[];
+        cameraTimer=setInterval(reading,80);
+        setStatus('カメラ接続中','camera');
+        go('bright');
+      }catch(err){
+        stopCamera();
+        if(err?.name==='NotAllowedError')cameraErrorText='カメラの許可が拒否されました。ブラウザのサイト設定からカメラを許可してください。';
+        else if(err?.name==='NotFoundError')cameraErrorText='利用できるカメラが見つかりません。別の端末でお試しください。';
+        else cameraErrorText='カメラを開始できませんでした。SafariまたはChromeでHTTPSのページを開いてください。';
+        setStatus('カメラ未接続');go('error');
+      }
+    }
+    function stopCamera(){
+      if(cameraTimer){clearInterval(cameraTimer);cameraTimer=null;}
+      if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+      video.srcObject=null;
+    }
+    const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+    async function capture(which){
+      if(collecting||!stream)return;
+      collecting=true;renderOverlay();
+      await sleep(1300);
+      const n=Math.min(rawSamples.length,12);
+      const arr=rawSamples.slice(-n);
+      const value=arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:rawLight;
+      collecting=false;
+      if(which==='bright'){
+        brightCal=value;go('dark');
+      }else{
+        darkCal=value;
+        if(brightCal-darkCal<8){
+          // 光量の逆転を防ぎ、正しく操作できるよう再測定を案内する。
+          go('dark');
+          const note=$('captureNote');
+          if(note)note.textContent='明るい状態との違いが小さすぎます。もっとカメラを覆って測定してください。';
+          return;
+        }
+        go('ready');
+      }
+    }
+    function start(modeToUse){
+      if(modeToUse==='demo'){
+        stopCamera();mode='demo';demoLight=.55;smoothedLight=.55;
+        setStatus('デモ操作（スワイプ・↑↓キー）','demo');
+      }else setStatus('インカメラで操作中','camera');
+      score=0;passed=0;elapsed=0;spawnIn=1.9;gates=[];sparks=[];
+      player.x=W*.23;player.y=H*.5;player.tilt=0;
+      smoothedLight=mode==='camera'?normalizedLight():demoLight;
+      $('score').textContent=pad(score);
+      go('playing');
+      // Safari 等でサウンドを利用できる場合だけ有効化する。
+      try {if(sound){audio=audio||new (window.AudioContext||window.webkitAudioContext)();audio.resume().catch(()=>{});}}catch(e){}
+    }
+    function tone(frequency=620,duration=.08,type='sine',volume=.028){
+      if(!sound||!audio)return;
+      try{
+        const osc=audio.createOscillator(),gain=audio.createGain();
+        const now=audio.currentTime;
+        osc.type=type;osc.frequency.setValueAtTime(frequency,now);
+        gain.gain.setValueAtTime(volume,now);
+        gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+        osc.connect(gain).connect(audio.destination);
+        osc.start(now);osc.stop(now+duration+.02);
+      }catch(e){}
+    }
+    function finish(){
+      if(phase!=='playing')return;
+      tone(170,.3,'sawtooth',.035);
+      for(let i=0;i<24;i++)sparks.push({x:player.x,y:player.y,vx:rand(-115,115),vy:rand(-130,130),life:rand(.25,.8),max:.8});
+      if(score>best){best=score;$('best').textContent=pad(best);try{localStorage.setItem('lux-flight-best',String(best));}catch(e){}}
+      go('over');
+    }
+    function spawnGate(){
+      const gap=clamp(H*(.47-Math.min(.16,elapsed*.003)),Math.min(H*.33,130),H*.48);
+      const min=26+gap/2, max=H-31-gap/2;
+      let center=rand(min,max);
+      const previous=gates[gates.length-1];
+      if(previous)center=clamp(center,previous.center-H*.35,previous.center+H*.35);
+      center=clamp(center,min,max);
+      gates.push({x:W+60,center,gap,w:clamp(W*.103,46,85),done:false,seed:Math.random()*6});
+    }
+    function update(dt){
+      elapsed+=dt;
+      if(mode==='demo'){
+        if(pressed.has('ArrowUp')||pressed.has('w')||pressed.has('W')) demoLight=clamp(demoLight+dt*.78,0,1);
+        if(pressed.has('ArrowDown')||pressed.has('s')||pressed.has('S')) demoLight=clamp(demoLight-dt*.78,0,1);
+      }
+      const target=normalizedLight();
+      smoothedLight+= (target-smoothedLight)*(1-Math.exp(-dt*11));
+      const desired=H*(.84-.68*smoothedLight);
+      const previousY=player.y;
+      player.y+=(desired-player.y)*(1-Math.exp(-dt*7.8));
+      player.tilt=clamp((previousY-player.y)*.045,-.35,.35);
+      spawnIn-=dt;
+      const speed=Math.max(145,W*.27)*(1+Math.min(.65,elapsed/90));
+      if(spawnIn<=0){spawnGate();spawnIn=clamp(1.9-elapsed*.008,1.3,1.9);}
+      for(const gate of gates){
+        gate.x-=speed*dt;
+        if(!gate.done && gate.x+gate.w<player.x-player.r){gate.done=true;passed++;tone(700,.055);}
+        const overlaps=player.x+player.r*.65>gate.x && player.x-player.r*.7<gate.x+gate.w;
+        if(overlaps){
+          const upper=gate.center-gate.gap/2;
+          const lower=gate.center+gate.gap/2;
+          if(player.y-player.r*.7<upper || player.y+player.r*.7>lower){finish();break;}
+        }
+      }
+      gates=gates.filter(g=>g.x+g.w>-80);
+      if(phase==='playing'){
+        score=Math.floor(elapsed*3)+passed*12;
+        $('score').textContent=pad(score);
+      }
+      if(Math.random()<dt*38)sparks.push({x:player.x-player.r,y:player.y+rand(-4,4),vx:rand(-85,-25),vy:rand(-14,14),life:rand(.25,.52),max:.52});
+    }
+    function roundRect(x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      const bg=ctx.createLinearGradient(0,0,0,H);
+      bg.addColorStop(0,'#0b1b37');bg.addColorStop(.55,'#123754');bg.addColorStop(1,'#133f54');
+      ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+      const halo=ctx.createRadialGradient(W*.82,H*.23,0,W*.82,H*.23,W*.57);
+      halo.addColorStop(0,'#3a89922e');halo.addColorStop(1,'#3a899200');ctx.fillStyle=halo;ctx.fillRect(0,0,W,H);
+      for(const s of stars){
+        let x=(s.x*W-clock*18*s.d)%(W+25);if(x<0)x+=W+25;
+        ctx.globalAlpha=clamp(.35+Math.sin(clock*1.4+s.p)*.22,.12,.8);
+        ctx.fillStyle='#bceeff';ctx.beginPath();ctx.arc(x,s.y*H*.83,s.r,0,Math.PI*2);ctx.fill();
+      }
+      ctx.globalAlpha=1;
+      // 速度感のある薄い光線
+      ctx.strokeStyle='#75d5dc12';ctx.lineWidth=1;
+      for(let i=0;i<11;i++){
+        const y=H*(.12+i*.076);
+        const x=(i*137-clock*(26+i*4))%(W+260);
+        ctx.beginPath();ctx.moveTo(x<0?x+W+260:x,y);ctx.lineTo((x<0?x+W+260:x)+W*.14,y);ctx.stroke();
+      }
+      // 地上の遠景（パララックス）
+      ctx.beginPath();ctx.moveTo(0,H);
+      for(let x=0;x<=W+20;x+=20){const yy=H*.89+Math.sin(x*.014+clock*.13)*H*.025+Math.sin(x*.035+clock*.17)*H*.012;ctx.lineTo(x,yy);}
+      ctx.lineTo(W,H);ctx.closePath();ctx.fillStyle='#102b42';ctx.fill();
+      const horizon=H*.945;
+      ctx.fillStyle='#081c31';ctx.fillRect(0,horizon,W,H-horizon);
+      ctx.fillStyle='#2e879b9a';ctx.fillRect(0,horizon,W,1.5);
+      for(let i=0;i<26;i++){
+        const x=((i*78-clock*90)%(W+80)+(W+80))%(W+80);
+        ctx.fillStyle='#64cdd633';ctx.fillRect(x,horizon+15,36,1);
+      }
+      // 高度ガイド
+      ctx.strokeStyle='#e4f1ff16';ctx.setLineDash([3,9]);ctx.lineWidth=1;
+      for(let i=1;i<5;i++){const y=H*i/5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+      ctx.setLineDash([]);
+      // 障害物
+      for(const g of gates){
+        const top=g.center-g.gap/2,bottom=g.center+g.gap/2;
+        drawColumn(g.x,0,g.w,top,true);
+        drawColumn(g.x,bottom,g.w,H-bottom,false);
+        ctx.shadowBlur=12;ctx.shadowColor='#ffc37b';ctx.strokeStyle='#ffd88e';ctx.lineWidth=3;
+        ctx.beginPath();ctx.moveTo(g.x-5,top);ctx.lineTo(g.x+g.w+5,top);ctx.moveTo(g.x-5,bottom);ctx.lineTo(g.x+g.w+5,bottom);ctx.stroke();ctx.shadowBlur=0;
+      }
+      // 進路ガイド (左側の相対高度)
+      const targetY=H*(.84-.68*smoothedLight);
+      ctx.strokeStyle='#67f4e673';ctx.lineWidth=1.4;ctx.setLineDash([5,5]);
+      ctx.beginPath();ctx.moveTo(12,targetY);ctx.lineTo(player.x-18,targetY);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle='#84f8e1';ctx.fillRect(10,targetY-5,3,10);
+      // 残像・粒子
+      for(const p of sparks){
+        const alpha=clamp(p.life/Math.max(.01,p.max),0,1);
+        ctx.globalAlpha=alpha*.8;
+        ctx.fillStyle='#8deffa';ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.6,2.7*alpha),0,Math.PI*2);ctx.fill();
+      }
+      ctx.globalAlpha=1;
+      drawPlayer();
+      if(phase!=='playing' && phase!=='paused' && phase!=='over'){
+        ctx.fillStyle='#d7f6fa6a';ctx.font=`700 ${clamp(W*.015,10,15)}px ui-monospace,monospace`;
+        ctx.textAlign='right';ctx.fillText('LUX-ENGINE / STANDBY',W-20,H-19);ctx.textAlign='left';
+      }
+    }
+    function drawColumn(x,y,w,h,top){
+      if(h<1)return;
+      const grad=ctx.createLinearGradient(x,0,x+w,0);
+      grad.addColorStop(0,'#2e4960');grad.addColorStop(.16,'#315e75');grad.addColorStop(.52,'#21445d');grad.addColorStop(1,'#102b42');
+      ctx.fillStyle=grad;roundRect(x,y,w,h,Math.min(7,w*.12));ctx.fill();
+      ctx.strokeStyle='#54d1d464';ctx.lineWidth=1.6;ctx.stroke();
+      ctx.strokeStyle='#8aecdd44';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(x+w*.19,y+3);ctx.lineTo(x+w*.19,y+h-3);ctx.stroke();
+      ctx.fillStyle='#84e5c826';
+      for(let j=18;j<h-12;j+=34)ctx.fillRect(x+10,y+j,w-20,3);
+      const endY=top?y+h-8:y+8;
+      ctx.fillStyle='#fcd088';roundRect(x-5,endY-7,w+10,14,4);ctx.fill();
+      ctx.fillStyle='#ad6c40';ctx.fillRect(x+5,endY-2,w-10,3);
+    }
+    function drawPlayer(){
+      const r=player.r;
+      ctx.save();ctx.translate(player.x,player.y);ctx.rotate(-player.tilt);
+      ctx.shadowColor='#6ff2ff';ctx.shadowBlur=18;
+      const plume=ctx.createLinearGradient(-r*3,0,0,0);
+      plume.addColorStop(0,'#7be9ff00');plume.addColorStop(1,'#6ce9ffad');
+      ctx.fillStyle=plume;ctx.beginPath();ctx.moveTo(-r*.4,-r*.34);ctx.lineTo(-r*2.8,0);ctx.lineTo(-r*.4,r*.34);ctx.closePath();ctx.fill();
+      ctx.fillStyle='#f4faff';ctx.strokeStyle='#72e2f3';ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(r*1.28,0);ctx.lineTo(-r*.83,-r*.85);ctx.quadraticCurveTo(-r*1,-r*.55,-r*.8,0);ctx.quadraticCurveTo(-r*1,r*.55,-r*.83,r*.85);ctx.closePath();ctx.fill();ctx.stroke();
+      ctx.shadowBlur=0;ctx.fillStyle='#2abed8';ctx.beginPath();ctx.ellipse(r*.1,0,r*.47,r*.26,0,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#edffff';ctx.beginPath();ctx.arc(r*.26,-r*.07,r*.09,0,Math.PI*2);ctx.fill();
+      ctx.restore();
+    }
+    function animate(timestamp){
+      if(!last)last=timestamp;
+      const dt=Math.min(.04,(timestamp-last)/1000||0);last=timestamp;
+      clock+=dt;
+      if(phase==='playing') update(dt);
+      for(const p of sparks){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;}
+      sparks=sparks.filter(p=>p.life>0);
+      if(mode==='camera' && hasReading){
+        if(phase!=='playing')smoothedLight+= (normalizedLight()-smoothedLight)*(1-Math.exp(-dt*10));
+      }else if(phase!=='playing')smoothedLight+= (demoLight-smoothedLight)*(1-Math.exp(-dt*8));
+      updateLightUI();
+      draw();
+      requestAnimationFrame(animate);
+    }
+    dialog.addEventListener('click',async e=>{
+      const btn=e.target.closest('button[data-action]');
+      if(!btn||collecting)return;
+      const action=btn.dataset.action;
+      if(action==='camera')await cameraStart();
+      else if(action==='demo')start('demo');
+      else if(action==='capture-bright')await capture('bright');
+      else if(action==='capture-dark')await capture('dark');
+      else if(action==='bright')go('bright');
+      else if(action==='start')start('camera');
+      else if(action==='resume'){setStatus(mode==='camera'?'インカメラで操作中':'デモ操作（スワイプ・↑↓キー）',mode);go('playing');}
+      else if(action==='restart')start(mode);
+      else if(action==='welcome'){stopCamera();mode='demo';demoLight=.55;smoothedLight=.55;setStatus('スタンバイ中');go('welcome');}
+    });
+    $('pauseBtn').addEventListener('click',()=>{if(phase==='playing'){go('paused');setStatus('一時停止');}});
+    $('soundBtn').addEventListener('click',()=>{sound=!sound;updateActionButtons();});
+    function moveDemo(e){
+      if(mode!=='demo'||phase!=='playing')return;
+      const rect=canvas.getBoundingClientRect();
+      const y=clamp(e.clientY-rect.top,0,H);
+      demoLight=clamp((.84-y/H)/.68,0,1);
+    }
+    let dragging=false;
+    canvas.addEventListener('pointerdown',e=>{if(mode!=='demo'||phase!=='playing')return;dragging=true;canvas.setPointerCapture(e.pointerId);moveDemo(e);});
+    canvas.addEventListener('pointermove',e=>{if(dragging)moveDemo(e);});
+    canvas.addEventListener('pointerup',()=>{dragging=false;});
+    canvas.addEventListener('pointercancel',()=>{dragging=false;});
+    window.addEventListener('keydown',e=>{
+      if(['ArrowUp','ArrowDown',' '].includes(e.key))e.preventDefault();
+      pressed.add(e.key);
+      if(e.key===' ' && !e.repeat){
+        if(phase==='playing'){go('paused');setStatus('一時停止');}
+        else if(phase==='paused'){setStatus(mode==='camera'?'インカメラで操作中':'デモ操作（スワイプ・↑↓キー）',mode);go('playing');}
+      }
+    });
+    window.addEventListener('keyup',e=>pressed.delete(e.key));
+    window.addEventListener('blur',()=>pressed.clear());
+    document.addEventListener('visibilitychange',()=>{
+      if(document.hidden && phase==='playing'){go('paused');setStatus('一時停止');}
+    });
+    window.addEventListener('pagehide',stopCamera);
+    go('welcome');requestAnimationFrame(animate);
+  })();
+  </script>
+</body>
+</html>
