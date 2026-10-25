@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff2cf">
+  <meta name="description" content="手を上げ下げして、童謡をかなでよう。保育園児向けのやさしい音楽ゲーム。">
+  <title>LUX MELODY | てのひらで おんがく</title>
+  <style>
+    :root{--ink:#345071;--muted:#748a9f;--peach:#ff9b79;--cream:#fff8ea;--panel:#fffefb;--shadow:0 14px 38px rgba(73,103,140,.13);--border:#e8e8e7}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;overscroll-behavior:none}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:radial-gradient(circle at 78% 10%,#fff9b8 0,transparent 24%),linear-gradient(160deg,#fcebd8 0%,#e4f6ff 48%,#f0edff 100%);-webkit-tap-highlight-color:transparent}
+    button{font:inherit;cursor:pointer;touch-action:manipulation}
+    button:focus-visible{outline:3px solid #4a9adc;outline-offset:3px}
+    [hidden]{display:none!important}
+    .app{max-width:1060px;margin:auto;min-height:100svh;display:flex;flex-direction:column;padding:max(15px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));gap:12px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:53px}
+    .identity{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand-icon{width:48px;height:48px;border-radius:17px;background:#fff;box-shadow:0 6px 15px #b3b6e125;display:grid;place-items:center;font-size:29px}
+    .brand-main{font-size:clamp(21px,4vw,27px);font-weight:1000;letter-spacing:.025em;line-height:1.1;color:#40527d}
+    .brand-sub{color:#8395aa;font-size:10px;letter-spacing:.06em;font-weight:800;margin-top:5px}
+    .top-actions{display:flex;gap:7px;align-items:center}
+    .small-btn{background:#ffffffd9;border:1.5px solid #e9e7e5;color:#54708d;border-radius:14px;font-weight:900;font-size:13px;padding:10px 13px;min-height:44px;white-space:nowrap}
+    .small-btn:active,.primary:active,.note-btn:active{transform:scale(.97)}
+    .stage{position:relative;flex:1;min-height:520px;max-height:820px;background:linear-gradient(180deg,#eaf8ff,#fbf3ff 62%,#fff2e2);border:5px solid #fff;border-radius:32px;box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+    .sky-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .sun{position:absolute;top:6%;right:7%;width:90px;height:90px;background:#ffe9a5;border-radius:100%;box-shadow:0 0 0 16px #fff6cd66,0 0 0 34px #fff6cd35}
+    .cloud{position:absolute;display:block;height:30px;border-radius:90px;background:#ffffffa8;filter:drop-shadow(0 5px 0 #cbeefa20)}
+    .cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}
+    .cloud:before{width:40px;height:40px;left:22px;bottom:6px}.cloud:after{width:55px;height:55px;left:55px;bottom:0}
+    .cl1{width:122px;left:4%;top:15%;animation:floaty 8s ease-in-out infinite}.cl2{width:114px;right:11%;top:33%;animation:floaty 10s ease-in-out -3s infinite}
+    @keyframes floaty{50%{transform:translateY(12px) translateX(5px)}}
+    .hill{position:absolute;bottom:-70px;width:120%;height:180px;border-radius:50% 50% 0 0;left:-10%;background:#c7eace;opacity:.8}
+    .hill.two{bottom:-98px;left:30%;height:210px;background:#a8dfc3;opacity:.8}
+    .dots{position:absolute;inset:0;opacity:.7;background-image:radial-gradient(#fff 2px,transparent 2px);background-size:90px 77px}
+    .screen{position:absolute;inset:0;padding:22px;z-index:3;display:flex;flex-direction:column;align-items:center}
+    .welcome{justify-content:center;text-align:center;gap:16px}
+    .mascot{font-size:clamp(65px,12vh,113px);line-height:1;filter:drop-shadow(0 12px 0 #e6c3cd4f);animation:bob 2.8s ease-in-out infinite}
+    @keyframes bob{50%{transform:translateY(-8px) rotate(-4deg)}}
+    h1{font-size:clamp(26px,6.5vw,44px);line-height:1.35;margin:0;color:#40547d;letter-spacing:.02em;font-weight:1000}
+    h2{font-size:clamp(24px,5vw,35px);margin:0;line-height:1.35;color:#40547d;font-weight:1000}
+    p{margin:0;line-height:1.65}
+    .subline{font-size:clamp(15px,3vw,20px);font-weight:900;color:#7185a1}
+    .pill{background:#fffaf1;border:2px solid #f0dfc6;padding:8px 15px;border-radius:99px;font-weight:900;color:#9b7857;font-size:13px}
+    .button-stack{display:flex;flex-direction:column;gap:12px;width:min(100%,360px);margin:6px auto 0}
+    .primary{border:0;border-radius:23px;background:#ff9d7d;color:white;font-size:clamp(18px,4.5vw,23px);font-weight:1000;min-height:67px;padding:15px 25px;box-shadow:0 7px 0 #e47c64,0 12px 20px #f0a39755;transition:transform .1s}
+    .primary.mint{background:#6bc6b1;box-shadow:0 7px 0 #4eab99,0 12px 20px #6bc6b14a}
+    .primary.violet{background:#9686d7;box-shadow:0 7px 0 #7565b9,0 12px 20px #9686d745}
+    .secondary{min-height:55px;border:2px solid #e4eaf2;background:#ffffffd9;border-radius:21px;font-weight:1000;color:#657c98;font-size:16px;padding:11px 23px}
+    .hint{font-size:12px;color:#8294aa;font-weight:800;max-width:480px}
+    .configure{justify-content:center;text-align:center;gap:16px}
+    .illustration{font-size:clamp(65px,16vh,100px);line-height:1.1;filter:drop-shadow(0 8px 6px #707b9c20)}
+    .meter-shell{width:min(100%,350px);background:#ffffffc2;border-radius:17px;padding:13px 17px;border:2px solid #fff}
+    .meter-top{display:flex;justify-content:space-between;align-items:center;font-weight:900;color:#57768d;font-size:13px;margin-bottom:7px}
+    .meter-bar{height:14px;border-radius:50px;background:#dce7f0;overflow:hidden}
+    .meter-bar b{display:block;height:100%;width:0%;background:linear-gradient(90deg,#90aeea,#ffb37e);border-radius:50px;transition:width .15s}
+    .error-hint{border-radius:12px;padding:9px 12px;color:#985c46;background:#fff2e7;font-size:13px;font-weight:800;max-width:420px}
+    .game-screen{padding:14px 15px 18px;gap:12px;justify-content:space-between}
+    .game-hud{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:2}
+    .song-name{background:#fffefaed;border:2px solid #fff;border-radius:17px;padding:8px 15px;font-size:clamp(14px,3vw,19px);font-weight:1000;box-shadow:0 5px 10px #8eb1be12}
+    .song-count{background:#fffefaed;border:2px solid #fff;border-radius:18px;padding:9px 13px;font-weight:1000;color:#9675a8;white-space:nowrap}
+    .song-count strong{font-size:20px}
+    .melody-tape{width:min(100%,590px);display:flex;align-items:center;justify-content:center;gap:7px;z-index:2;min-height:49px}
+    .tape-note{flex:0 0 auto;width:clamp(38px,8vw,52px);height:clamp(38px,8vw,52px);border-radius:17px;display:grid;place-items:center;background:#ffffffc4;border:2px solid #fff;font-weight:1000;color:#8498b2;box-shadow:0 4px 0 #cfd9e453;transition:transform .18s,box-shadow .18s}
+    .tape-note.current{transform:translateY(-6px) scale(1.12);border-color:#e3b4f1;box-shadow:0 7px 0 #cdafe56e;color:#5f4f96;background:#fff}
+    .tape-note.done{background:#fce9ac;color:#987a36}
+    .tape-note.future{opacity:.55}
+    .target-area{width:100%;display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:13px;position:relative;z-index:2}
+    .prompt{font-size:clamp(15px,3.7vw,22px);font-weight:1000;background:#ffffffba;padding:7px 19px;border-radius:99px;text-align:center}
+    .target-note{width:clamp(105px,24vh,166px);height:clamp(105px,24vh,166px);border:6px solid #fff;border-radius:50%;background:var(--note-color,#ffa77c);color:#fff;box-shadow:0 11px 0 #8b92be36,0 16px 24px #52679121;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative}
+    .target-note .kana{font-size:clamp(54px,12vh,86px);font-weight:1000;line-height:1}
+    .target-note .guide{font-size:12px;font-weight:1000;letter-spacing:.09em;margin-top:5px}
+    .target-note.celebrate{animation:pop .33s ease-out}
+    @keyframes pop{50%{transform:scale(1.16)}}
+    .status-text{font-weight:1000;font-size:clamp(13px,3vw,17px);color:#5d7797;min-height:25px;text-align:center;max-width:520px}
+    .note-board{width:min(100%,680px);background:#fffcf6e8;border:3px solid #fff;border-radius:26px;padding:12px;box-shadow:0 7px 0 #e6c6ba30;z-index:3}
+    .note-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+    .note-btn{min-width:0;position:relative;height:clamp(64px,12vh,89px);border:3px solid #fff;border-radius:17px;background:var(--key-color);color:#fff;font-weight:1000;font-size:clamp(18px,5vw,29px);white-space:nowrap;box-shadow:0 5px 0 #8090a044;text-shadow:0 2px 0 #5f6b6a1f;transition:transform .07s,filter .12s}
+    .note-btn.active{outline:4px solid #ffd269;outline-offset:1px;transform:translateY(-3px);filter:saturate(1.2)}
+    .note-btn.needed:after{content:"★";position:absolute;top:-12px;right:0;color:#ffcc48;font-size:22px;text-shadow:0 1px 3px white;animation:bob 1s infinite}
+    .board-label{display:flex;align-items:center;justify-content:space-between;color:#758ca3;font-size:12px;font-weight:900;margin-bottom:10px;gap:8px}
+    .level-hint{display:flex;align-items:center;justify-content:space-between;color:#7891a9;font-size:11px;font-weight:900;margin-top:8px}
+    .success{justify-content:center;text-align:center;gap:17px}
+    .success .big-celebrate{font-size:clamp(70px,16vh,120px);line-height:1;animation:bob 2s infinite}
+    .reward-stars{display:flex;gap:7px;justify-content:center;font-size:clamp(28px,7vw,45px)}
+    .reward-stars span{filter:drop-shadow(0 4px 4px #f8bb6280)}
+    .info-bar{font-size:12px;color:#7e8fa4;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:900;padding:0 5px}
+    .spark{pointer-events:none;position:absolute;z-index:20;font-size:27px;animation:sparkle .8s cubic-bezier(.1,.5,.3,1) forwards}
+    @keyframes sparkle{0%{transform:translate(0,0) scale(.3);opacity:0}24%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.7) rotate(60deg);opacity:0}}
+    .camera-preview{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;left:-20px;top:-20px}
+    @media(max-width:550px){.app{padding:8px 9px max(11px,env(safe-area-inset-bottom));gap:7px}.top{min-height:51px}.stage{border-width:3px;min-height:calc(100svh - 146px);max-height:none;border-radius:25px}.screen{padding:16px}.welcome{gap:12px}.game-screen{padding:10px 9px 13px;gap:8px}.note-board{padding:8px;border-radius:18px}.note-row{gap:3px}.note-btn{border-radius:12px;border-width:2px}.brand-icon{height:42px;width:42px;font-size:24px}.brand-main{font-size:20px}.brand-sub{font-size:9px}.small-btn{padding:9px 10px;font-size:12px}.sun{width:60px;height:60px}}
+    @media(max-height:660px){.mascot{font-size:67px}.welcome{gap:9px}.button-stack{gap:8px}.primary{min-height:54px}.target-note{height:106px;width:106px}.target-note .kana{font-size:54px}.target-area{gap:7px}.note-btn{height:61px}.game-hud{gap:5px}.melody-tape{min-height:36px}.tape-note{width:36px;height:36px;border-radius:11px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001s!important;transition-duration:.001s!important}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="identity"><span class="brand-icon" aria-hidden="true">🎼</span><div><div class="brand-main">LUX MELODY</div><div class="brand-sub">てのひらで おんがく</div></div></div>
+      <div class="top-actions"><button class="small-btn" id="soundToggle" aria-label="音のオンオフ">🔊 おと ON</button><button class="small-btn" id="homeBtn" hidden>⌂ もどる</button></div>
+    </header>
+    <main class="stage" id="stage">
+      <div class="sky-deco" aria-hidden="true"><div class="dots"></div><div class="sun"></div><div class="cloud cl1"></div><div class="cloud cl2"></div><div class="hill"></div><div class="hill two"></div></div>
+      <section class="screen welcome" id="welcome">
+        <div class="mascot" aria-hidden="true">🌟🎶</div>
+        <h1>てを うごかして<br>おんがくを かなでよう！</h1>
+        <p class="subline">たかく あげると たかい おと♪<br>ひくく すると ひくい おと♪</p>
+        <div class="pill">🎵 きらきらぼし に ちょうせん！</div>
+        <div class="button-stack">
+          <button class="primary mint" id="cameraBtn">✋ てで あそぶ</button>
+          <button class="secondary" id="touchBtn">👆 タッチで あそぶ</button>
+        </div>
+        <p class="hint">おとなの ひとと いっしょに じゅんびしてね。<br>カメラの えいぞうは そうしん・ほぞんしません。</p>
+      </section>
+      <section class="screen configure" id="configure" hidden>
+        <div class="illustration" id="setupArt" aria-hidden="true">✋📱</div>
+        <h2 id="setupTitle">カメラを じゅんびしているよ</h2>
+        <p class="subline" id="setupSubtitle">スマホを つくえに おいてね</p>
+        <div class="meter-shell" id="sizeMeter" hidden>
+          <div class="meter-top"><span>てが みえてるかな？</span><span id="sizeCaption">…</span></div>
+          <div class="meter-bar"><b id="sizeFill"></b></div>
+        </div>
+        <p class="error-hint" id="setupError" hidden></p>
+        <div class="button-stack">
+          <button class="primary mint" id="setupNext" hidden>できた！</button>
+          <button class="secondary" id="setupTouch">👆 タッチで あそぶ</button>
+        </div>
+        <p class="hint">てのひらを カメラに むけてね。<br>ては カメラから 15〜50cm ほど はなしてね。</p>
+      </section>
+      <section class="screen game-screen" id="game" hidden>
+        <div class="game-hud"><div class="song-name" id="songTitle">🎵 きらきらぼし</div><div class="song-count"><span id="countLabel">⭐ 0 / 14</span></div></div>
+        <div class="melody-tape" id="melodyTape" aria-label="これからの おと"></div>
+        <div class="target-area">
+          <div class="prompt" id="prompt">つぎは この おと！</div>
+          <div class="target-note" id="targetNote"><div class="kana" id="targetKana">ド</div><div class="guide">この おとに しよう♪</div></div>
+          <p class="status-text" id="playStatus" aria-live="polite">てを うごかしてみよう！</p>
+        </div>
+        <div class="note-board">
+          <div class="board-label"><span id="modeBadge">🎵 きらきらぼし</span><span id="currentName">いまの おと：…</span></div>
+          <div class="note-row" id="noteRow"></div>
+          <div class="level-hint"><span>👈 ひくい おと</span><span>たかい おと 👉</span></div>
+        </div>
+      </section>
+      <section class="screen success" id="success" hidden>
+        <div class="big-celebrate" aria-hidden="true">🌈🎶</div>
+        <h1>やったね！<br>きらきらぼし かんせい！</h1>
+        <div class="reward-stars" aria-hidden="true"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <p class="subline">じぶんの てで えんそうできたね！</p>
+        <div class="button-stack"><button class="primary" id="againBtn">🌟 もう いっかい！</button><button class="secondary" id="freeBtn">🎹 じゆうに えんそう</button></div>
+      </section>
+    </main>
+    <footer class="info-bar"><span>♪ せいかいすると つぎへ すすむよ</span><span>じかんせいげん・ゲームオーバー なし</span></footer>
+  </div>
+  <video id="video" class="camera-preview" autoplay muted playsinline aria-hidden="true"></video>
+  <script>
+  (()=>{
+    'use strict';
+    const $=id=>document.getElementById(id);
+    const SCREENS=['welcome','configure','game','success'];
+    const NOTES=[
+      {name:'ド',freq:261.63,color:'#f28a83'},
+      {name:'レ',freq:293.66,color:'#f5b362'},
+      {name:'ミ',freq:329.63,color:'#e5be52'},
+      {name:'ファ',freq:349.23,color:'#78cda9'},
+      {name:'ソ',freq:392.00,color:'#6cafe1'},
+      {name:'ラ',freq:440.00,color:'#a58bde'}
+    ];
+    // きらきら星（原曲「Ah! vous dirai-je, maman」）最初の14音
+    const SONG=[0,0,4,4,5,5,4,3,3,2,2,1,1,0];
+    let screen='welcome',inputMode='touch',playMode='song',songIndex=0,selected=-1,soundOn=true;
+    let audioCtx=null,lastPlayedNote=-1,lastToneAt=0,successAt=0,heldSince=0,lastTick=0;
+    let stream=null,handEngine=null,videoLoop=0,lastVisionAt=0,visionBusy=false,handSeenAt=0,handMeasure=NaN,smoothedSize=NaN;
+    let lowSize=NaN,highSize=NaN,calibrationStage='',appGeneration=0;
+    const video=$('video');
+    const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+    const noteButtons=[];
+    function show(view){screen=view;SCREENS.forEach(id=>$(id).hidden=id!==view);$('homeBtn').hidden=view==='welcome';}
+    function sayStatus(s){$('playStatus').textContent=s;}
+    function ensureAudio(){try{if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}if(audioCtx.state==='suspended')audioCtx.resume().catch(()=>{});}catch(e){}}
+    function tone(index,seconds=.29,vol=.105){
+      if(!soundOn||!audioCtx||audioCtx.state!=='running'||index<0)return;
+      const now=audioCtx.currentTime,frequency=NOTES[index].freq;
+      try{
+        const out=audioCtx.createGain();out.gain.setValueAtTime(0.0001,now);out.gain.exponentialRampToValueAtTime(vol,now+.022);out.gain.exponentialRampToValueAtTime(.0001,now+seconds);out.connect(audioCtx.destination);
+        const o1=audioCtx.createOscillator();o1.type='sine';o1.frequency.value=frequency;o1.connect(out);o1.start(now);o1.stop(now+seconds+.02);
+        const o2=audioCtx.createOscillator();o2.type='triangle';o2.frequency.value=frequency*2;
+        const g2=audioCtx.createGain();g2.gain.value=.11;o2.connect(g2);g2.connect(out);o2.start(now);o2.stop(now+seconds+.02);
+      }catch(e){}
+    }
+    function chime(){if(!soundOn)return;ensureAudio();[0,2,4,5,4,0].forEach((n,i)=>setTimeout(()=>tone(n,.34,.12),i*150));}
+    function spawnStars(){const stage=$('stage');const emojis=['✨','⭐','🌟','💛','✨'];for(let i=0;i<7;i++){
+      const p=document.createElement('span');p.className='spark';p.textContent=emojis[i%emojis.length];p.style.left=(35+Math.random()*32)+'%';p.style.top=(30+Math.random()*23)+'%';p.style.setProperty('--dx',((Math.random()-.5)*200)+'px');p.style.setProperty('--dy',((Math.random()-.5)*150)+'px');stage.append(p);setTimeout(()=>p.remove(),850);
+    }}
+    function setupKeys(){NOTES.forEach((note,i)=>{const b=document.createElement('button');b.type='button';b.className='note-btn';b.textContent=note.name;b.style.setProperty('--key-color',note.color);b.setAttribute('aria-label',note.name+' のおと');b.addEventListener('pointerdown',e=>{e.preventDefault();ensureAudio();chooseNote(i,'touch',true);});$('noteRow').append(b);noteButtons.push(b);});}
+    function redrawTape(){const tape=$('melodyTape');tape.replaceChildren();if(playMode==='free'){const t=document.createElement('div');t.className='pill';t.textContent='すきな おとを ならしてね ♫';tape.append(t);return;}
+      for(let i=Math.max(0,songIndex-2);i<Math.min(SONG.length,songIndex+5);i++){
+        const el=document.createElement('div');el.className='tape-note '+(i<songIndex?'done':i===songIndex?'current':'future');el.textContent=i<songIndex?'★':NOTES[SONG[i]].name;tape.append(el);
+      }
+    }
+    function redrawTarget(){if(playMode==='free'){ $('prompt').textContent='すきな おとを ならそう！';$('targetKana').textContent=selected<0?'♪':NOTES[selected].name;$('targetNote').style.setProperty('--note-color',selected<0?'#b1a5df':NOTES[selected].color);$('countLabel').textContent='🎵 じゆう えんそう';$('songTitle').textContent='🌈 おんがく あそび';$('modeBadge').textContent='🌈 じゆうに えんそう';}
+      else if(songIndex<SONG.length){const n=SONG[songIndex];$('prompt').textContent='つぎは「'+NOTES[n].name+'」を ならそう！';$('targetKana').textContent=NOTES[n].name;$('targetNote').style.setProperty('--note-color',NOTES[n].color);$('countLabel').textContent='⭐ '+songIndex+' / '+SONG.length;$('songTitle').textContent='🎵 きらきらぼし';$('modeBadge').textContent='🎵 きらきらぼし';}
+      redrawTape();redrawKeys();
+    }
+    function redrawKeys(){noteButtons.forEach((b,i)=>{b.classList.toggle('active',selected===i);b.classList.toggle('needed',playMode==='song' && songIndex<SONG.length && SONG[songIndex]===i);});$('currentName').textContent=selected<0?'いまの おと：…':'いまの おと：'+NOTES[selected].name;}
+    function startGame(mode='song'){
+      ensureAudio();playMode=mode;songIndex=0;selected=-1;heldSince=0;successAt=0;lastPlayedNote=-1;
+      show('game');redrawTarget();sayStatus(inputMode==='touch'?'したの いろを タッチしてね 🎵':'てを うごかして おとを あわせよう！');
+    }
+    function chooseNote(note,source,force=false){
+      if(screen!=='game')return;
+      const now=performance.now();note=clamp(note,0,NOTES.length-1);
+      // カメラと画面タップを併用可。操作中はタップした音が優先する。
+      const changed=selected!==note;
+      if(changed){selected=note;heldSince=now;redrawKeys();if(playMode==='free')redrawTarget();}
+      if((changed||force) && (now-lastToneAt>100 || note!==lastPlayedNote)){tone(note,.30,.09);lastPlayedNote=note;lastToneAt=now;}
+      if(playMode==='song'){
+        if(SONG[songIndex]===note){
+          if(changed) sayStatus('いいね！ そのまま ちょっと まってね ⭐');
+          const holdNeeded=(source==='touch'?0:440);
+          if(now-heldSince>=holdNeeded && now-successAt>=(source==='touch'?180:530)){completeNote(now);}
+        }else{
+          if(changed) sayStatus(note<SONG[songIndex]?'もう ちょっと たかく！ ☀️':'もう ちょっと ひくく！ 🌙');
+        }
+      }else if(changed){sayStatus('とっても いい おと！ ✨');}
+    }
+    function completeNote(now){
+      if(screen!=='game'||playMode!=='song'||songIndex>=SONG.length)return;
+      const note=SONG[songIndex];songIndex++;successAt=now;heldSince=now;
+      tone(note,.48,.14);spawnStars();
+      const target=$('targetNote');target.classList.remove('celebrate');void target.offsetWidth;target.classList.add('celebrate');
+      if(songIndex>=SONG.length){setTimeout(()=>{if(screen==='game'){show('success');chime();spawnStars();}},520);return;}
+      redrawTarget();sayStatus(['すごい！ ✨','じょうず！ ⭐','その ちょうし！ 🎶','いいね！ 🌈'][songIndex%4]);
+    }
+    function updateTouchSelection(){if(inputMode==='touch'&&screen==='game'){/* user taps notes */}}
+    function setupDisplay(stage,err=''){
+      const states={loading:['🪄📱','てを みつける じゅんびちゅう','カメラの しようを ゆるしてね'],low:['✋⬇️','てを カメラの ちかくへ','ひくい おと の いちを おぼえるよ'],high:['✋⬆️','てを カメラから とおくへ','たかい おと の いちを おぼえるよ'],error:['☁️📱','カメラが つかえなかったよ','タッチでも たのしく あそべるよ！']};
+      const s=states[stage]||states.loading;
+      calibrationStage=stage;$('setupArt').textContent=s[0];$('setupTitle').textContent=s[1];$('setupSubtitle').textContent=s[2];
+      $('setupNext').hidden=!(stage==='low'||stage==='high');$('setupNext').textContent=stage==='low'?'⬇️ ここが ひくい おと！':'⬆️ ここが たかい おと！';
+      $('sizeMeter').hidden=!(stage==='low'||stage==='high');$('setupError').hidden=!err;$('setupError').textContent=err;
+    }
+    function displayHandSize(){if(screen!=='configure'||(calibrationStage!=='low'&&calibrationStage!=='high'))return;
+      if(!Number.isFinite(handMeasure) || performance.now()-handSeenAt>1500){$('sizeCaption').textContent='てを みせてね';$('sizeFill').style.width='0%';return;}
+      $('sizeCaption').textContent='てが みえたよ！';$('sizeFill').style.width=clamp(Math.round(handMeasure*270),5,100)+'%';
+    }
+    function measurePalm(points){
+      // 人差し指の付け根（5）と小指の付け根（17）の距離を使用。
+      // 手をカメラから遠ざけるほど小さく写るため、音を高くする。
+      if(!points||points.length<18)return NaN;
+      const a=points[5],b=points[17],c=points[0],d=points[9];
+      const w=Math.hypot(a.x-b.x,a.y-b.y),h=Math.hypot(c.x-d.x,c.y-d.y);
+      return (w*.7+h*.3);
+    }
+    function levelToIndex(v){
+      if(selected<0)return clamp(Math.round(v*5),0,5);
+      let next=selected;
+      // 量子化境界の行き来による音のバタつきを軽減。
+      if(v>(selected+.5)/5+.045) next=Math.min(5,Math.floor(v*5+.5-.18));
+      if(v<(selected-.5)/5-.045) next=Math.max(0,Math.ceil(v*5-.5+.18));
+      return clamp(next,0,5);
+    }
+    function gotHands(results){
+      const landmarks=results?.multiHandLandmarks?.[0];if(!landmarks)return;
+      const measured=measurePalm(landmarks);if(!Number.isFinite(measured)||measured<=0)return;
+      handSeenAt=performance.now();handMeasure=measured;
+      smoothedSize=Number.isFinite(smoothedSize)?smoothedSize*.62+measured*.38:measured;
+      displayHandSize();
+      if(screen!=='game'||inputMode!=='camera')return;
+      if(!Number.isFinite(lowSize)||!Number.isFinite(highSize)||lowSize<=highSize)return;
+      const ratio=clamp((lowSize-smoothedSize)/(lowSize-highSize),0,1);
+      chooseNote(levelToIndex(ratio),'camera');
+    }
+    function ensureHandsScript(){
+      if(window.Hands)return Promise.resolve();
+      return new Promise((resolve,reject)=>{
+        const old=document.querySelector('script[data-mediapipe-hands]');if(old){old.addEventListener('load',resolve,{once:true});old.addEventListener('error',()=>reject(new Error('model load failed')),{once:true});return;}
+        const tag=document.createElement('script');tag.src='https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js';tag.crossOrigin='anonymous';tag.dataset.mediapipeHands='true';tag.onload=resolve;tag.onerror=()=>{tag.remove();reject(new Error('ネットワークから手の認識プログラムを読み込めませんでした'));};document.head.append(tag);
+      });
+    }
+    async function beginCamera(){
+      const gen=++appGeneration;await stopCamera();inputMode='camera';show('configure');setupDisplay('loading');ensureAudio();
+      try{
+        if(!window.isSecureContext||!navigator.mediaDevices?.getUserMedia)throw new Error('Safari / Chrome で HTTPS のページを開いてください');
+        stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:480},height:{ideal:360},frameRate:{ideal:20,max:24}},audio:false});
+        if(gen!==appGeneration)return;
+        video.srcObject=stream;await video.play();await ensureHandsScript();if(gen!==appGeneration)return;
+        handEngine=new window.Hands({locateFile:file=>'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'+file});
+        handEngine.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.55,minTrackingConfidence:.5});
+        handEngine.onResults(gotHands);lastVisionAt=0;visionBusy=false;handSeenAt=0;handMeasure=NaN;smoothedSize=NaN;
+        setupDisplay('low');cameraLoop();
+      }catch(err){
+        if(gen!==appGeneration)return;
+        const reason=err?.name==='NotAllowedError'?'カメラを「きょか」してね':err?.message||'カメラを つかえませんでした';
+        setupDisplay('error',reason);await stopCamera();
+      }
+    }
+    function cameraLoop(){
+      if(!stream||!handEngine)return;
+      videoLoop=requestAnimationFrame(cameraLoop);
+      const now=performance.now();if(visionBusy||now-lastVisionAt<95||video.readyState<2)return;
+      if(screen==='game' && now-handSeenAt>1350 && selected!==-1){selected=-1;heldSince=0;redrawKeys();sayStatus('てのひらを カメラに みせてね ✋');}
+      lastVisionAt=now;visionBusy=true;
+      Promise.resolve().then(()=>handEngine.send({image:video})).catch(()=>{}).finally(()=>{visionBusy=false;});
+    }
+    async function stopCamera(){
+      cancelAnimationFrame(videoLoop);videoLoop=0;
+      if(stream){stream.getTracks().forEach(track=>track.stop());stream=null;}
+      video.pause();video.srcObject=null;
+      const old=handEngine;handEngine=null;if(old){try{await old.close();}catch(e){}}
+    }
+    function captureCalibration(){
+      const now=performance.now();if(!Number.isFinite(handMeasure)||now-handSeenAt>1000){setupDisplay(calibrationStage,'てが みえないよ。てのひらを カメラに むけてね');return;}
+      if(calibrationStage==='low'){
+        lowSize=smoothedSize;setupDisplay('high');
+      }else if(calibrationStage==='high'){
+        highSize=smoothedSize;
+        if(lowSize-highSize<Math.max(.018,lowSize*.15)){
+          setupDisplay('high','もう すこし てを とおくへ！ いまの たかさの ちがいが ちいさいよ');return;
+        }
+        startGame('song');
+      }
+    }
+    function touchStart(mode='song'){
+      ++appGeneration;stopCamera();inputMode='touch';startGame(mode);
+    }
+    function home(){++appGeneration;stopCamera();show('welcome');}
+    // メロディーを保持したまま、ユーザーが操作できるモードで入力を処理する。
+    $('cameraBtn').addEventListener('click',beginCamera);
+    $('touchBtn').addEventListener('click',()=>touchStart());
+    $('setupTouch').addEventListener('click',()=>touchStart());
+    $('setupNext').addEventListener('click',captureCalibration);
+    $('homeBtn').addEventListener('click',home);
+    $('againBtn').addEventListener('click',()=>{startGame('song');});
+    $('freeBtn').addEventListener('click',()=>startGame('free'));
+    $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;ensureAudio();$('soundToggle').textContent=soundOn?'🔊 おと ON':'🔇 おと OFF';});
+    window.addEventListener('keydown',e=>{if(screen!=='game')return;const n='123456'.indexOf(e.key);if(n>=0){e.preventDefault();ensureAudio();chooseNote(n,'touch',true);}});
+    window.addEventListener('pagehide',()=>{++appGeneration;stopCamera();});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){if(audioCtx?.state==='running')audioCtx.suspend().catch(()=>{});}});
+    setupKeys();show('welcome');
+    // 同じ音を鳴らし続けた場合でも、連続した同音符を進められる。
+    setInterval(()=>{
+      if(screen==='game' && playMode==='song' && selected>=0 && SONG[songIndex]===selected){
+        if(inputMode==='camera' && performance.now()-handSeenAt<1350)chooseNote(selected,inputMode);
+      }
+      if(screen==='configure')displayHandSize();
+    },85);
+  })();
+  </script>
+</body>
+</html>
