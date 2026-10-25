@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <meta name="theme-color" content="#fff2cf">
-  <meta name="description" content="手を上げ下げして、童謡をかなでよう。保育園児向けのやさしい音楽ゲーム。">
+  <meta name="description" content="手のひらで 童謡をかなでよう。きらきらぼしと2オクターブの自由演奏。保育園児向けの音楽ゲーム。">
   <title>LUX MELODY | てのひらで おんがく</title>
   <style>
     :root{--ink:#345071;--muted:#748a9f;--peach:#ff9b79;--cream:#fff8ea;--panel:#fffefb;--shadow:0 14px 38px rgba(73,103,140,.13);--border:#e8e8e7}
@@ -44,6 +44,10 @@
     .subline{font-size:clamp(15px,3vw,20px);font-weight:900;color:#7185a1}
     .pill{background:#fffaf1;border:2px solid #f0dfc6;padding:8px 15px;border-radius:99px;font-weight:900;color:#9b7857;font-size:13px}
     .button-stack{display:flex;flex-direction:column;gap:12px;width:min(100%,360px);margin:6px auto 0}
+    .mode-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;width:min(100%,400px)}
+    .mode-choice{border:3px solid #fff;background:#ffffffc9;color:#5c6d91;padding:10px 8px;border-radius:18px;min-height:67px;box-shadow:0 4px 10px #687aa616;font-size:14px;line-height:1.5;font-weight:1000}
+    .mode-choice[aria-pressed="true"]{border-color:#f7a37b;background:#fff2e4;box-shadow:0 4px 0 #ffceae}
+    .mode-choice small{display:block;font-size:11px;font-weight:800;color:#8392a8}
     .primary{border:0;border-radius:23px;background:#ff9d7d;color:white;font-size:clamp(18px,4.5vw,23px);font-weight:1000;min-height:67px;padding:15px 25px;box-shadow:0 7px 0 #e47c64,0 12px 20px #f0a39755;transition:transform .1s}
     .primary.mint{background:#6bc6b1;box-shadow:0 7px 0 #4eab99,0 12px 20px #6bc6b14a}
     .primary.violet{background:#9686d7;box-shadow:0 7px 0 #7565b9,0 12px 20px #9686d745}
@@ -79,6 +83,13 @@
     .status-text{font-weight:1000;font-size:clamp(13px,3vw,17px);color:#5d7797;min-height:25px;text-align:center;max-width:520px}
     .note-board{width:min(100%,680px);background:#fffcf6e8;border:3px solid #fff;border-radius:26px;padding:12px;box-shadow:0 7px 0 #e6c6ba30;z-index:3}
     .note-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+    .game-screen.free-mode .note-row{grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+    .game-screen.free-mode .note-btn{height:clamp(44px,7vh,67px);font-size:clamp(15px,3.7vw,25px);border-radius:13px}
+    .note-octave{display:block;font-size:10px;line-height:1.05;letter-spacing:0;text-shadow:none;opacity:.94}
+    .game-screen.free-mode .target-note{width:clamp(88px,17vh,118px);height:clamp(88px,17vh,118px)}
+    .game-screen.free-mode .target-note .kana{font-size:clamp(40px,8vh,58px)}
+    .game-screen.free-mode .target-area{gap:6px}
+    .game-screen.free-mode .melody-tape{min-height:24px}
     .note-btn{min-width:0;position:relative;height:clamp(64px,12vh,89px);border:3px solid #fff;border-radius:17px;background:var(--key-color);color:#fff;font-weight:1000;font-size:clamp(19px,5.4vw,33px);box-shadow:0 5px 0 #8090a044;text-shadow:0 2px 0 #5f6b6a1f;transition:transform .07s,filter .12s}
     .note-btn.active{outline:4px solid #ffd269;outline-offset:1px;transform:translateY(-3px);filter:saturate(1.2)}
     .note-btn.needed:after{content:"★";position:absolute;top:-12px;right:0;color:#ffcc48;font-size:22px;text-shadow:0 1px 3px white;animation:bob 1s infinite}
@@ -92,7 +103,7 @@
     .spark{pointer-events:none;position:absolute;z-index:20;font-size:27px;animation:sparkle .8s cubic-bezier(.1,.5,.3,1) forwards}
     @keyframes sparkle{0%{transform:translate(0,0) scale(.3);opacity:0}24%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.7) rotate(60deg);opacity:0}}
     .camera-preview{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;left:-20px;top:-20px}
-    @media(max-width:550px){.app{padding:8px 9px max(11px,env(safe-area-inset-bottom));gap:7px}.top{min-height:51px}.stage{border-width:3px;min-height:calc(100svh - 119px);max-height:none;border-radius:25px}.screen{padding:16px}.welcome{gap:12px}.game-screen{padding:10px 9px 13px;gap:8px}.note-board{padding:8px;border-radius:18px}.note-row{gap:3px}.note-btn{border-radius:12px;border-width:2px}.brand-icon{height:42px;width:42px;font-size:24px}.brand-main{font-size:20px}.brand-sub{font-size:9px}.small-btn{padding:9px 10px;font-size:12px}.sun{width:60px;height:60px}}
+    @media(max-width:550px){.game-screen.free-mode .note-row{grid-template-columns:repeat(5,minmax(0,1fr))}.game-screen.free-mode .note-btn{height:clamp(42px,6.4vh,56px);font-size:19px}.mode-choice{font-size:12px;min-height:59px;padding:7px 5px}.mode-choice small{font-size:10px}.app{padding:8px 9px max(11px,env(safe-area-inset-bottom));gap:7px}.top{min-height:51px}.stage{border-width:3px;min-height:calc(100svh - 119px);max-height:none;border-radius:25px}.screen{padding:16px}.welcome{gap:12px}.game-screen{padding:10px 9px 13px;gap:8px}.note-board{padding:8px;border-radius:18px}.note-row{gap:3px}.note-btn{border-radius:12px;border-width:2px}.brand-icon{height:42px;width:42px;font-size:24px}.brand-main{font-size:20px}.brand-sub{font-size:9px}.small-btn{padding:9px 10px;font-size:12px}.sun{width:60px;height:60px}}
     @media(max-height:660px){.mascot{font-size:67px}.welcome{gap:9px}.button-stack{gap:8px}.primary{min-height:54px}.target-note{height:106px;width:106px}.target-note .kana{font-size:54px}.target-area{gap:7px}.note-btn{height:61px}.game-hud{gap:5px}.melody-tape{min-height:36px}.tape-note{width:36px;height:36px;border-radius:11px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001s!important;transition-duration:.001s!important}}
   </style>
@@ -109,7 +120,10 @@
         <div class="mascot" aria-hidden="true">🌟🎶</div>
         <h1>てを うごかして<br>おんがくを かなでよう！</h1>
         <p class="subline">たかく あげると たかい おと♪<br>✋ パーで なる・✊ グーで とまる</p>
-        <div class="pill">🎵 きらきらぼし に ちょうせん！</div>
+        <div class="mode-picker" role="group" aria-label="あそぶ ほうほうを えらんでね">
+          <button class="mode-choice" id="songModeBtn" aria-pressed="true">🎵 きらきらぼし<small>やさしい 6おん</small></button>
+          <button class="mode-choice" id="freeModeBtn" aria-pressed="false">🌈 じゆう えんそう<small>2オクターブ 15おん</small></button>
+        </div>
         <div class="button-stack">
           <button class="primary mint" id="cameraBtn">✋ てで あそぶ</button>
           <button class="secondary" id="touchBtn">👆 タッチで あそぶ</button>
@@ -143,7 +157,7 @@
         <div class="note-board">
           <div class="board-label"><span id="modeBadge">🎵 きらきらぼし</span><span id="currentName">いまの おと：…</span></div>
           <div class="note-row" id="noteRow"></div>
-          <div class="level-hint"><span>👈 ひくい おと</span><span>たかい おと 👉</span></div>
+          <div class="level-hint"><span>👈 ひくい おと</span><span id="rangeLabel">6つの おと</span><span>たかい おと 👉</span></div>
         </div>
       </section>
       <section class="screen success" id="success" hidden>
@@ -162,14 +176,17 @@
     'use strict';
     const $=id=>document.getElementById(id);
     const SCREENS=['welcome','configure','game','success'];
-    const NOTES=[
-      {name:'ド',freq:261.63,color:'#f28a83'},
-      {name:'レ',freq:293.66,color:'#f5b362'},
-      {name:'ミ',freq:329.63,color:'#e5be52'},
-      {name:'ファ',freq:349.23,color:'#78cda9'},
-      {name:'ソ',freq:392.00,color:'#6cafe1'},
-      {name:'ラ',freq:440.00,color:'#a58bde'}
-    ];
+    // C4〜C6：全15音（白鍵のみ）。曲モードではC4〜A4の6音だけ使う。
+    // 音の名前が重なる自由演奏モードでは、小さく「ひくい・まんなか・たかい」を添える。
+    const SCALE=[0,2,4,5,7,9,11,12,14,16,17,19,21,23,24];
+    const SOLFEGE=['ド','レ','ミ','ファ','ソ','ラ','シ'];
+    const COLORS=['#f28a83','#f5b362','#e5be52','#78cda9','#6cafe1','#a58bde','#e58bbb'];
+    const NOTES=SCALE.map((halfSteps,i)=>({
+      name:SOLFEGE[i%7],freq:261.625565*Math.pow(2,halfSteps/12),
+      color:COLORS[i%7],octave:i<7?'ひくい':i<14?'まんなか':'たかい'
+    }));
+    const SONG_NOTE_COUNT=6;
+    let selectedMode='song';
     // きらきら星（原曲「Ah! vous dirai-je, maman」）最初の14音
     const SONG=[0,0,4,4,5,5,4,3,3,2,2,1,1,0];
     let screen='welcome',inputMode='touch',playMode='song',songIndex=0,selected=-1,soundOn=true;
@@ -192,7 +209,7 @@
         sustainHarmonic=audioCtx.createOscillator();sustainHarmonic.type='triangle';const harmonicGain=audioCtx.createGain();harmonicGain.gain.value=.1;sustainHarmonic.connect(harmonicGain);harmonicGain.connect(sustainGain);
         sustainOsc.frequency.value=NOTES[note].freq;sustainHarmonic.frequency.value=NOTES[note].freq*2;sustainOsc.start();sustainHarmonic.start();}
       sustainOsc.frequency.setTargetAtTime(NOTES[note].freq,t,.045);sustainHarmonic.frequency.setTargetAtTime(NOTES[note].freq*2,t,.045);
-      sustainGain.gain.setTargetAtTime(.11,t,.035);
+      sustainGain.gain.setTargetAtTime(note>=11?.08:.11,t,.035);
     }
     function clearHandNote(message){stopSustain();if(screen==='game'&&inputMode==='camera'){selected=-1;heldSince=0;redrawKeys();if(playMode==='free')redrawTarget();if(message)sayStatus(message);}}
     function setHandPose(pose){if(handPose===pose)return;handPose=pose;setMasterVolume();
@@ -204,6 +221,7 @@
     function tone(index,seconds=.29,vol=.105){
       if(!soundOn||!audioCtx||audioCtx.state!=='running'||index<0)return;
       const now=audioCtx.currentTime,frequency=NOTES[index].freq;
+      if(index>=11)vol*=.75;
       try{
         const out=audioCtx.createGain();out.gain.setValueAtTime(0.0001,now);out.gain.exponentialRampToValueAtTime(vol,now+.022);out.gain.exponentialRampToValueAtTime(.0001,now+seconds);out.connect(masterGain);
         const o1=audioCtx.createOscillator();o1.type='sine';o1.frequency.value=frequency;o1.connect(out);o1.start(now);o1.stop(now+seconds+.02);
@@ -215,24 +233,38 @@
     function spawnStars(){const stage=$('stage');const emojis=['✨','⭐','🌟','💛','✨'];for(let i=0;i<7;i++){
       const p=document.createElement('span');p.className='spark';p.textContent=emojis[i%emojis.length];p.style.left=(35+Math.random()*32)+'%';p.style.top=(30+Math.random()*23)+'%';p.style.setProperty('--dx',((Math.random()-.5)*200)+'px');p.style.setProperty('--dy',((Math.random()-.5)*150)+'px');stage.append(p);setTimeout(()=>p.remove(),850);
     }}
-    function setupKeys(){NOTES.forEach((note,i)=>{const b=document.createElement('button');b.type='button';b.className='note-btn';b.textContent=note.name;b.style.setProperty('--key-color',note.color);b.setAttribute('aria-label',note.name+' のおと');b.addEventListener('pointerdown',e=>{e.preventDefault();ensureAudio();chooseNote(i,'touch',true);});$('noteRow').append(b);noteButtons.push(b);});}
+    function noteLabel(index){return NOTES[index].name+(playMode==='free'?' ('+NOTES[index].octave+')':'');}
+    function setupKeys(){
+      $('noteRow').replaceChildren();noteButtons.length=0;
+      const count=playMode==='free'?NOTES.length:SONG_NOTE_COUNT;
+      for(let i=0;i<count;i++){
+        const note=NOTES[i],b=document.createElement('button');b.type='button';b.className='note-btn';
+        b.textContent=note.name;
+        if(playMode==='free'){const tag=document.createElement('span');tag.className='note-octave';tag.textContent=note.octave;b.append(tag);}
+        b.style.setProperty('--key-color',note.color);
+        b.setAttribute('aria-label',noteLabel(i)+' のおと');
+        b.addEventListener('pointerdown',e=>{e.preventDefault();ensureAudio();chooseNote(i,'touch',true);});
+        $('noteRow').append(b);noteButtons.push(b);
+      }
+      $('rangeLabel').textContent=playMode==='free'?'2オクターブ・15おん':'やさしい 6おん';
+    }
     function redrawTape(){const tape=$('melodyTape');tape.replaceChildren();if(playMode==='free'){const t=document.createElement('div');t.className='pill';t.textContent='すきな おとを ならしてね ♫';tape.append(t);return;}
       for(let i=Math.max(0,songIndex-2);i<Math.min(SONG.length,songIndex+5);i++){
         const el=document.createElement('div');el.className='tape-note '+(i<songIndex?'done':i===songIndex?'current':'future');el.textContent=i<songIndex?'★':NOTES[SONG[i]].name;tape.append(el);
       }
     }
-    function redrawTarget(){if(playMode==='free'){ $('prompt').textContent='すきな おとを ならそう！';$('targetKana').textContent=selected<0?'♪':NOTES[selected].name;$('targetNote').style.setProperty('--note-color',selected<0?'#b1a5df':NOTES[selected].color);$('countLabel').textContent='🎵 じゆう えんそう';$('songTitle').textContent='🌈 おんがく あそび';$('modeBadge').textContent='🌈 じゆうに えんそう';}
+    function redrawTarget(){if(playMode==='free'){ $('prompt').textContent='すきな おとを ならそう！';$('targetKana').textContent=selected<0?'♪':NOTES[selected].name;$('targetNote').style.setProperty('--note-color',selected<0?'#b1a5df':NOTES[selected].color);$('countLabel').textContent='🎵 じゆう えんそう';$('songTitle').textContent='🌈 2オクターブ';$('modeBadge').textContent='🌈 15おんで じゆうに えんそう';}
       else if(songIndex<SONG.length){const n=SONG[songIndex];$('prompt').textContent='つぎは「'+NOTES[n].name+'」を ならそう！';$('targetKana').textContent=NOTES[n].name;$('targetNote').style.setProperty('--note-color',NOTES[n].color);$('countLabel').textContent='⭐ '+songIndex+' / '+SONG.length;$('songTitle').textContent='🎵 きらきらぼし';$('modeBadge').textContent='🎵 きらきらぼし';}
       redrawTape();redrawKeys();
     }
-    function redrawKeys(){noteButtons.forEach((b,i)=>{b.classList.toggle('active',selected===i);b.classList.toggle('needed',playMode==='song' && songIndex<SONG.length && SONG[songIndex]===i);});$('currentName').textContent=selected<0?'いまの おと：…':'いまの おと：'+NOTES[selected].name;}
+    function redrawKeys(){noteButtons.forEach((b,i)=>{b.classList.toggle('active',selected===i);b.classList.toggle('needed',playMode==='song' && songIndex<SONG.length && SONG[songIndex]===i);});$('currentName').textContent=selected<0?'いまの おと：…':'いまの おと：'+noteLabel(selected);}
     function startGame(mode='song'){
       ensureAudio();playMode=mode;songIndex=0;selected=-1;heldSince=0;successAt=0;lastPlayedNote=-1;
-      show('game');$('gesturePanel').hidden=inputMode!=='camera';if(inputMode==='camera'){handPose='unknown';poseCandidate='unknown';poseFrames=0;setHandPose('unknown');setMasterVolume();}redrawTarget();sayStatus(inputMode==='touch'?'したの いろを タッチしてね 🎵':'✋ パーで ならして ✊ グーで とめよう！');
+      show('game');$('game').classList.toggle('free-mode',mode==='free');setupKeys();$('gesturePanel').hidden=inputMode!=='camera';if(inputMode==='camera'){handPose='unknown';poseCandidate='unknown';poseFrames=0;setHandPose('unknown');setMasterVolume();}redrawTarget();sayStatus(inputMode==='touch'?'したの いろを タッチしてね 🎵':'✋ パーで ならして ✊ グーで とめよう！');
     }
     function chooseNote(note,source,force=false){
       if(screen!=='game')return;
-      const now=performance.now();note=clamp(note,0,NOTES.length-1);
+      const now=performance.now();note=clamp(note,0,playMode==='free'?NOTES.length-1:SONG_NOTE_COUNT-1);
       if(source==='camera'&&handPose!=='open')return;
       // カメラと画面タップを併用可。操作中はタップした音が優先する。
       const changed=selected!==note;
@@ -302,12 +334,13 @@
       else if(pose==='unknown'&&poseFrames>=5&&now-lastStablePoseAt>650){setHandPose('unknown');}
     }
     function levelToIndex(v){
-      if(selected<0)return clamp(Math.round(v*5),0,5);
-      let next=selected;
-      // 量子化境界の行き来による音のバタつきを軽減。
-      if(v>(selected+.5)/5+.045) next=Math.min(5,Math.floor(v*5+.5-.18));
-      if(v<(selected-.5)/5-.045) next=Math.max(0,Math.ceil(v*5-.5+.18));
-      return clamp(next,0,5);
+      const max=(playMode==='free'?NOTES.length:SONG_NOTE_COUNT)-1;
+      const position=clamp(v,0,1)*max;
+      if(selected<0)return Math.round(position);
+      // 2オクターブでも境界付近の揺れで音が往復しないよう、0.7音分の余裕を設ける。
+      if(position>selected+.70)return clamp(Math.floor(position+.30),0,max);
+      if(position<selected-.70)return clamp(Math.ceil(position-.30),0,max);
+      return selected;
     }
     function gotHands(results){
       const landmarks=results?.multiHandLandmarks?.[0];if(!landmarks)return;
@@ -373,26 +406,37 @@
         if(lowSize-highSize<Math.max(.018,lowSize*.15)){
           setupDisplay('high','もう すこし てを とおくへ！ いまの たかさの ちがいが ちいさいよ');return;
         }
-        startGame('song');
+        startGame(selectedMode);
       }
     }
-    function touchStart(mode='song'){
+    function touchStart(mode=selectedMode){
       ++appGeneration;stopCamera();inputMode='touch';startGame(mode);
     }
     function home(){++appGeneration;stopCamera();show('welcome');}
     // メロディーを保持したまま、ユーザーが操作できるモードで入力を処理する。
+    function chooseMode(mode){
+      selectedMode=mode;
+      $('songModeBtn').setAttribute('aria-pressed',String(mode==='song'));
+      $('freeModeBtn').setAttribute('aria-pressed',String(mode==='free'));
+    }
+    $('songModeBtn').addEventListener('click',()=>chooseMode('song'));
+    $('freeModeBtn').addEventListener('click',()=>chooseMode('free'));
     $('cameraBtn').addEventListener('click',beginCamera);
-    $('touchBtn').addEventListener('click',()=>touchStart());
-    $('setupTouch').addEventListener('click',()=>touchStart());
+    $('touchBtn').addEventListener('click',()=>touchStart(selectedMode));
+    $('setupTouch').addEventListener('click',()=>touchStart(selectedMode));
     $('setupNext').addEventListener('click',captureCalibration);
     $('homeBtn').addEventListener('click',home);
     $('againBtn').addEventListener('click',()=>{startGame('song');});
     $('freeBtn').addEventListener('click',()=>startGame('free'));
     $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;ensureAudio();if(!soundOn)stopSustain();setMasterVolume();$('soundToggle').textContent=soundOn?'🔊 おと ON':'🔇 おと OFF';});
-    window.addEventListener('keydown',e=>{if(screen!=='game')return;const n='123456'.indexOf(e.key);if(n>=0){e.preventDefault();ensureAudio();chooseNote(n,'touch',true);}});
+    window.addEventListener('keydown',e=>{
+      if(screen!=='game')return;
+      const keys=playMode==='free'?'1234567890qwert':'123456';
+      const n=keys.indexOf(e.key.toLowerCase());if(n>=0){e.preventDefault();ensureAudio();chooseNote(n,'touch',true);}
+    });
     window.addEventListener('pagehide',()=>{++appGeneration;stopCamera();});
     document.addEventListener('visibilitychange',()=>{if(document.hidden){if(audioCtx?.state==='running')audioCtx.suspend().catch(()=>{});}});
-    setupKeys();show('welcome');
+    chooseMode('song');show('welcome');
     // 同じ音を鳴らし続けた場合でも、連続した同音符を進められる。
     setInterval(()=>{
       if(screen==='game' && playMode==='song' && selected>=0 && SONG[songIndex]===selected){
