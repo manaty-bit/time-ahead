@@ -149,7 +149,7 @@ button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visibl
   // A chord's bass + upbeat notes make the actual song recognizable.
   if(tick%2===0){synth(chord[0]-12,Math.min(tempo*.9,.8),'bass',.09);}
   if(half===0||half===4){
-    chord.forEach((v,i)=>synth(v-7,.52,'pad',i===0?.026:.018));
+    chord.forEach((v,i)=>synth(v,.52,'pad',i===0?.026:.018));
   }
   if(tick%2===1){
    const p=chord[[1,2,0,2][Math.floor(half/2)%4]];
