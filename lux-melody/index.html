@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
   <meta name="theme-color" content="#fff2cf">
   <meta name="description" content="手を上げ下げして、童謡をかなでよう。保育園児向けのやさしい音楽ゲーム。">
   <title>LUX MELODY | てのひらで おんがく</title>
@@ -73,10 +73,13 @@
     .target-note .guide{font-size:12px;font-weight:1000;letter-spacing:.09em;margin-top:5px}
     .target-note.celebrate{animation:pop .33s ease-out}
     @keyframes pop{50%{transform:scale(1.16)}}
+    .gesture-panel{display:flex;align-items:center;justify-content:center;gap:9px;min-height:47px;padding:6px 17px;border-radius:99px;border:3px solid #fff;background:#fff8ec;color:#7f7593;font-size:clamp(15px,3.6vw,20px);font-weight:1000;box-shadow:0 4px 12px #8da9b11b;transition:background .15s}
+    .gesture-panel.on{background:#dcfaee;color:#257966}.gesture-panel.off{background:#ede9f7;color:#706388}
+    .gesture-panel .gesture-icon{font-size:26px}
     .status-text{font-weight:1000;font-size:clamp(13px,3vw,17px);color:#5d7797;min-height:25px;text-align:center;max-width:520px}
     .note-board{width:min(100%,680px);background:#fffcf6e8;border:3px solid #fff;border-radius:26px;padding:12px;box-shadow:0 7px 0 #e6c6ba30;z-index:3}
     .note-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
-    .note-btn{min-width:0;position:relative;height:clamp(64px,12vh,89px);border:3px solid #fff;border-radius:17px;background:var(--key-color);color:#fff;font-weight:1000;font-size:clamp(18px,5vw,29px);white-space:nowrap;box-shadow:0 5px 0 #8090a044;text-shadow:0 2px 0 #5f6b6a1f;transition:transform .07s,filter .12s}
+    .note-btn{min-width:0;position:relative;height:clamp(64px,12vh,89px);border:3px solid #fff;border-radius:17px;background:var(--key-color);color:#fff;font-weight:1000;font-size:clamp(19px,5.4vw,33px);box-shadow:0 5px 0 #8090a044;text-shadow:0 2px 0 #5f6b6a1f;transition:transform .07s,filter .12s}
     .note-btn.active{outline:4px solid #ffd269;outline-offset:1px;transform:translateY(-3px);filter:saturate(1.2)}
     .note-btn.needed:after{content:"★";position:absolute;top:-12px;right:0;color:#ffcc48;font-size:22px;text-shadow:0 1px 3px white;animation:bob 1s infinite}
     .board-label{display:flex;align-items:center;justify-content:space-between;color:#758ca3;font-size:12px;font-weight:900;margin-bottom:10px;gap:8px}
@@ -89,7 +92,7 @@
     .spark{pointer-events:none;position:absolute;z-index:20;font-size:27px;animation:sparkle .8s cubic-bezier(.1,.5,.3,1) forwards}
     @keyframes sparkle{0%{transform:translate(0,0) scale(.3);opacity:0}24%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.7) rotate(60deg);opacity:0}}
     .camera-preview{position:fixed;width:2px;height:2px;opacity:0;pointer-events:none;left:-20px;top:-20px}
-    @media(max-width:550px){.app{padding:8px 9px max(11px,env(safe-area-inset-bottom));gap:7px}.top{min-height:51px}.stage{border-width:3px;min-height:calc(100svh - 146px);max-height:none;border-radius:25px}.screen{padding:16px}.welcome{gap:12px}.game-screen{padding:10px 9px 13px;gap:8px}.note-board{padding:8px;border-radius:18px}.note-row{gap:3px}.note-btn{border-radius:12px;border-width:2px}.brand-icon{height:42px;width:42px;font-size:24px}.brand-main{font-size:20px}.brand-sub{font-size:9px}.small-btn{padding:9px 10px;font-size:12px}.sun{width:60px;height:60px}}
+    @media(max-width:550px){.app{padding:8px 9px max(11px,env(safe-area-inset-bottom));gap:7px}.top{min-height:51px}.stage{border-width:3px;min-height:calc(100svh - 119px);max-height:none;border-radius:25px}.screen{padding:16px}.welcome{gap:12px}.game-screen{padding:10px 9px 13px;gap:8px}.note-board{padding:8px;border-radius:18px}.note-row{gap:3px}.note-btn{border-radius:12px;border-width:2px}.brand-icon{height:42px;width:42px;font-size:24px}.brand-main{font-size:20px}.brand-sub{font-size:9px}.small-btn{padding:9px 10px;font-size:12px}.sun{width:60px;height:60px}}
     @media(max-height:660px){.mascot{font-size:67px}.welcome{gap:9px}.button-stack{gap:8px}.primary{min-height:54px}.target-note{height:106px;width:106px}.target-note .kana{font-size:54px}.target-area{gap:7px}.note-btn{height:61px}.game-hud{gap:5px}.melody-tape{min-height:36px}.tape-note{width:36px;height:36px;border-radius:11px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001s!important;transition-duration:.001s!important}}
   </style>
@@ -105,7 +108,7 @@
       <section class="screen welcome" id="welcome">
         <div class="mascot" aria-hidden="true">🌟🎶</div>
         <h1>てを うごかして<br>おんがくを かなでよう！</h1>
-        <p class="subline">たかく あげると たかい おと♪<br>ひくく すると ひくい おと♪</p>
+        <p class="subline">たかく あげると たかい おと♪<br>✋ パーで なる・✊ グーで とまる</p>
         <div class="pill">🎵 きらきらぼし に ちょうせん！</div>
         <div class="button-stack">
           <button class="primary mint" id="cameraBtn">✋ てで あそぶ</button>
@@ -126,7 +129,7 @@
           <button class="primary mint" id="setupNext" hidden>できた！</button>
           <button class="secondary" id="setupTouch">👆 タッチで あそぶ</button>
         </div>
-        <p class="hint">てのひらを カメラに むけてね。<br>ては カメラから 15〜50cm ほど はなしてね。</p>
+        <p class="hint">✋ パーの ままで ちょうせいしてね。<br>ては カメラから 15〜50cm ほど はなしてね。</p>
       </section>
       <section class="screen game-screen" id="game" hidden>
         <div class="game-hud"><div class="song-name" id="songTitle">🎵 きらきらぼし</div><div class="song-count"><span id="countLabel">⭐ 0 / 14</span></div></div>
@@ -134,6 +137,7 @@
         <div class="target-area">
           <div class="prompt" id="prompt">つぎは この おと！</div>
           <div class="target-note" id="targetNote"><div class="kana" id="targetKana">ド</div><div class="guide">この おとに しよう♪</div></div>
+          <div class="gesture-panel" id="gesturePanel" hidden><span class="gesture-icon" id="gestureIcon" aria-hidden="true">✋</span><span id="gestureText">パーで おとが なるよ♪</span></div>
           <p class="status-text" id="playStatus" aria-live="polite">てを うごかしてみよう！</p>
         </div>
         <div class="note-board">
@@ -169,20 +173,39 @@
     // きらきら星（原曲「Ah! vous dirai-je, maman」）最初の14音
     const SONG=[0,0,4,4,5,5,4,3,3,2,2,1,1,0];
     let screen='welcome',inputMode='touch',playMode='song',songIndex=0,selected=-1,soundOn=true;
-    let audioCtx=null,lastPlayedNote=-1,lastToneAt=0,successAt=0,heldSince=0,lastTick=0;
+    let audioCtx=null,masterGain=null,sustainOsc=null,sustainHarmonic=null,sustainGain=null,lastPlayedNote=-1,lastToneAt=0,successAt=0,heldSince=0,lastTick=0;
+    let handPose='unknown',poseCandidate='unknown',poseFrames=0,lastStablePoseAt=0;
     let stream=null,handEngine=null,videoLoop=0,lastVisionAt=0,visionBusy=false,handSeenAt=0,handMeasure=NaN,smoothedSize=NaN;
     let lowSize=NaN,highSize=NaN,calibrationStage='',appGeneration=0;
     const video=$('video');
     const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
     const noteButtons=[];
-    function show(view){screen=view;SCREENS.forEach(id=>$(id).hidden=id!==view);$('homeBtn').hidden=view==='welcome';}
+    function show(view){screen=view;SCREENS.forEach(id=>$(id).hidden=id!==view);$('homeBtn').hidden=view==='welcome';if(view!=='game')stopSustain();}
     function sayStatus(s){$('playStatus').textContent=s;}
-    function ensureAudio(){try{if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();}if(audioCtx.state==='suspended')audioCtx.resume().catch(()=>{});}catch(e){}}
+    function ensureAudio(){try{if(!audioCtx){audioCtx=new(window.AudioContext||window.webkitAudioContext)();masterGain=audioCtx.createGain();masterGain.gain.value=1;masterGain.connect(audioCtx.destination);}if(audioCtx.state==='suspended')audioCtx.resume().catch(()=>{});}catch(e){}}
+    function setMasterVolume(){if(!masterGain||!audioCtx)return;const vol=soundOn&&(inputMode!=='camera'||handPose==='open')?1:0;const t=audioCtx.currentTime;masterGain.gain.cancelScheduledValues(t);masterGain.gain.setTargetAtTime(vol,t,.014);}
+    function stopSustain(){if(!sustainOsc||!audioCtx)return;const t=audioCtx.currentTime;try{sustainGain.gain.cancelScheduledValues(t);sustainGain.gain.setTargetAtTime(.0001,t,.023);sustainOsc.stop(t+.16);sustainHarmonic.stop(t+.16);}catch(e){}sustainOsc=null;sustainHarmonic=null;sustainGain=null;}
+    function sustainNote(note){if(!soundOn||handPose!=='open'||!audioCtx||audioCtx.state!=='running'||screen!=='game')return;
+      const t=audioCtx.currentTime;
+      if(!sustainOsc){sustainGain=audioCtx.createGain();sustainGain.gain.value=.0001;sustainGain.connect(masterGain);
+        sustainOsc=audioCtx.createOscillator();sustainOsc.type='sine';sustainOsc.connect(sustainGain);
+        sustainHarmonic=audioCtx.createOscillator();sustainHarmonic.type='triangle';const harmonicGain=audioCtx.createGain();harmonicGain.gain.value=.1;sustainHarmonic.connect(harmonicGain);harmonicGain.connect(sustainGain);
+        sustainOsc.frequency.value=NOTES[note].freq;sustainHarmonic.frequency.value=NOTES[note].freq*2;sustainOsc.start();sustainHarmonic.start();}
+      sustainOsc.frequency.setTargetAtTime(NOTES[note].freq,t,.045);sustainHarmonic.frequency.setTargetAtTime(NOTES[note].freq*2,t,.045);
+      sustainGain.gain.setTargetAtTime(.11,t,.035);
+    }
+    function clearHandNote(message){stopSustain();if(screen==='game'&&inputMode==='camera'){selected=-1;heldSince=0;redrawKeys();if(playMode==='free')redrawTarget();if(message)sayStatus(message);}}
+    function setHandPose(pose){if(handPose===pose)return;handPose=pose;setMasterVolume();
+      const panel=$('gesturePanel');panel.classList.toggle('on',pose==='open');panel.classList.toggle('off',pose==='closed');
+      $('gestureIcon').textContent=pose==='open'?'✋':pose==='closed'?'✊':'👀';
+      $('gestureText').textContent=pose==='open'?'パー！ おとが なるよ♪':pose==='closed'?'グー！ おとが とまるよ':'てを みせてね';
+      if(pose!=='open')clearHandNote(pose==='closed'?'グーで おとが とまったよ ✊':'てを カメラに みせてね 👀');
+    }
     function tone(index,seconds=.29,vol=.105){
       if(!soundOn||!audioCtx||audioCtx.state!=='running'||index<0)return;
       const now=audioCtx.currentTime,frequency=NOTES[index].freq;
       try{
-        const out=audioCtx.createGain();out.gain.setValueAtTime(0.0001,now);out.gain.exponentialRampToValueAtTime(vol,now+.022);out.gain.exponentialRampToValueAtTime(.0001,now+seconds);out.connect(audioCtx.destination);
+        const out=audioCtx.createGain();out.gain.setValueAtTime(0.0001,now);out.gain.exponentialRampToValueAtTime(vol,now+.022);out.gain.exponentialRampToValueAtTime(.0001,now+seconds);out.connect(masterGain);
         const o1=audioCtx.createOscillator();o1.type='sine';o1.frequency.value=frequency;o1.connect(out);o1.start(now);o1.stop(now+seconds+.02);
         const o2=audioCtx.createOscillator();o2.type='triangle';o2.frequency.value=frequency*2;
         const g2=audioCtx.createGain();g2.gain.value=.11;o2.connect(g2);g2.connect(out);o2.start(now);o2.stop(now+seconds+.02);
@@ -205,20 +228,21 @@
     function redrawKeys(){noteButtons.forEach((b,i)=>{b.classList.toggle('active',selected===i);b.classList.toggle('needed',playMode==='song' && songIndex<SONG.length && SONG[songIndex]===i);});$('currentName').textContent=selected<0?'いまの おと：…':'いまの おと：'+NOTES[selected].name;}
     function startGame(mode='song'){
       ensureAudio();playMode=mode;songIndex=0;selected=-1;heldSince=0;successAt=0;lastPlayedNote=-1;
-      show('game');redrawTarget();sayStatus(inputMode==='touch'?'したの いろを タッチしてね 🎵':'てを うごかして おとを あわせよう！');
+      show('game');$('gesturePanel').hidden=inputMode!=='camera';if(inputMode==='camera'){handPose='unknown';poseCandidate='unknown';poseFrames=0;setHandPose('unknown');setMasterVolume();}redrawTarget();sayStatus(inputMode==='touch'?'したの いろを タッチしてね 🎵':'✋ パーで ならして ✊ グーで とめよう！');
     }
     function chooseNote(note,source,force=false){
       if(screen!=='game')return;
       const now=performance.now();note=clamp(note,0,NOTES.length-1);
+      if(source==='camera'&&handPose!=='open')return;
       // カメラと画面タップを併用可。操作中はタップした音が優先する。
       const changed=selected!==note;
       if(changed){selected=note;heldSince=now;redrawKeys();if(playMode==='free')redrawTarget();}
-      if((changed||force) && (now-lastToneAt>100 || note!==lastPlayedNote)){tone(note,.30,.09);lastPlayedNote=note;lastToneAt=now;}
+      if(source==='camera'){sustainNote(note);}else if((changed||force) && (now-lastToneAt>100 || note!==lastPlayedNote)){tone(note,.30,.09);lastPlayedNote=note;lastToneAt=now;}
       if(playMode==='song'){
         if(SONG[songIndex]===note){
           if(changed) sayStatus('いいね！ そのまま ちょっと まってね ⭐');
           const holdNeeded=(source==='touch'?0:440);
-          if(now-heldSince>=holdNeeded && now-successAt>=(source==='touch'?180:530)){completeNote(now);}
+          if(now-heldSince>=holdNeeded && now-successAt>=530){completeNote(now);}
         }else{
           if(changed) sayStatus(note<SONG[songIndex]?'もう ちょっと たかく！ ☀️':'もう ちょっと ひくく！ 🌙');
         }
@@ -227,14 +251,14 @@
     function completeNote(now){
       if(screen!=='game'||playMode!=='song'||songIndex>=SONG.length)return;
       const note=SONG[songIndex];songIndex++;successAt=now;heldSince=now;
-      tone(note,.48,.14);spawnStars();
+      if(inputMode!=='camera')tone(note,.48,.14);spawnStars();
       const target=$('targetNote');target.classList.remove('celebrate');void target.offsetWidth;target.classList.add('celebrate');
-      if(songIndex>=SONG.length){setTimeout(()=>{if(screen==='game'){show('success');chime();spawnStars();}},520);return;}
+      if(songIndex>=SONG.length){stopSustain();setTimeout(()=>{if(screen==='game'){show('success');if(inputMode==='touch'||handPose==='open')chime();spawnStars();}},520);return;}
       redrawTarget();sayStatus(['すごい！ ✨','じょうず！ ⭐','その ちょうし！ 🎶','いいね！ 🌈'][songIndex%4]);
     }
     function updateTouchSelection(){if(inputMode==='touch'&&screen==='game'){/* user taps notes */}}
     function setupDisplay(stage,err=''){
-      const states={loading:['🪄📱','てを みつける じゅんびちゅう','カメラの しようを ゆるしてね'],low:['✋⬇️','てを カメラの ちかくへ','ひくい おと の いちを おぼえるよ'],high:['✋⬆️','てを カメラから とおくへ','たかい おと の いちを おぼえるよ'],error:['☁️📱','カメラが つかえなかったよ','タッチでも たのしく あそべるよ！']};
+      const states={loading:['🪄📱','てを みつける じゅんびちゅう','カメラの しようを ゆるしてね'],low:['✋⬇️','パーの てを カメラの ちかくへ','ひくい おと の いちを おぼえるよ'],high:['✋⬆️','パーの てを カメラから とおくへ','たかい おと の いちを おぼえるよ'],error:['☁️📱','カメラが つかえなかったよ','タッチでも たのしく あそべるよ！']};
       const s=states[stage]||states.loading;
       calibrationStage=stage;$('setupArt').textContent=s[0];$('setupTitle').textContent=s[1];$('setupSubtitle').textContent=s[2];
       $('setupNext').hidden=!(stage==='low'||stage==='high');$('setupNext').textContent=stage==='low'?'⬇️ ここが ひくい おと！':'⬆️ ここが たかい おと！';
@@ -242,7 +266,7 @@
     }
     function displayHandSize(){if(screen!=='configure'||(calibrationStage!=='low'&&calibrationStage!=='high'))return;
       if(!Number.isFinite(handMeasure) || performance.now()-handSeenAt>1500){$('sizeCaption').textContent='てを みせてね';$('sizeFill').style.width='0%';return;}
-      $('sizeCaption').textContent='てが みえたよ！';$('sizeFill').style.width=clamp(Math.round(handMeasure*270),5,100)+'%';
+      $('sizeCaption').textContent=handPose==='open'?'✋ パーが みえたよ！':handPose==='closed'?'✊ パーに してね':'てを ひろげてね';$('sizeFill').style.width=clamp(Math.round(handMeasure*270),5,100)+'%';
     }
     function measurePalm(points){
       // 人差し指の付け根（5）と小指の付け根（17）の距離を使用。
@@ -251,6 +275,31 @@
       const a=points[5],b=points[17],c=points[0],d=points[9];
       const w=Math.hypot(a.x-b.x,a.y-b.y),h=Math.hypot(c.x-d.x,c.y-d.y);
       return (w*.7+h*.3);
+    }
+    function detectHandPose(points){
+      // 手のひらの向きに依存しないよう、4本の指の第2関節の角度と伸びを使用。
+      // 親指は個人差が大きいため判定対象から外す。
+      const fingers=[[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]];
+      let extended=0;
+      for(const [m,p,d,tip] of fingers){
+        const a=points[m],b=points[p],c=points[d],e=points[tip];
+        const uX=a.x-b.x,uY=a.y-b.y,vX=c.x-b.x,vY=c.y-b.y;
+        const denom=Math.hypot(uX,uY)*Math.hypot(vX,vY);
+        if(denom<1e-6)continue;
+        const angle=Math.acos(clamp((uX*vX+uY*vY)/denom,-1,1))*180/Math.PI;
+        const reach=Math.hypot(e.x-a.x,e.y-a.y)/Math.max(.001,Math.hypot(b.x-a.x,b.y-a.y));
+        if(angle>142&&reach>1.65)extended++;
+      }
+      if(extended>=3)return 'open';
+      if(extended<=1)return 'closed';
+      return 'unknown';
+    }
+    function updateHandPose(pose){
+      const now=performance.now();
+      if(pose!==poseCandidate){poseCandidate=pose;poseFrames=1;}else poseFrames++;
+      if(pose==='open'&&poseFrames>=2){lastStablePoseAt=now;setHandPose('open');}
+      else if(pose==='closed'&&poseFrames>=2){lastStablePoseAt=now;setHandPose('closed');}
+      else if(pose==='unknown'&&poseFrames>=5&&now-lastStablePoseAt>650){setHandPose('unknown');}
     }
     function levelToIndex(v){
       if(selected<0)return clamp(Math.round(v*5),0,5);
@@ -264,10 +313,12 @@
       const landmarks=results?.multiHandLandmarks?.[0];if(!landmarks)return;
       const measured=measurePalm(landmarks);if(!Number.isFinite(measured)||measured<=0)return;
       handSeenAt=performance.now();handMeasure=measured;
-      smoothedSize=Number.isFinite(smoothedSize)?smoothedSize*.62+measured*.38:measured;
+      updateHandPose(detectHandPose(landmarks));
+      // グーにしたときの手の大きさは音程のキャリブレーションに使わない。
+      if(handPose==='open')smoothedSize=Number.isFinite(smoothedSize)?smoothedSize*.62+measured*.38:measured;
       displayHandSize();
       if(screen!=='game'||inputMode!=='camera')return;
-      if(!Number.isFinite(lowSize)||!Number.isFinite(highSize)||lowSize<=highSize)return;
+      if(handPose!=='open'||!Number.isFinite(smoothedSize)||!Number.isFinite(lowSize)||!Number.isFinite(highSize)||lowSize<=highSize)return;
       const ratio=clamp((lowSize-smoothedSize)/(lowSize-highSize),0,1);
       chooseNote(levelToIndex(ratio),'camera');
     }
@@ -287,7 +338,7 @@
         video.srcObject=stream;await video.play();await ensureHandsScript();if(gen!==appGeneration)return;
         handEngine=new window.Hands({locateFile:file=>'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'+file});
         handEngine.setOptions({maxNumHands:1,modelComplexity:0,minDetectionConfidence:.55,minTrackingConfidence:.5});
-        handEngine.onResults(gotHands);lastVisionAt=0;visionBusy=false;handSeenAt=0;handMeasure=NaN;smoothedSize=NaN;
+        handEngine.onResults(gotHands);lastVisionAt=0;visionBusy=false;handSeenAt=0;handMeasure=NaN;smoothedSize=NaN;handPose='unknown';poseCandidate='unknown';poseFrames=0;lastStablePoseAt=0;
         setupDisplay('low');cameraLoop();
       }catch(err){
         if(gen!==appGeneration)return;
@@ -298,12 +349,15 @@
     function cameraLoop(){
       if(!stream||!handEngine)return;
       videoLoop=requestAnimationFrame(cameraLoop);
-      const now=performance.now();if(visionBusy||now-lastVisionAt<95||video.readyState<2)return;
-      if(screen==='game' && now-handSeenAt>1350 && selected!==-1){selected=-1;heldSince=0;redrawKeys();sayStatus('てのひらを カメラに みせてね ✋');}
+      const now=performance.now();
+      // 手が画面から消えたときや映像が止まったときも確実に消音する。
+      if(screen==='game' && now-handSeenAt>430 && handPose!=='unknown'){poseCandidate='unknown';poseFrames=0;setHandPose('unknown');}
+      if(visionBusy||now-lastVisionAt<95||video.readyState<2)return;
       lastVisionAt=now;visionBusy=true;
       Promise.resolve().then(()=>handEngine.send({image:video})).catch(()=>{}).finally(()=>{visionBusy=false;});
     }
     async function stopCamera(){
+      stopSustain();setHandPose('unknown');
       cancelAnimationFrame(videoLoop);videoLoop=0;
       if(stream){stream.getTracks().forEach(track=>track.stop());stream=null;}
       video.pause();video.srcObject=null;
@@ -311,6 +365,7 @@
     }
     function captureCalibration(){
       const now=performance.now();if(!Number.isFinite(handMeasure)||now-handSeenAt>1000){setupDisplay(calibrationStage,'てが みえないよ。てのひらを カメラに むけてね');return;}
+      if(handPose!=='open'||!Number.isFinite(smoothedSize)){setupDisplay(calibrationStage,'✋ パーの てを みせてね！');return;}
       if(calibrationStage==='low'){
         lowSize=smoothedSize;setupDisplay('high');
       }else if(calibrationStage==='high'){
@@ -333,7 +388,7 @@
     $('homeBtn').addEventListener('click',home);
     $('againBtn').addEventListener('click',()=>{startGame('song');});
     $('freeBtn').addEventListener('click',()=>startGame('free'));
-    $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;ensureAudio();$('soundToggle').textContent=soundOn?'🔊 おと ON':'🔇 おと OFF';});
+    $('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;ensureAudio();if(!soundOn)stopSustain();setMasterVolume();$('soundToggle').textContent=soundOn?'🔊 おと ON':'🔇 おと OFF';});
     window.addEventListener('keydown',e=>{if(screen!=='game')return;const n='123456'.indexOf(e.key);if(n>=0){e.preventDefault();ensureAudio();chooseNote(n,'touch',true);}});
     window.addEventListener('pagehide',()=>{++appGeneration;stopCamera();});
     document.addEventListener('visibilitychange',()=>{if(document.hidden){if(audioCtx?.state==='running')audioCtx.suspend().catch(()=>{});}});
@@ -341,7 +396,7 @@
     // 同じ音を鳴らし続けた場合でも、連続した同音符を進められる。
     setInterval(()=>{
       if(screen==='game' && playMode==='song' && selected>=0 && SONG[songIndex]===selected){
-        if(inputMode==='camera' && performance.now()-handSeenAt<1350)chooseNote(selected,inputMode);
+        if(inputMode==='touch'||(handPose==='open'&&performance.now()-handSeenAt<430))chooseNote(selected,inputMode);
       }
       if(screen==='configure')displayHandSize();
     },85);
