@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f5ff">
+  <meta name="description" content="単位円で身につく三角関数の一問一答。じっくり練習と60秒チャレンジ。">
+  <title>TRIG BLOOM｜三角関数クイズ</title>
+  <style>:root{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif;color:#2f3551;background:#f7f6fb;font-synthesis:none;--purple:#6864c9;--purple-dark:#514cad;--lavender:#f0eeff;--teal:#249b91;--salmon:#e18b81;--line:#e8e7f3;--shadow:0 19px 64px rgba(52,53,102,.075)}*{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100dvh;overflow-x:hidden}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #a7a2ff;outline-offset:3px}button:disabled{cursor:not-allowed}button:active:not(:disabled){transform:translateY(1px)}[hidden]{display:none!important}.ambient{position:fixed;z-index:-1;pointer-events:none;filter:blur(2px);border-radius:100%}.ambient-a{width:490px;height:490px;top:-250px;right:-190px;background:radial-gradient(circle,#eae5ff,transparent 70%)}.ambient-b{width:520px;height:520px;bottom:-300px;left:-200px;background:radial-gradient(circle,#e2f5ed,transparent 68%)}.app{max-width:930px;margin:auto;padding:25px 20px 26px}.site-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 38px}.brand{display:flex;align-items:center;gap:11px}.brand-icon{display:grid;place-items:center;width:41px;height:41px;border-radius:14px;background:#e9e7ff;color:var(--purple-dark);font-size:32px;font-family:Georgia,serif;line-height:1}.brand strong,.brand small{display:block}.brand strong{font-size:17px;letter-spacing:.115em;font-weight:800}.brand small{font-size:10px;color:#888aa1;letter-spacing:.02em;margin-top:3px}.header-note{font-family:Georgia,serif;font-style:italic;font-size:13px;color:#a5a2c5}.screen{animation:up .25s ease}.start-screen{text-align:center;max-width:760px;margin:auto}.welcome-mark{font-size:38px;color:#b7b0ed;letter-spacing:6px;height:55px}.welcome-mark span{color:#e9b4a1;font-size:24px;vertical-align:middle}.eyebrow{font-size:11px;font-weight:800;color:#938bc2;letter-spacing:.22em;margin:0 0 15px}.start-screen h1{font-size:clamp(33px,6vw,55px);line-height:1.47;letter-spacing:.015em;margin:0;font-weight:850}.start-screen h1 em{font-style:normal;color:var(--purple)}.lead{font-size:14px;line-height:2.05;color:#777c95;margin:18px 0 29px}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}.mode-card{position:relative;min-height:183px;border:1px solid #e9e5f9;border-radius:23px;background:#fff;padding:23px 25px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;transition:transform .2s,box-shadow .2s}.mode-card:hover{transform:translateY(-3px);box-shadow:0 22px 55px #4b4b8a19}.mode-timed{background:#fffdfc;border-color:#f3e6dd}.mode-symbol{font-size:27px;color:var(--purple);line-height:1.1;margin-bottom:12px}.mode-timed .mode-symbol{color:#df9583}.mode-name{font-size:21px;font-weight:800;letter-spacing:.01em}.mode-desc{font-size:12px;color:#898da3;margin-top:7px}.mode-cta{font-size:12px;font-weight:800;color:var(--purple);margin-top:auto;padding-top:13px}.mode-timed .mode-cta{color:#be7e70}.mode-cta span{padding-left:4px}.level-card{margin:23px 0 0;border:1px solid var(--line);background:#fff;border-radius:19px;padding:19px 21px;box-shadow:0 8px 30px #61618108}.level-top{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:12px}.level-heading{font-size:14px;font-weight:800}.level-note{font-size:11px;color:#8a8ca4}.level-switch{display:flex;background:#f4f3fa;border-radius:12px;padding:5px;gap:5px}.level-button{border:0;background:transparent;color:#82859e;border-radius:9px;flex:1;padding:11px 6px;font-size:14px;font-weight:750;transition:background .18s}.level-button small{display:block;font-weight:500;margin-top:2px;font-size:10px}.level-button.active{background:white;color:var(--purple-dark);box-shadow:0 2px 10px #7775b01c}.bottom-tip{margin:23px 0 6px;font-size:12px;color:#9395a9}.bottom-tip span{font-size:17px;color:#dba6a1;vertical-align:-1px;margin-right:3px}.play-screen{max-width:790px;margin:auto}.play-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 15px}.plain-button{padding:7px 2px;border:0;background:none;font-size:12px;font-weight:650;color:#777b94}.plain-button:hover{color:var(--purple)}.mode-pill{font-size:11px;font-weight:750;color:#746cb2;background:#efedff;padding:8px 13px;border-radius:100px}.status-grid{display:flex;gap:13px;margin-bottom:13px}.status-cell{flex:1;min-width:0;padding:15px 20px;border:1px solid #e9e8f1;background:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:8px}.status-label{font-size:12px;color:#9394aa;font-weight:700}.status-label span{color:#e7b07d}.status-cell strong{font-size:25px;line-height:1;color:var(--purple);font-variant-numeric:tabular-nums}.status-cell .unit{font-size:11px;font-weight:600;color:#9799ad}.timer-track{height:8px;background:#ebe9f2;border-radius:12px;overflow:hidden;margin:4px 0 15px}.timer-fill{height:100%;width:100%;border-radius:12px;background:linear-gradient(90deg,#a6ded2,#7b7ace);transition:width .12s linear,background-color .3s}.timer-fill.urgent{background:#e0a18e}.question-card{text-align:center;background:#fff;border:1px solid #eceaf6;border-radius:24px;min-height:189px;padding:23px 12px 21px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:center}.question-small{font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.2em;font-weight:800;color:#a6a0c5}.question-formula{font-family:Georgia,"Times New Roman",serif;font-size:clamp(45px,9vw,72px);font-weight:500;color:#3d4268;display:flex;justify-content:center;align-items:center;gap:.20em;margin:7px 0 2px;white-space:nowrap}.formula-angle{color:var(--purple-dark);font-size:.87em}.formula-eq{font-size:.79em;margin-left:.13em;color:#66698c}.question-guide{font-size:12px;color:#9698aa;margin:8px 0 0}.answer-panel{background:#fff;border:1px solid #eceaf6;border-radius:24px;padding:23px 27px 21px;margin-top:15px;box-shadow:var(--shadow)}.answer-heading{display:flex;justify-content:space-between;align-items:center;gap:8px}.answer-heading h2{font-size:15px;margin:0;font-weight:800}.selected-preview{font-size:10px;color:#9496a9;display:flex;gap:8px;align-items:center}.selected-preview strong{display:inline-flex;align-items:center;justify-content:center;min-width:62px;padding:6px 10px;background:#f3f1ff;border-radius:9px;color:var(--purple-dark);font-size:17px;font-weight:750;font-family:Georgia,"Times New Roman",serif}.sign-line{display:flex;align-items:center;gap:14px;margin-top:19px}.group-name,.values-title{font-weight:750;font-size:12px;color:#555a79}.sign-buttons{display:flex;gap:9px}.sign-button{width:57px;height:42px;border-radius:11px;background:#faf9fe;border:1.5px solid #e9e6f3;color:#656780;font-size:24px;font-weight:700}.sign-button.chosen{border-color:#9085df;background:#f0edff;color:#5f56bc}.sign-button:disabled{opacity:.35}.input-hint{font-size:11px;color:#aaa9b9}.divider-line{height:1px;background:#f0eef5;margin:19px 0}.values-title{display:flex;align-items:center;gap:13px;margin-bottom:12px}.values-title span{font-size:11px;font-weight:400;color:#a3a4b4}.value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.value-button{height:59px;border:1.5px solid #e9e7f2;background:#faf9fe;border-radius:13px;font-family:Georgia,"Times New Roman",serif;color:#4f5271;font-size:22px;font-weight:650;transition:background .15s,border-color .15s,transform .15s}.value-button:hover{border-color:#c9c4ef;background:#f3f0ff}.value-button.chosen{border-color:#8579d7;background:#eeebff;box-shadow:inset 0 0 0 1px #8579d7;color:var(--purple-dark)}.value-button.undefined{font-family:inherit;font-size:14px}.action-line{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}.primary-button{height:54px;background:var(--purple);border:1px solid var(--purple);border-radius:13px;color:white;font-size:15px;font-weight:800;padding:0 26px;min-width:235px;box-shadow:0 6px 12px #7573bd29;transition:background .2s,transform .1s}.primary-button:hover:not(:disabled){background:var(--purple-dark)}.primary-button:disabled{opacity:.43;box-shadow:none}.primary-button span{padding-left:8px}.skip-button,.secondary-button{border:0;background:transparent;color:#9597a9;font-size:12px;padding:10px}.skip-button:hover,.secondary-button:hover{color:var(--purple)}.keyboard-tip{color:#b5b4c0;font-size:10px;text-align:center;margin:14px 0 0}.feedback-panel{margin-top:15px;background:#fff;border:1px solid #eceaf6;border-radius:24px;padding:25px 28px 26px;box-shadow:var(--shadow);animation:up .25s ease}.feedback-lead{display:flex;align-items:center;gap:12px}.feedback-emblem{display:grid;place-items:center;background:#e5f6ef;color:#278f7a;border-radius:50%;width:43px;height:43px;font-size:21px}.feedback-emblem.try{color:#b77d6c;background:#fff1e7}.feedback-lead h2{margin:0;color:#394a5d;font-size:20px}.feedback-lead p{margin:4px 0 0;color:#969aaa;font-size:12px}.correct-answer{margin:19px 0;background:#f1f0ff;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:15px 19px}.correct-answer span{color:#7776a0;font-size:11px;font-weight:650}.correct-answer strong{font-family:Georgia,"Times New Roman",serif;color:#5954af;font-size:clamp(19px,4vw,27px);font-weight:650}.explanation-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:20px}.circle-holder{border-radius:18px;background:#fafaff;min-width:0;padding:2px;display:grid;place-items:center}.circle-holder svg{display:block;max-width:340px;width:100%;height:auto}.explanation-copy{padding:8px 0}.tiny-label{font-size:10px;letter-spacing:.19em;font-weight:800;color:#a39bd3}.explanation-copy h3{font-size:17px;margin:7px 0 15px}.coordinate-box{border-left:3px solid #c3b9ed;padding-left:13px;font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:2;color:#555776}.explanation-copy p{line-height:1.9;font-size:13px;color:#646982}.explanation-copy .circle-footnote{font-size:11px;color:#9898aa}.next-button{display:block;margin:18px auto 0;min-width:240px}.timed-note{text-align:center;margin:11px 0 0;font-size:11px;color:#979aaa}.result-screen{max-width:700px;margin:45px auto 0;text-align:center}.result-sparkle{font-size:34px;color:#b7b0e8;letter-spacing:12px;margin:0 0 16px}.result-screen h1{font-size:clamp(27px,6vw,39px);margin:0}.result-lead{color:#9193a7;font-size:13px;line-height:1.8}.result-feature{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);margin:25px 0 13px;padding:26px 15px}.result-feature>span{color:#8d8ba8;font-size:12px}.result-feature div{margin-top:5px;color:var(--purple);font-weight:800}.result-feature strong{font-size:82px;line-height:1.1;font-variant-numeric:tabular-nums}.result-feature div span{font-size:20px;margin-left:7px}.result-details{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.result-details>div{padding:20px 8px;background:white;border:1px solid var(--line);border-radius:15px}.result-details span,.result-details strong{display:block}.result-details span{font-size:10px;color:#a1a1b3}.result-details strong{font-size:22px;margin-top:8px;color:#55597b}.result-actions{display:flex;gap:12px;justify-content:center;align-items:center;margin:28px 0}.secondary-button{padding:14px;font-size:13px}.site-footer{font-size:10px;color:#bbb9ca;text-align:center;margin:33px 0 0;letter-spacing:.05em}@keyframes up{from{opacity:.5;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){.app{padding:17px 14px 25px}.site-header{margin-bottom:25px}.header-note{display:none}.start-screen h1{font-size:36px}.lead{font-size:13px;margin:15px 0 20px}.mode-grid{gap:11px}.mode-card{padding:17px 15px;min-height:182px;border-radius:18px}.mode-name{font-size:16px}.mode-desc{font-size:11px;line-height:1.55}.level-card{padding:15px}.level-note{font-size:10px}.level-button{font-size:13px}.status-grid{gap:7px}.status-cell{padding:12px 9px;border-radius:12px;flex-direction:column;gap:7px}.status-label{font-size:10px}.status-cell strong{font-size:22px}.question-card{min-height:154px;padding:18px 8px}.question-formula{font-size:clamp(39px,10.5vw,59px)}.answer-panel,.feedback-panel{padding:19px 16px;border-radius:19px}.answer-heading h2{font-size:14px}.sign-line{gap:9px}.input-hint{font-size:10px}.value-grid{gap:8px}.value-button{height:56px;font-size:21px;border-radius:12px}.action-line{gap:8px}.primary-button{min-width:0;flex:1;padding:0 12px}.explanation-layout{grid-template-columns:1fr;gap:10px}.circle-holder svg{max-width:310px}.explanation-copy{padding:5px 6px}.explanation-copy h3{margin-bottom:8px}.coordinate-box{font-size:14px}.correct-answer{padding:12px}.correct-answer strong{font-size:clamp(18px,5vw,24px)}.next-button{width:100%}.result-details{gap:7px}.result-details strong{font-size:17px}.result-actions{flex-direction:column}.result-actions .primary-button{width:100%;flex:none}.keyboard-tip{display:none}}@media(max-width:380px){.mode-card{padding:14px 12px}.mode-name{font-size:15px}.value-button{font-size:19px}.selected-preview{font-size:9px}.question-formula{font-size:39px}.correct-answer strong{font-size:19px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+  <script defer>'use strict';
+
+// Exact special-angle values. A numeric angle is used only to place the point on the SVG.
+const ANGLES = [
+  {deg:0,   rad:'0',       sin:'0',      cos:'1',       tan:'0'},
+  {deg:30,  rad:'π/6',     sin:'1/2',    cos:'√3/2',    tan:'1/√3'},
+  {deg:45,  rad:'π/4',     sin:'1/√2',   cos:'1/√2',    tan:'1'},
+  {deg:60,  rad:'π/3',     sin:'√3/2',   cos:'1/2',     tan:'√3'},
+  {deg:90,  rad:'π/2',     sin:'1',      cos:'0',       tan:'undef'},
+  {deg:120, rad:'2π/3',    sin:'√3/2',   cos:'-1/2',    tan:'-√3'},
+  {deg:135, rad:'3π/4',    sin:'1/√2',   cos:'-1/√2',   tan:'-1'},
+  {deg:150, rad:'5π/6',    sin:'1/2',    cos:'-√3/2',   tan:'-1/√3'},
+  {deg:180, rad:'π',       sin:'0',      cos:'-1',      tan:'0'},
+  {deg:210, rad:'7π/6',    sin:'-1/2',   cos:'-√3/2',   tan:'1/√3'},
+  {deg:225, rad:'5π/4',    sin:'-1/√2',  cos:'-1/√2',   tan:'1'},
+  {deg:240, rad:'4π/3',    sin:'-√3/2',  cos:'-1/2',    tan:'√3'},
+  {deg:270, rad:'3π/2',    sin:'-1',     cos:'0',       tan:'undef'},
+  {deg:300, rad:'5π/3',    sin:'-√3/2',  cos:'1/2',     tan:'-√3'},
+  {deg:315, rad:'7π/4',    sin:'-1/√2',  cos:'1/√2',    tan:'-1'},
+  {deg:330, rad:'11π/6',   sin:'-1/2',   cos:'√3/2',    tan:'-1/√3'},
+  {deg:360, rad:'2π',      sin:'0',      cos:'1',       tan:'0'}
+];
+const MAGNITUDES = ['0','1/2','1/√2','√3/2','1','1/√3','√3'];
+const FUNCS = ['sin','cos','tan'];
+const $ = id => document.getElementById(id);
+const els = {};
+let level = 'basic';
+let mode = 'practice';
+let state = 'home';
+let current = null;
+let queue = [];
+let selectedMagnitude = null;
+let selectedSign = 1;
+let correct = 0;
+let attempts = 0;
+let streak = 0;
+let maxStreak = 0;
+let questionCount = 0;
+let timerId = null;
+let autoNextId = null;
+let deadline = 0;
+let lastResult = null;
+
+function readRecord(key) { try { return Number(localStorage.getItem(key)) || 0; } catch (_) { return 0; } }
+function writeRecord(key,value) { try { localStorage.setItem(key,String(value)); } catch (_) {} }
+function shuffle(arr) { for (let i=arr.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
+function showScreen(which) { for (const name of ['home','play','result']) $(name+'Screen').hidden = name!==which; state=which; window.scrollTo({top:0,behavior:'instant'}); }
+function normalizeValue(value) { return value==='-0'?'0':value; }
+function prettyValue(value) { return value==='undef'?'定義なし':value.replace(/^-/, '−'); }
+function currentAnswer() { if (selectedMagnitude===null) return null; if (selectedMagnitude==='undef') return 'undef'; return normalizeValue((selectedSign===-1?'-':'')+selectedMagnitude); }
+function updateStats() { $('correctCount').innerHTML=correct+'<span class="unit"> 問</span>'; $('streakCount').innerHTML=streak+'<span class="unit"> 問</span>'; $('attemptCount').innerHTML=attempts+'<span class="unit"> 問</span>'; }
+
+function buildValueButtons() {
+  const grid=$('valueGrid'); grid.replaceChildren();
+  const items=current && current.fn==='tan' ? [...MAGNITUDES,'undef'] : MAGNITUDES;
+  for (let i=0;i<items.length;i++) {
+    const value=items[i]; const button=document.createElement('button');
+    button.type='button'; button.className='value-button'+(value==='undef'?' undefined':'');
+    button.textContent=prettyValue(value); button.dataset.value=value;
+    button.setAttribute('aria-pressed',String(value===selectedMagnitude));
+    button.setAttribute('aria-label',value==='undef'?'定義なし':prettyValue(value));
+    button.addEventListener('click',()=>pickValue(value)); grid.appendChild(button);
+  }
+}
+function pickValue(value) {
+  if (state!=='play' || !$('feedbackPanel').hidden) return;
+  selectedMagnitude=value;
+  if (value==='0'||value==='undef') selectedSign=1;
+  updateSelection();
+}
+function setSign(sign) {
+  if (state!=='play'||!$('feedbackPanel').hidden) return;
+  selectedSign=sign;
+  if (selectedMagnitude==='0'||selectedMagnitude==='undef') selectedSign=1;
+  updateSelection();
+}
+function updateSelection() {
+  $('positiveButton').classList.toggle('chosen',selectedSign===1);
+  $('negativeButton').classList.toggle('chosen',selectedSign===-1);
+  $('positiveButton').setAttribute('aria-pressed',String(selectedSign===1));
+  $('negativeButton').setAttribute('aria-pressed',String(selectedSign===-1));
+  const neutral = selectedMagnitude==='0'||selectedMagnitude==='undef';
+  $('negativeButton').disabled=neutral;
+  for (const button of $('valueGrid').querySelectorAll('button')) {
+    const yes=button.dataset.value===selectedMagnitude;
+    button.classList.toggle('chosen',yes); button.setAttribute('aria-pressed',String(yes));
+  }
+  const answer=currentAnswer();
+  $('answerPreview').textContent=answer===null?'—':prettyValue(answer);
+  $('checkButton').disabled=answer===null;
+}
+function chooseLevel(next) {
+  level=next;
+  document.querySelectorAll('[data-level]').forEach(b=>{
+    const active=b.dataset.level===level;
+    b.classList.toggle('active',active); b.setAttribute('aria-pressed',String(active));
+  });
+  $('levelDescription').textContent=level==='basic'?'まずは第1象限の基本角から':'第2〜4象限の符号にもチャレンジ';
+  writeRecord('trig-bloom-level',level==='all'?1:0);
+}
+function start(nextMode) {
+  clearInterval(timerId); clearTimeout(autoNextId); timerId=null; autoNextId=null;
+  mode=nextMode; current=null; queue=[]; correct=0; attempts=0; streak=0; maxStreak=0; questionCount=0;
+  $('currentMode').textContent=mode==='timed'?'◷ 60秒チャレンジ':'✿ じっくり練習';
+  $('timeCell').hidden=mode!=='timed'; $('questionCell').hidden=mode==='timed'; $('timerTrack').hidden=mode!=='timed';
+  $('timedAutoNote').hidden=mode!=='timed';
+  updateStats(); showScreen('play');
+  if (mode==='timed') deadline=performance.now()+60000;
+  nextQuestion();
+  if (mode==='timed') { tick(); timerId=setInterval(tick,100); }
+}
+function rebuildQueue() {
+  const candidates=ANGLES.filter(a=>level==='all'||a.deg<=90);
+  queue=shuffle(candidates.flatMap(angle=>FUNCS.map(fn=>({angle,fn}))));
+  // Do not repeat the preceding question when a new cycle starts.
+  if (current && queue.length>1 && queue[queue.length-1].angle.deg===current.angle.deg && queue[queue.length-1].fn===current.fn) {
+    [queue[0],queue[queue.length-1]]=[queue[queue.length-1],queue[0]];
+  }
+}
+function nextQuestion() {
+  if (state!=='play') return;
+  clearTimeout(autoNextId); autoNextId=null;
+  if (mode==='timed' && performance.now()>=deadline) { finish(); return; }
+  if (!queue.length) rebuildQueue();
+  current=queue.pop(); questionCount++;
+  selectedMagnitude=null; selectedSign=1;
+  $('questionNumber').textContent=String(questionCount).padStart(2,'0');
+  $('functionText').textContent=current.fn;
+  $('angleText').textContent=current.angle.rad;
+  $('answerPanel').hidden=false; $('feedbackPanel').hidden=true;
+  $('questionGuide').textContent='符号と値を選んで、「決定」を押そう。';
+  buildValueButtons(); updateSelection();
+}
+function submit(skipped=false) {
+  if (state!=='play'||!$('feedbackPanel').hidden) return;
+  const answer=currentAnswer(); if (!skipped && answer===null) return;
+  if (mode==='timed'&&performance.now()>=deadline) { finish(); return; }
+  const expected=current.angle[current.fn];
+  const isCorrect=!skipped && answer===expected;
+  attempts++; if(isCorrect) { correct++; streak++; maxStreak=Math.max(streak,maxStreak); } else { streak=0; }
+  lastResult={isCorrect,skipped,expected};
+  updateStats(); reveal(lastResult);
+  if (mode==='timed') autoNextId=setTimeout(()=>{if(state==='play')nextQuestion();},1250);
+}
+function reveal(result) {
+  const {isCorrect,skipped,expected}=result;
+  $('answerPanel').hidden=true; $('feedbackPanel').hidden=false;
+  $('feedbackEmblem').textContent=isCorrect?'✦':'♡';
+  $('feedbackEmblem').classList.toggle('try',!isCorrect);
+  const nice=['いいね、その調子！','ばっちり！','正解！ひとつ身についたね。','いい感じ！'];
+  $('feedbackTitle').textContent=isCorrect?nice[Math.floor(Math.random()*nice.length)]:(skipped?'図を見て、ひとつ覚えよう。':'あと一歩。今の確認が力になるよ。');
+  $('feedbackSubtitle').textContent=isCorrect?'単位円でも確かめてみよう。':'ここから分かれば、次は大丈夫。';
+  $('revealedAnswer').textContent=current.fn+' '+current.angle.rad+' = '+prettyValue(expected);
+  $('coordinateX').textContent='x = cos θ = '+prettyValue(current.angle.cos);
+  $('coordinateY').textContent='y = sin θ = '+prettyValue(current.angle.sin);
+  if(current.fn==='sin') $('answerExplanation').textContent='sin は円周上の点の「縦の位置（y座標）」。上ならプラス、下ならマイナスです。';
+  else if(current.fn==='cos') $('answerExplanation').textContent='cos は円周上の点の「横の位置（x座標）」。右ならプラス、左ならマイナスです。';
+  else if(expected==='undef') $('answerExplanation').textContent='tan は sin ÷ cos。ここでは cos = 0 なので、0で割ることはできず「定義なし」です。';
+  else $('answerExplanation').textContent='tan は sin ÷ cos、つまり y ÷ x。符号は縦と横の向きの組み合わせで決まります。';
+  $('circleDrawing').innerHTML=unitCircleSvg(current.angle);
+  $('nextButton').textContent=mode==='timed'?'次の問題へ →':'次の問題へ →';
+  if (mode!=='timed') $('nextButton').focus({preventScroll:true});
+}
+function unitCircleSvg(angle) {
+  const cx=180,cy=180,r=122,theta=angle.deg*Math.PI/180;
+  const px=cx+r*Math.cos(theta),py=cy-r*Math.sin(theta);
+  const fx=Number(px.toFixed(2)),fy=Number(py.toFixed(2));
+  const deg=angle.deg===360?359.9:angle.deg;
+  const arcEndX=Number((cx+40*Math.cos(deg*Math.PI/180)).toFixed(2));
+  const arcEndY=Number((cy-40*Math.sin(deg*Math.PI/180)).toFixed(2));
+  const arc=deg===0?'':`<path d="M ${cx} ${cy} L ${cx+40} ${cy} A 40 40 0 ${deg>180?1:0} 0 ${arcEndX} ${arcEndY} Z" fill="#ddd8fb" opacity=".75"/>`;
+  const pointLabelX=Math.max(30,Math.min(330,fx+(fx>cx?-15:15)));
+  const pointLabelY=Math.max(28,Math.min(330,fy+(fy>cy?24:-14)));
+  const activeX=angle.cos==='0'?cx:fx;
+  return `<svg viewBox="0 0 360 360" role="img" aria-label="単位円の${angle.deg}度の位置。x座標は${prettyValue(angle.cos)}、y座標は${prettyValue(angle.sin)}">
+  <rect width="360" height="360" fill="#fafaff" rx="18"/>
+  <line x1="28" y1="180" x2="331" y2="180" stroke="#b3b6ce" stroke-width="1.3"/>
+  <line x1="180" y1="332" x2="180" y2="29" stroke="#b3b6ce" stroke-width="1.3"/>
+  <path d="M 326 175 L 334 180 L 326 185 M 175 34 L 180 26 L 185 34" fill="none" stroke="#b3b6ce" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="180" cy="180" r="122" fill="none" stroke="#b8b4e4" stroke-width="2.4"/>
+  <text x="339" y="171" text-anchor="middle" font-size="16" fill="#8e91af" font-family="Georgia,serif">x</text>
+  <text x="192" y="31" font-size="16" fill="#8e91af" font-family="Georgia,serif">y</text>
+  <text x="307" y="199" font-size="12" fill="#a2a4ba" font-family="Georgia,serif">1</text>
+  <text x="168" y="54" font-size="12" fill="#a2a4ba" font-family="Georgia,serif">1</text>
+  <text x="49" y="199" font-size="12" fill="#a2a4ba" font-family="Georgia,serif">−1</text>
+  <text x="166" y="317" font-size="12" fill="#a2a4ba" font-family="Georgia,serif">−1</text>
+  ${arc}
+  <line x1="180" y1="180" x2="${fx}" y2="${fy}" stroke="#8b80d9" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="180" y1="180" x2="${activeX}" y2="180" stroke="#42ae9c" stroke-width="5" stroke-linecap="round" opacity=".92"/>
+  <line x1="${fx}" y1="180" x2="${fx}" y2="${fy}" stroke="#eea58a" stroke-width="5" stroke-linecap="round" opacity=".95"/>
+  <line x1="${fx}" y1="${fy}" x2="${fx}" y2="180" stroke="#7a719a" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/>
+  <circle cx="180" cy="180" r="3.8" fill="#6d6b8e"/>
+  <circle cx="${fx}" cy="${fy}" r="7.5" fill="#6159c7" stroke="white" stroke-width="3"/>
+  <text x="${pointLabelX}" y="${pointLabelY}" font-size="13" font-weight="700" fill="#6159c7" text-anchor="middle" font-family="Georgia,serif">${angle.rad}</text>
+  <text x="192" y="198" font-size="12" fill="#9b9db2" font-family="Georgia,serif">O</text>
+  <g transform="translate(20,340)"><rect x="0" y="-10" width="9" height="9" rx="3" fill="#42ae9c"/><text x="15" y="-2" fill="#6e728e" font-family="sans-serif" font-size="11">cos = x</text><rect x="107" y="-10" width="9" height="9" rx="3" fill="#eea58a"/><text x="122" y="-2" fill="#6e728e" font-family="sans-serif" font-size="11">sin = y</text></g>
+  </svg>`;
+}
+function tick() {
+  if (state!=='play'||mode!=='timed') return;
+  const remain=Math.max(0,deadline-performance.now());
+  const sec=Math.ceil(remain/1000);
+  $('timerText').innerHTML=sec+'<span class="unit"> 秒</span>';
+  $('timerFill').style.width=(remain/600)+'%';
+  $('timerFill').classList.toggle('urgent',remain<=10000);
+  if(remain<=0)finish();
+}
+function finish() {
+  if(state!=='play')return;
+  clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;
+  const key='trig-bloom-record-'+level;
+  const old=readRecord(key),isNew=correct>old;
+  if(isNew)writeRecord(key,correct);
+  $('resultCorrect').textContent=correct;
+  $('resultAttempted').textContent=attempts+'問';
+  $('resultBestStreak').textContent=maxStreak+'問';
+  $('resultRecord').textContent=Math.max(old,correct)+'問';
+  $('resultMessage').textContent=isNew?'自己ベスト更新！少しずつできることが増えているね。':(correct?'今日の挑戦が、次の正解につながるよ。':'まずは挑戦できたことがスタート！次もいこう。');
+  showScreen('result');
+}
+function goHome() { clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;showScreen('home'); }
+function handleKey(e) {
+  if (state!=='play'||e.altKey||e.ctrlKey||e.metaKey||e.repeat) return;
+  if(e.key==='Enter') { e.preventDefault(); if($('feedbackPanel').hidden)submit();else nextQuestion(); return; }
+  if(!$('feedbackPanel').hidden) return;
+  if(e.key==='-'||e.key==='−') { e.preventDefault();setSign(-1); }
+  if(e.key==='+') { e.preventDefault();setSign(1); }
+  const n=Number(e.key);
+  if (/^[1-7]$/.test(e.key)) { e.preventDefault();pickValue(MAGNITUDES[n-1]); }
+  if(e.key==='8'&&current&&current.fn==='tan') { e.preventDefault();pickValue('undef'); }
+}
+function init() {
+  document.querySelectorAll('[data-start]').forEach(b=>b.addEventListener('click',()=>start(b.dataset.start)));
+  document.querySelectorAll('[data-level]').forEach(b=>b.addEventListener('click',()=>chooseLevel(b.dataset.level)));
+  $('positiveButton').addEventListener('click',()=>setSign(1));
+  $('negativeButton').addEventListener('click',()=>setSign(-1));
+  $('checkButton').addEventListener('click',()=>submit(false));
+  $('skipButton').addEventListener('click',()=>submit(true));
+  $('nextButton').addEventListener('click',nextQuestion);
+  $('backButton').addEventListener('click',goHome);
+  $('homeButton').addEventListener('click',goHome);
+  $('retryButton').addEventListener('click',()=>start('timed'));
+  document.addEventListener('keydown',handleKey);
+  chooseLevel(readRecord('trig-bloom-level')?'all':'basic');
+}
+init();
+</script>
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <main class="app">
+    <header class="site-header">
+      <div class="brand"><span class="brand-icon" aria-hidden="true">∿</span><span><strong>TRIG BLOOM</strong><small>三角関数を、少しずつ得意に。</small></span></div>
+      <span class="header-note" aria-hidden="true">✦ learn at your pace</span>
+    </header>
+
+    <section class="screen start-screen" id="homeScreen" aria-labelledby="homeTitle">
+      <div class="welcome-mark" aria-hidden="true">◌ <span>✦</span></div>
+      <p class="eyebrow">SPECIAL ANGLES · SIN / COS / TAN</p>
+      <h1 id="homeTitle">角度がわかる。<br><em>値がわかる。</em></h1>
+      <p class="lead">問題を見て、符号と値を選ぶだけ。<br>答え合わせでは単位円が教えてくれるよ。</p>
+      <div class="mode-grid" aria-label="モードを選ぶ">
+        <button class="mode-card mode-practice" type="button" data-start="practice">
+          <span class="mode-symbol" aria-hidden="true">✿</span><span class="mode-name">じっくり練習</span>
+          <span class="mode-desc">自分のペースで、一問ずつ。</span><span class="mode-cta">はじめる <span aria-hidden="true">→</span></span>
+        </button>
+        <button class="mode-card mode-timed" type="button" data-start="timed">
+          <span class="mode-symbol" aria-hidden="true">◷</span><span class="mode-name">60秒チャレンジ</span>
+          <span class="mode-desc">1分間で何問正解できるかな？</span><span class="mode-cta">チャレンジ <span aria-hidden="true">→</span></span>
+        </button>
+      </div>
+      <div class="level-card">
+        <div class="level-top"><span class="level-heading">出題範囲</span><span class="level-note" id="levelDescription">まずは第1象限の基本角から</span></div>
+        <div class="level-switch" role="group" aria-label="出題範囲">
+          <button type="button" class="level-button active" data-level="basic" aria-pressed="true">基本角 <small>0 〜 π/2</small></button>
+          <button type="button" class="level-button" data-level="all" aria-pressed="false">全角度 <small>0 〜 2π</small></button>
+        </div>
+      </div>
+      <p class="bottom-tip"><span aria-hidden="true">♡</span> 間違えても大丈夫。図で確認すれば、それが次の正解になる。</p>
+    </section>
+
+    <section class="screen play-screen" id="playScreen" hidden aria-label="クイズ画面">
+      <div class="play-top"><button type="button" class="plain-button" id="backButton">← モード選択</button><span class="mode-pill" id="currentMode">じっくり練習</span></div>
+      <div class="status-grid">
+        <div class="status-cell"><span class="status-label">正解</span><strong id="correctCount">0<span class="unit"> 問</span></strong></div>
+        <div class="status-cell"><span class="status-label">連続正解 <span aria-hidden="true">✦</span></span><strong id="streakCount">0<span class="unit"> 問</span></strong></div>
+        <div class="status-cell" id="timeCell" hidden><span class="status-label">のこり時間</span><strong id="timerText">60<span class="unit"> 秒</span></strong></div>
+        <div class="status-cell" id="questionCell"><span class="status-label">チャレンジ数</span><strong id="attemptCount">0<span class="unit"> 問</span></strong></div>
+      </div>
+      <div class="timer-track" id="timerTrack" hidden aria-label="残り時間"><div class="timer-fill" id="timerFill"></div></div>
+      <article class="question-card" aria-label="問題">
+        <div class="question-small">QUESTION <span id="questionNumber">01</span></div>
+        <div class="question-formula" aria-live="polite"><span id="functionText">sin</span><span class="formula-angle" id="angleText">π/6</span><span class="formula-eq">= ?</span></div>
+        <p class="question-guide" id="questionGuide">符号と値を選んで、「決定」を押そう。</p>
+      </article>
+
+      <section id="answerPanel" class="answer-panel" aria-label="答えを選ぶ">
+        <div class="answer-heading"><h2>答えをつくろう</h2><div class="selected-preview">えらんだ答え <strong id="answerPreview">—</strong></div></div>
+        <div class="sign-line"><span class="group-name">符号</span><div class="sign-buttons" role="group" aria-label="答えの符号"><button type="button" id="positiveButton" class="sign-button chosen" aria-pressed="true">＋</button><button type="button" id="negativeButton" class="sign-button" aria-pressed="false">−</button></div><span class="input-hint">マイナスの値なら「−」</span></div>
+        <div class="divider-line"></div>
+        <div class="values-title">値 <span>ひとつ選ぼう</span></div>
+        <div class="value-grid" id="valueGrid" role="group" aria-label="答えの値"></div>
+        <div class="action-line"><button type="button" class="primary-button" id="checkButton" disabled>答えを決定 <span aria-hidden="true">→</span></button><button type="button" class="skip-button" id="skipButton">パスする</button></div>
+        <p class="keyboard-tip">キーボード：1〜7で値・−で符号・Enterで決定</p>
+      </section>
+
+      <section id="feedbackPanel" class="feedback-panel" hidden aria-live="polite">
+        <div class="feedback-lead"><div class="feedback-emblem" id="feedbackEmblem" aria-hidden="true">✦</div><div><h2 id="feedbackTitle">いいね！</h2><p id="feedbackSubtitle">単位円で確認してみよう。</p></div></div>
+        <div class="correct-answer"><span>正しい答え</span><strong id="revealedAnswer">sin π/6 = 1/2</strong></div>
+        <div class="explanation-layout"><div class="circle-holder"><div id="circleDrawing"></div></div><div class="explanation-copy"><span class="tiny-label">UNIT CIRCLE</span><h3>単位円でチェック</h3><div class="coordinate-box"><div id="coordinateX">x = cos θ = 1</div><div id="coordinateY">y = sin θ = 0</div></div><p id="answerExplanation"></p><p class="circle-footnote">円周上の点は <strong>(cos θ, sin θ)</strong></p></div></div>
+        <button type="button" id="nextButton" class="primary-button next-button">次の問題へ <span aria-hidden="true">→</span></button>
+        <p class="timed-note" id="timedAutoNote" hidden>60秒チャレンジ中は自動で次へ進みます。</p>
+      </section>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen" hidden aria-label="チャレンジ結果">
+      <div class="result-sparkle" aria-hidden="true">✦ ✧ ✦</div><p class="eyebrow">60 SECONDS COMPLETE</p><h1>1分間、おつかれさま！</h1><p class="result-lead" id="resultMessage">挑戦した分だけ、前に進んだよ。</p>
+      <div class="result-feature"><span>今回の正解数</span><div><strong id="resultCorrect">0</strong><span>問</span></div></div>
+      <div class="result-details"><div><span>答えた問題</span><strong id="resultAttempted">0問</strong></div><div><span>最大連続正解</span><strong id="resultBestStreak">0問</strong></div><div><span>自己ベスト</span><strong id="resultRecord">0問</strong></div></div>
+      <div class="result-actions"><button type="button" id="retryButton" class="primary-button">もう1回チャレンジ →</button><button type="button" id="homeButton" class="secondary-button">モード選択へ</button></div>
+    </section>
+    <footer class="site-footer">TRIG BLOOM · 正確な値を、図で理解しよう。</footer>
+  </main>
+</body>
+</html>
