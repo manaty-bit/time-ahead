@@ -98,6 +98,357 @@ body.timed-mode .timed-note{margin-top:6px}
  .circle-holder{width:218px}
  .circle-holder #circleDrawing,.circle-holder svg{max-width:210px}
 }
+
+/* v6 — Desktop one-screen workspace. Mobile keeps the original vertical flow. */
+@media (min-width: 850px) {
+  html,body {min-height:100%;}
+  .app {
+    max-width:1240px;
+    height:100vh; height:100dvh;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    padding:13px 25px 9px;
+  }
+  .site-header {margin-bottom:10px; flex:none;}
+  .site-footer {margin:7px 0 0; flex:none; font-size:9px;}
+  .play-screen {
+    max-width:none;
+    width:100%;
+    flex:1;
+    min-height:0;
+    display:grid;
+    grid-template-columns:minmax(0, .78fr) minmax(0,1.22fr);
+    grid-template-rows:auto auto auto minmax(0,1fr);
+    grid-template-areas:
+      'top top'
+      'stats stats'
+      'timer timer'
+      'question panel';
+    gap:10px 20px;
+    align-items:stretch;
+  }
+  .play-top {grid-area:top; margin:0; min-height:31px;}
+  .status-grid {grid-area:stats; gap:11px; margin:0;}
+  .status-cell {padding:9px 18px; min-height:57px;}
+  .status-cell strong {font-size:24px;}
+  .timer-track {grid-area:timer; margin:0; height:6px;}
+  .question-card {
+    grid-area:question;
+    min-height:0;
+    height:100%;
+    padding:23px 17px;
+    border-radius:23px;
+    box-shadow:0 12px 36px #4b4c8410;
+  }
+  .question-small {font-size:12px;}
+  .question-formula {font-size:clamp(41px,4.1vw,64px);min-height:97px; max-width:100%;}
+  .question-guide {font-size:13px;}
+  .answer-panel, .feedback-panel {
+    grid-area:panel;
+    margin:0;
+    min-width:0;
+    min-height:0;
+    padding:19px 24px 16px;
+    border-radius:23px;
+    box-shadow:0 12px 36px #4b4c8410;
+  }
+  .answer-panel {display:flex;flex-direction:column;justify-content:center;}
+  .answer-heading h2 {font-size:18px;}
+  .sign-line {margin-top:16px;}
+  .divider-line {margin:14px 0;}
+  .value-button {height:59px; font-size:24px;}
+  .value-grid {gap:8px;}
+  .values-title {margin-bottom:10px;}
+  .action-line {margin-top:16px;}
+  .primary-button {height:48px;}
+  .keyboard-tip {margin-top:10px;}
+  .feedback-panel {display:flex;flex-direction:column;justify-content:center;}
+  .feedback-lead h2 {font-size:19px;}
+  .feedback-emblem {width:41px;height:41px; font-size:20px;}
+  .feedback-lead p {font-size:12px;}
+  .correct-answer {margin:10px 0 12px; padding:11px 13px 13px;gap:5px;}
+  .correct-answer span {font-size:11px;}
+  .correct-answer strong {min-height:36px;font-size:clamp(23px,2.55vw,31px);}
+  .explanation-layout {grid-template-columns:minmax(0,207px) minmax(0,1fr);gap:13px;align-items:center;}
+  .circle-holder {padding:4px 3px 7px;}
+  .circle-holder #circleDrawing, .circle-holder svg {max-width:199px;}
+  .circle-angle-heading {height:29px;font-size:11px;gap:5px;}
+  .circle-angle-heading span {font-size:17px;}
+  .circle-angle-heading small {font-size:10px;}
+  .circle-legend {font-size:10px;gap:10px;}
+  .explanation-copy {padding:2px 0;}
+  .explanation-copy h3 {font-size:15px;margin:5px 0 7px;}
+  .coordinate-box {font-size:16px;gap:7px;}
+  .coordinate-box > div {min-height:35px;padding:6px 8px;}
+  .explanation-copy p {font-size:12px;line-height:1.5;margin-top:8px;}
+  .explanation-copy .circle-footnote {font-size:10px;margin-top:7px;}
+  .next-button {margin:12px auto 0;min-width:210px;}
+  body.timed-mode .site-header {margin-bottom:10px;}
+  body.timed-mode .feedback-panel {max-width:none;margin:0;}
+  body.timed-mode .correct-answer {margin:11px 0 9px;}
+  body.timed-mode .timed-note {margin:5px 0 0;}
+  .time-adjustment {padding:8px 10px; font-size:12px;}
+  .start-screen {display:flex;flex-direction:column;justify-content:center;flex:1;min-height:0;}
+  .start-screen h1 {font-size:clamp(30px,4vw,48px);line-height:1.35;}
+  .welcome-mark {height:41px;font-size:28px;}
+  .lead {margin:12px 0 18px;line-height:1.7;}
+  .eyebrow {margin-bottom:9px;}
+  .mode-card {min-height:145px;padding:17px 21px;}
+  .mode-symbol {font-size:23px;margin-bottom:5px;}
+  .mode-name {font-size:19px;}
+  .mode-desc {margin-top:5px;}
+  .mode-cta {padding-top:8px;}
+  .level-card {margin-top:13px;padding:13px 17px;}
+  .level-top {margin-bottom:7px;}
+  .level-button {padding:7px 5px;}
+  .bottom-tip {margin:12px 0 0;}
+  .result-screen {display:flex;flex-direction:column;justify-content:center;max-width:720px;margin:auto;flex:1;min-height:0;}
+  .result-sparkle {font-size:25px;margin:0 0 5px;}
+  .result-screen h1 {font-size:31px;}
+  .result-lead {margin:7px 0;}
+  .result-feature {margin:12px 0 9px;padding:14px;}
+  .result-feature strong {font-size:61px;}
+  .result-details > div {padding:12px 7px;}
+  .result-details strong {font-size:19px;margin-top:3px;}
+  .result-actions {margin:14px 0 0;}
+}
+@media (min-width:850px) and (max-height:730px) {
+  .app {padding-top:8px;padding-bottom:5px;}
+  .site-header {margin-bottom:6px;}
+  .play-screen {gap:7px 15px;}
+  .status-cell {min-height:49px;padding:6px 16px;}
+  .question-formula {font-size:clamp(40px,3.8vw,60px);min-height:79px;}
+  .answer-panel,.feedback-panel {padding:12px 18px;}
+  .value-button {height:52px;}
+  .sign-line {margin-top:10px;}
+  .divider-line {margin:11px 0;}
+  .action-line {margin-top:11px;}
+  .keyboard-tip {margin-top:6px;}
+  .feedback-lead h2 {font-size:18px;}
+  .correct-answer {margin:8px 0 9px;padding:8px 10px 10px;}
+  .correct-answer strong {min-height:33px;font-size:24px;}
+  .explanation-layout {grid-template-columns:minmax(0,181px) minmax(0,1fr);gap:10px;}
+  .circle-holder #circleDrawing,.circle-holder svg {max-width:176px;}
+  .circle-angle-heading {height:25px;}
+  .circle-angle-heading span {font-size:15px;}
+  .explanation-copy h3 {margin:4px 0 5px;}
+  .coordinate-box {font-size:15px;}
+  .coordinate-box > div {min-height:32px;padding:4px 7px;}
+  .explanation-copy p {font-size:11px;margin-top:6px;}
+  .explanation-copy .circle-footnote {display:none;}
+  .next-button {margin-top:9px;}
+  .site-footer {margin-top:4px;}
+  .welcome-mark {height:32px;font-size:24px;}
+  .mode-card {min-height:130px;}
+  .level-card {padding:10px 15px;margin-top:11px;}
+  .bottom-tip {margin-top:10px;}
+}
+
+
+/* v7: Full-viewport learning on phones and desktops.  No nested scrolling.
+   Touch targets stay >=40px on standard phones and mathematical SVG stays sharp. */
+@media (max-width:849px){
+ html,body{width:100%;height:100%;max-height:100%;overflow:hidden;overscroll-behavior:none;}
+ body{min-height:0;}
+ .app{height:100vh;height:100dvh;min-height:0;max-width:640px;display:flex;flex-direction:column;overflow:hidden;
+      padding:clamp(4px,1.1dvh,12px) clamp(8px,3vw,18px) clamp(3px,.7dvh,8px);}
+ .site-header{flex:0 0 auto;margin:0 0 clamp(3px,.6dvh,8px);min-height:30px;gap:4px;}
+ .brand{gap:7px}.brand-icon{width:28px;height:28px;border-radius:9px;font-size:22px}
+ .brand strong{font-size:14px;line-height:1.1}.brand small{font-size:8px;margin-top:1px}
+ .site-footer{display:none}
+ .start-screen,.play-screen,.result-screen{width:100%;max-width:100%;min-height:0;flex:1;margin:0;overflow:hidden;}
+ .play-screen{display:grid;grid-template-areas:'top' 'stats' 'timer' 'question' 'panel';grid-template-rows:auto auto auto minmax(0,.23fr) minmax(0,.77fr);align-content:stretch;gap:clamp(3px,.7dvh,7px);}
+ .play-top{grid-area:top}.status-grid{grid-area:stats}.timer-track{grid-area:timer}.question-card{grid-area:question}.answer-panel,.feedback-panel{grid-area:panel}
+ .play-top{margin:0;min-height:22px}.plain-button{padding:3px 1px;font-size:11px}
+ .mode-pill{font-size:10px;padding:5px 10px}
+ .status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0;}
+ .status-cell{min-height:39px;padding:5px 6px;border-radius:11px;gap:2px;flex-direction:row;justify-content:center;}
+ .status-label{font-size:9px;white-space:nowrap}.status-cell strong{font-size:19px;white-space:nowrap}
+ .status-cell .unit{font-size:9px}
+ .timer-track{height:4px;margin:0}
+ .question-card{height:100%;min-height:0;max-height:none;padding:6px 8px;border-radius:17px;}
+ .question-small{font-size:9px;letter-spacing:.12em;line-height:1.1}
+ .question-formula{margin:2px 0 0;min-height:0;font-size:clamp(27px,8.3vw,45px);line-height:1;}
+ .question-guide{margin:3px 0 0;font-size:10px;line-height:1.25}
+ .answer-panel,.feedback-panel{height:100%;min-height:0;margin:0;padding:clamp(8px,1.3dvh,15px) clamp(9px,3vw,19px);border-radius:18px;overflow:hidden;}
+ .answer-panel{display:flex;flex-direction:column;justify-content:center;}
+ .answer-heading h2{font-size:13px}.selected-preview{font-size:9px;gap:5px}
+ .selected-preview strong{min-height:33px;min-width:47px;padding:2px 6px;font-size:17px}
+ .sign-line{gap:9px;margin-top:clamp(6px,1.3dvh,11px);}
+ .sign-button{width:48px;height:40px;border-radius:10px;font-size:23px}
+ .group-name,.values-title{font-size:11px}
+ .input-hint{font-size:9px}
+ .divider-line{margin:clamp(6px,1.1dvh,11px) 0}
+ .values-title{margin-bottom:clamp(5px,.7dvh,8px)}.values-title span{font-size:9px}
+ .value-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(4px,.8dvh,8px);}
+ .value-button{height:clamp(42px,6dvh,59px);font-size:clamp(17px,4.8vw,23px);padding:3px 1px;border-radius:10px}
+ .value-button.undefined{font-size:11px}
+ .action-line{margin-top:clamp(8px,1.3dvh,13px);gap:6px}
+ .primary-button{height:clamp(40px,6dvh,50px);border-radius:11px;font-size:13px;padding:0 7px;min-width:0}
+ .skip-button{font-size:11px;padding:9px 5px;white-space:nowrap}.keyboard-tip{display:none}
+ .feedback-panel{display:flex;flex-direction:column;justify-content:center;}
+ .feedback-lead{gap:8px;flex-shrink:0}.feedback-emblem{width:34px;height:34px;font-size:18px}
+ .feedback-lead h2{font-size:clamp(15px,4vw,19px)}.feedback-lead p{font-size:10px;margin:1px 0 0}
+ .correct-answer{flex-shrink:0;padding:clamp(5px,.8dvh,9px) clamp(6px,2vw,10px);margin:clamp(5px,1dvh,10px) 0;gap:5px;min-height:46px;border-radius:11px}
+ .correct-answer span{font-size:10px;white-space:nowrap}
+ .correct-answer strong{min-height:30px;min-width:0;font-size:clamp(17px,5.4vw,25px);max-width:83%;line-height:1.1}
+ .correct-answer strong mjx-container.MathJax{max-width:100%}
+ .explanation-layout{display:grid;grid-template-columns:minmax(0,47%) minmax(0,53%);align-items:center;gap:3px;min-width:0;min-height:0;}
+ .circle-holder{margin:0;min-width:0;width:100%;border:1px solid #edeafa;padding:3px 2px 5px;}
+ .circle-holder #circleDrawing{width:100%;max-width:none;min-width:0;}
+ .circle-holder svg{display:block;width:100%;height:auto;max-width:none}
+ .circle-angle-heading{height:22px;font-size:9px;gap:3px;white-space:nowrap;}
+ .circle-angle-heading span{font-size:14px;min-width:0}.circle-angle-heading small{font-size:8px}
+ .circle-legend{font-size:8px;gap:7px}.circle-legend span{gap:3px}.circle-legend i{width:7px;height:7px}
+ .explanation-copy{min-width:0;padding:0 0 0 5px}
+ .explanation-copy .tiny-label{display:none}.explanation-copy h3{font-size:12px;margin:0 0 5px;text-align:left}
+ .coordinate-box{display:flex;flex-direction:column;flex-wrap:nowrap;gap:5px;justify-content:start;font-size:clamp(10px,3.3vw,15px);}
+ .coordinate-box>div{width:100%;min-height:29px;padding:5px 3px;border-radius:7px;}
+ .coordinate-box mjx-container.MathJax{max-width:100%;}
+ .explanation-copy p{font-size:10px;line-height:1.45;text-align:left;margin:6px 0 0}
+ .explanation-copy .circle-footnote{display:none}
+ .next-button{flex:0 0 auto;min-width:0;width:100%;max-width:300px;margin:clamp(5px,1dvh,10px) auto 0;}
+ .time-adjustment{flex-shrink:0;font-size:12px;padding:6px;margin:4px 0}
+ body.timed-mode .site-header{margin-bottom:3px}
+ body.timed-mode .feedback-panel{max-width:none;margin:0;padding:12px;}
+ body.timed-mode .correct-answer{margin:8px 0}
+ body.timed-mode .timed-note{margin:4px 0;font-size:10px}
+ .start-screen{display:flex;flex-direction:column;justify-content:center;}
+ .welcome-mark{font-size:22px;letter-spacing:2px;height:26px;flex:none}
+ .welcome-mark span{font-size:16px}.eyebrow{font-size:9px;margin:0 0 7px}
+ .start-screen h1{font-size:clamp(26px,8vw,36px);line-height:1.32}
+ .lead{font-size:11px;line-height:1.6;margin:8px 0 11px}
+ .mode-grid{gap:7px;grid-template-columns:1fr 1fr;flex-shrink:0}
+ .mode-card{min-height:116px;padding:11px 10px;border-radius:14px}
+ .mode-symbol{font-size:19px;margin-bottom:5px}
+ .mode-name{font-size:clamp(12px,3.6vw,16px)}
+ .mode-desc{font-size:10px;line-height:1.4;margin-top:4px}
+ .mode-cta{font-size:10px;padding-top:5px}
+ .level-card{margin-top:9px;padding:10px 12px;border-radius:14px;flex-shrink:0}
+ .level-top{margin-bottom:6px;align-items:center}
+ .level-heading{font-size:12px}.level-note{font-size:9px}
+ .level-switch{gap:3px;padding:3px;border-radius:10px}
+ .level-button{font-size:12px;padding:7px 3px;border-radius:8px}
+ .level-button small{font-size:9px;margin-top:1px}
+ .level-button small mjx-container{font-size:12px}
+ .bottom-tip{font-size:10px;margin:10px 0 0;line-height:1.3}
+ .result-screen{display:flex;flex-direction:column;justify-content:center;text-align:center;}
+ .result-sparkle{font-size:21px;margin:0 0 8px}
+ .result-screen h1{font-size:clamp(22px,5.7vw,30px)}
+ .result-lead{font-size:11px;line-height:1.5;margin:6px 0 10px}
+ .result-feature{margin:7px 0;padding:10px 8px;border-radius:17px}
+ .result-feature strong{font-size:clamp(46px,12vw,68px)}
+ .result-details{gap:5px}.result-details>div{padding:8px 3px;border-radius:10px}
+ .result-details span{font-size:9px}.result-details strong{font-size:16px;margin-top:4px}
+ .result-actions{flex-direction:row;gap:6px;margin:12px 0 0}
+ .result-actions .primary-button{flex:1;width:auto;min-width:0}
+ .result-actions .secondary-button{padding:7px;font-size:11px;white-space:nowrap}
+}
+@media (max-width:849px) and (max-height:690px){
+ .play-screen{grid-template-rows:22px 36px auto minmax(0,.21fr) minmax(0,.79fr);gap:4px}
+ .question-formula{font-size:clamp(27px,7.9vw,39px)}
+ .question-card{padding:4px 6px}
+ .question-guide{font-size:9px;margin-top:2px}
+ .answer-panel,.feedback-panel{padding:7px 9px}
+ .value-button{height:43px}
+ .answer-heading h2{font-size:12px}
+ .selected-preview strong{min-height:29px}
+ .sign-line{margin-top:5px}.sign-button{height:38px}
+ .divider-line{margin:6px 0}
+ .values-title{margin-bottom:4px}
+ .action-line{margin-top:6px}.primary-button{height:42px}
+ .correct-answer{margin:5px 0;padding:5px 7px}
+ .circle-angle-heading{height:19px}
+ .feedback-lead h2{font-size:15px}.feedback-lead p{font-size:9px}
+ .explanation-copy h3{font-size:11px;margin-bottom:3px}
+ .coordinate-box{gap:4px;font-size:11px}.coordinate-box>div{min-height:25px;padding:4px 3px}
+ .explanation-copy p{font-size:9px;margin-top:4px}
+ .next-button{height:40px;margin-top:5px}
+ .start-screen .welcome-mark{height:20px;font-size:18px}
+ .start-screen h1{font-size:28px}
+ .start-screen .lead{font-size:10px;margin:5px 0 8px}
+ .start-screen .mode-card{min-height:103px;padding:9px 8px}
+ .start-screen .mode-symbol{font-size:17px;margin-bottom:2px}
+ .start-screen .level-card{margin-top:7px;padding:8px 10px}
+ .bottom-tip{margin-top:6px}
+}
+@media (max-width:849px) and (max-height:550px){
+ .brand small,.question-guide,.input-hint,.feedback-lead p,.bottom-tip{display:none}
+ .question-formula{font-size:clamp(26px,7vw,36px)}
+ .correct-answer{min-height:39px}
+ .correct-answer strong{font-size:16px}
+ .circle-holder svg{max-height:135px}
+ .sign-button{height:34px}.value-button{height:39px}.primary-button{height:37px}
+ .result-feature{padding:7px}.result-feature strong{font-size:40px}
+}
+
+
+/* Feedback is a separate step, not a second long screen. */
+@media (max-width:849px){
+ body.is-reveal .play-screen{grid-template-rows:auto auto auto 0 minmax(0,1fr);}
+ body.is-reveal .question-card{display:none}
+ body.is-reveal .feedback-panel{justify-content:center;}
+ body.is-reveal .correct-answer{font-size:1em;}
+}
+@media (max-width:849px) and (min-height:640px){
+ body.is-reveal .feedback-panel{gap:clamp(2px,.55dvh,7px);}
+ body.is-reveal:not(.timed-mode) .explanation-layout{grid-template-columns:1fr;justify-items:center;gap:6px;}
+ body.is-reveal:not(.timed-mode) .circle-holder{width:100%;max-width:clamp(198px,27dvh,245px);margin:0 auto;}
+ body.is-reveal:not(.timed-mode) .circle-angle-heading{height:25px;font-size:11px;}
+ body.is-reveal:not(.timed-mode) .circle-angle-heading span{font-size:17px;}
+ body.is-reveal:not(.timed-mode) .circle-legend{font-size:9px;}
+ body.is-reveal:not(.timed-mode) .explanation-copy{width:100%;max-width:440px;padding:0;text-align:center;}
+ body.is-reveal:not(.timed-mode) .explanation-copy h3{font-size:13px;text-align:center;margin:0 0 5px;}
+ body.is-reveal:not(.timed-mode) .coordinate-box{display:flex;flex-direction:row;gap:8px;justify-content:center;font-size:clamp(13px,3.6vw,17px);}
+ body.is-reveal:not(.timed-mode) .coordinate-box > div{width:auto;min-width:0;max-width:50%;padding:7px 9px;}
+ body.is-reveal:not(.timed-mode) .explanation-copy p{text-align:center;font-size:11px;margin:5px 0 0;}
+}
+@media (max-width:849px) and (max-height:600px){
+ body.is-reveal .feedback-panel{padding:8px}
+ body.is-reveal .circle-holder svg{max-height:155px;}
+ body.is-reveal .correct-answer{min-height:41px}
+}
+
+
+/* Small landscape phones: prevent the lower controls from being covered. */
+@media (max-width:849px) and (max-height:450px){
+ .start-screen .welcome-mark,.start-screen .lead,.start-screen .bottom-tip{display:none}
+ .start-screen h1{font-size:24px;line-height:1.18}
+ .start-screen .eyebrow{font-size:8px;margin-bottom:5px}
+ .start-screen .mode-card{min-height:84px;padding:7px 10px}
+ .start-screen .mode-symbol{display:none}
+ .start-screen .level-card{padding:6px 10px;margin-top:6px}
+ .start-screen .level-top{margin-bottom:2px}
+ .start-screen .level-button{padding:4px 2px}
+ .app{padding-top:3px;padding-bottom:2px}
+ .site-header{min-height:25px;margin-bottom:2px}
+ .brand-icon{width:23px;height:23px;font-size:18px}
+ .play-screen{gap:2px;grid-template-rows:21px 32px auto minmax(0,.20fr) minmax(0,.80fr)}
+ .status-cell{min-height:32px;padding:2px 3px}
+ .question-card{padding:2px 4px}
+ .question-formula{font-size:clamp(23px,6vw,33px)}
+ .question-small{font-size:8px}
+ .answer-panel{padding:4px 8px}
+ .answer-heading h2{font-size:11px}
+ .selected-preview strong{min-height:23px;font-size:14px}
+ .sign-line{margin-top:3px}
+ .sign-button{height:29px;font-size:19px}
+ .divider-line{margin:4px 0}
+ .values-title{margin-bottom:2px}
+ .value-grid{gap:3px}
+ .value-button{height:34px;font-size:17px}
+ .action-line{margin-top:3px}
+ .primary-button{height:35px;font-size:12px}
+ .feedback-panel{padding:5px 9px}
+ .feedback-lead .feedback-emblem{width:27px;height:27px}
+ .feedback-lead h2{font-size:13px}
+ .correct-answer{min-height:33px;padding:3px 5px;margin:3px 0}
+ .correct-answer strong{min-height:26px;font-size:17px}
+ .circle-holder svg{max-height:125px}
+ .next-button{height:35px;margin-top:3px}
+}
+
 </style>
   
 </head>
@@ -314,6 +665,7 @@ function chooseLevel(next) {
   writeRecord('trig-bloom-level',level==='all'?1:0);
 }
 function start(nextMode) {
+  document.body.classList.remove('is-reveal');
   clearInterval(timerId); clearTimeout(autoNextId); timerId=null; autoNextId=null;
   mode=nextMode; current=null; queue=[]; correct=0; attempts=0; streak=0; maxStreak=0; questionCount=0;
   $('currentMode').textContent=mode==='timed'?'◷ 60秒チャレンジ':'✿ じっくり練習';
@@ -335,6 +687,7 @@ function rebuildQueue() {
 }
 function nextQuestion() {
   if (state!=='play') return;
+  document.body.classList.remove('is-reveal');
   clearTimeout(autoNextId); autoNextId=null;
   if (mode==='timed' && performance.now()>=deadline) { finish(); return; }
   if (!queue.length) rebuildQueue();
@@ -369,6 +722,7 @@ function submit(skipped=false) {
   }
 }
 function reveal(result) {
+  document.body.classList.add('is-reveal');
   const {isCorrect,skipped,expected,timeDelta=0}=result;
   const timed=mode==='timed';
   $('answerPanel').hidden=true; $('feedbackPanel').hidden=false;
@@ -443,6 +797,7 @@ function tick() {
 }
 function finish() {
   if(state!=='play')return;
+  document.body.classList.remove('is-reveal');
   clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;
   const key='trig-bloom-record-'+level;
   const old=readRecord(key),isNew=correct>old;
@@ -454,7 +809,7 @@ function finish() {
   $('resultMessage').textContent=isNew?'自己ベスト更新！少しずつできることが増えているね。':(correct?'今日の挑戦が、次の正解につながるよ。':'まずは挑戦できたことがスタート！次もいこう。');
   showScreen('result');
 }
-function goHome() { clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;document.body.classList.remove('timed-mode');showScreen('home'); }
+function goHome() { document.body.classList.remove('is-reveal'); clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;document.body.classList.remove('timed-mode');showScreen('home'); }
 function handleKey(e) {
   if (state!=='play'||e.altKey||e.ctrlKey||e.metaKey||e.repeat) return;
   if(e.key==='Enter') { e.preventDefault(); if($('feedbackPanel').hidden)submit();else nextQuestion(); return; }
