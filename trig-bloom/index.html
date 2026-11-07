@@ -32,6 +32,72 @@ mjx-container.MathJax svg{display:inline-block;max-width:100%;overflow:visible;v
  .coordinate-box{font-size:18px}
 }
 @media(max-width:380px){.value-button{font-size:19px;height:65px}.question-formula{font-size:36px}.correct-answer strong{font-size:18px}}
+
+/* v3 — uncluttered, legible answer review */
+.feedback-panel{padding:22px 24px 22px}
+.feedback-lead{gap:13px}
+.feedback-emblem{flex:none;width:49px;height:49px;font-size:24px}
+.feedback-lead h2{font-size:22px;line-height:1.4}
+.feedback-lead p{font-size:13px;line-height:1.5}
+.correct-answer{margin:15px 0 16px;display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;padding:15px 16px 20px;border-radius:18px}
+.correct-answer span{font-size:13px;letter-spacing:.06em}
+.correct-answer strong{width:100%;max-width:100%;min-width:0;min-height:50px;display:flex;justify-content:center;align-items:center;font-size:clamp(25px,4.7vw,36px);color:#534eac;line-height:1.3}
+.correct-answer strong mjx-container.MathJax{max-width:100%}
+.explanation-layout{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:18px;align-items:start}
+.circle-holder{border:1px solid #efedf8;padding:6px 4px 10px;overflow:hidden}
+.circle-holder #circleDrawing{width:100%;max-width:270px}
+.circle-holder svg{max-width:270px;width:100%;height:auto}
+.circle-angle-heading{height:39px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:650;font-size:13px;color:#75779a}
+.circle-angle-heading span{color:#5d56bf;font-size:22px;display:inline-flex;align-items:center;min-width:0}
+.circle-angle-heading small{font-size:12px;font-weight:500;color:#9996aa}
+.circle-legend{display:flex;justify-content:center;gap:16px;color:#7e809c;font-size:12px;margin-top:-2px}
+.circle-legend span{display:flex;align-items:center;gap:6px}
+.circle-legend i{width:10px;height:10px;display:inline-block;border-radius:3px}
+.legend-x{background:#42ae9c}.legend-y{background:#eea58a}
+.explanation-copy{padding:4px 0}
+.explanation-copy .tiny-label{font-size:10px}
+.explanation-copy h3{margin:5px 0 11px;font-size:16px}
+.coordinate-box{border:0;padding:0;display:flex;flex-wrap:wrap;gap:9px;font-size:19px;line-height:1.2}
+.coordinate-box > div{background:#f8f8fe;border:1px solid #eceaf7;border-radius:11px;padding:9px 11px;min-height:46px;max-width:100%}
+.explanation-copy p{line-height:1.6;font-size:13px;margin:12px 0 0}
+.explanation-copy .circle-footnote{margin-top:10px;font-size:11px}
+.next-button{margin-top:15px}
+.time-adjustment{margin:0 0 8px;padding:10px 14px;text-align:center;font-size:14px;font-weight:800;border-radius:12px}
+.time-gain{background:#e3f5ed;color:#237c66}
+.time-loss{background:#fff0e7;color:#ac5a42}
+body.timed-mode .site-header{margin-bottom:17px}
+body.timed-mode .feedback-panel{max-width:650px;margin:15px auto 0}
+body.timed-mode .correct-answer{margin-bottom:10px}
+body.timed-mode .timed-note{margin-top:6px}
+@media(max-width:600px){
+ .feedback-panel{padding:18px 16px 18px}
+ .feedback-lead h2{font-size:20px}
+ .feedback-lead p{font-size:12px}
+ .feedback-emblem{width:42px;height:42px;font-size:21px}
+ .correct-answer{margin:12px 0 14px;padding:13px 10px 17px;gap:9px}
+ .correct-answer strong{font-size:clamp(24px,6.8vw,31px);min-height:42px}
+ .explanation-layout{display:grid;grid-template-columns:1fr;gap:9px}
+ .circle-holder{width:min(100%,236px);margin:0 auto;padding:0 4px 7px}
+ .circle-holder #circleDrawing,.circle-holder svg{max-width:228px}
+ .circle-angle-heading{height:37px}
+ .explanation-copy{padding:3px 0}
+ .explanation-copy .tiny-label{display:none}
+ .explanation-copy h3{font-size:15px;margin:0 0 8px;text-align:center}
+ .coordinate-box{justify-content:center;gap:8px;font-size:17px}
+ .coordinate-box > div{padding:8px 10px;min-height:42px}
+ .explanation-copy p{text-align:center;font-size:12px;line-height:1.5;margin:9px 0 0}
+ .explanation-copy .circle-footnote{display:none}
+ .next-button{margin-top:14px}
+ body.timed-mode .question-card{min-height:126px}
+ body.timed-mode .feedback-panel{padding:18px 16px}
+ body.timed-mode .correct-answer{margin:12px 0}
+}
+@media(max-width:360px){
+ .correct-answer strong{font-size:23px}
+ .coordinate-box{font-size:16px}
+ .circle-holder{width:218px}
+ .circle-holder #circleDrawing,.circle-holder svg{max-width:210px}
+}
 </style>
   
 </head>
@@ -57,7 +123,7 @@ mjx-container.MathJax svg{display:inline-block;max-width:100%;overflow:visible;v
         </button>
         <button class="mode-card mode-timed" type="button" data-start="timed">
           <span class="mode-symbol" aria-hidden="true">◷</span><span class="mode-name">60秒チャレンジ</span>
-          <span class="mode-desc">1分間で何問正解できるかな？</span><span class="mode-cta">チャレンジ <span aria-hidden="true">→</span></span>
+          <span class="mode-desc">ミス・パスで −5秒／10連続正解で ＋5秒</span><span class="mode-cta">チャレンジ <span aria-hidden="true">→</span></span>
         </button>
       </div>
       <div class="level-card">
@@ -98,14 +164,14 @@ mjx-container.MathJax svg{display:inline-block;max-width:100%;overflow:visible;v
       <section id="feedbackPanel" class="feedback-panel" hidden aria-live="polite">
         <div class="feedback-lead"><div class="feedback-emblem" id="feedbackEmblem" aria-hidden="true">✦</div><div><h2 id="feedbackTitle">いいね！</h2><p id="feedbackSubtitle">単位円で確認してみよう。</p></div></div>
         <div class="correct-answer"><span>正しい答え</span><strong id="revealedAnswer" class="math-tex">sin π/6 = 1/2</strong></div>
-        <div class="explanation-layout"><div class="circle-holder"><div id="circleDrawing"></div></div><div class="explanation-copy"><span class="tiny-label">UNIT CIRCLE</span><h3>単位円でチェック</h3><div class="coordinate-box"><div id="coordinateX" class="math-tex">x = cos θ = 1</div><div id="coordinateY" class="math-tex">y = sin θ = 0</div></div><p id="answerExplanation"></p><p class="circle-footnote">円周上の点は <strong id="circleFootnoteMath">(cos θ, sin θ)</strong></p></div></div>
+        <p class="time-adjustment" id="timeAdjustment" hidden></p><div class="explanation-layout" id="explanationLayout"><div class="circle-holder"><div id="circleDrawing"></div></div><div class="explanation-copy"><span class="tiny-label">UNIT CIRCLE</span><h3>単位円でチェック</h3><div class="coordinate-box"><div id="coordinateX" class="math-tex">x = cos θ = 1</div><div id="coordinateY" class="math-tex">y = sin θ = 0</div></div><p id="answerExplanation"></p><p class="circle-footnote">円周上の点は <strong id="circleFootnoteMath">(cos θ, sin θ)</strong></p></div></div>
         <button type="button" id="nextButton" class="primary-button next-button">次の問題へ <span aria-hidden="true">→</span></button>
-        <p class="timed-note" id="timedAutoNote" hidden>60秒チャレンジ中は自動で次へ進みます。</p>
+        <p class="timed-note" id="timedAutoNote" hidden>もうすぐ次の問題へ。</p>
       </section>
     </section>
 
     <section class="screen result-screen" id="resultScreen" hidden aria-label="チャレンジ結果">
-      <div class="result-sparkle" aria-hidden="true">✦ ✧ ✦</div><p class="eyebrow">60 SECONDS COMPLETE</p><h1>1分間、おつかれさま！</h1><p class="result-lead" id="resultMessage">挑戦した分だけ、前に進んだよ。</p>
+      <div class="result-sparkle" aria-hidden="true">✦ ✧ ✦</div><p class="eyebrow">TIME ATTACK · FINISH</p><h1>チャレンジ、おつかれさま！</h1><p class="result-lead" id="resultMessage">挑戦した分だけ、前に進んだよ。</p>
       <div class="result-feature"><span>今回の正解数</span><div><strong id="resultCorrect">0</strong><span>問</span></div></div>
       <div class="result-details"><div><span>答えた問題</span><strong id="resultAttempted">0問</strong></div><div><span>最大連続正解</span><strong id="resultBestStreak">0問</strong></div><div><span>自己ベスト</span><strong id="resultRecord">0問</strong></div></div>
       <div class="result-actions"><button type="button" id="retryButton" class="primary-button">もう1回チャレンジ →</button><button type="button" id="homeButton" class="secondary-button">モード選択へ</button></div>
@@ -248,6 +314,7 @@ function start(nextMode) {
   $('currentMode').textContent=mode==='timed'?'◷ 60秒チャレンジ':'✿ じっくり練習';
   $('timeCell').hidden=mode!=='timed'; $('questionCell').hidden=mode==='timed'; $('timerTrack').hidden=mode!=='timed';
   $('timedAutoNote').hidden=mode!=='timed';
+  document.body.classList.toggle('timed-mode',mode==='timed');
   updateStats(); showScreen('play');
   if (mode==='timed') deadline=performance.now()+60000;
   nextQuestion();
@@ -271,6 +338,7 @@ function nextQuestion() {
   $('questionNumber').textContent=String(questionCount).padStart(2,'0');
   $('questionFormula').innerHTML=svgMath(texQuestion(current.fn,current.angle.rad));
   $('answerPanel').hidden=false; $('feedbackPanel').hidden=true;
+  $('timeAdjustment').hidden=true;
   $('questionGuide').textContent='符号と値を選んで、「決定」を押そう。';
   buildValueButtons(); updateSelection();
 }
@@ -280,29 +348,52 @@ function submit(skipped=false) {
   if (mode==='timed'&&performance.now()>=deadline) { finish(); return; }
   const expected=current.angle[current.fn];
   const isCorrect=!skipped && answer===expected;
-  attempts++; if(isCorrect) { correct++; streak++; maxStreak=Math.max(streak,maxStreak); } else { streak=0; }
-  lastResult={isCorrect,skipped,expected};
+  attempts++;
+  if(isCorrect) { correct++; streak++; maxStreak=Math.max(streak,maxStreak); }
+  else { streak=0; }
+  // In the time attack, even a pass counts as a miss.
+  // Every tenth CONSECUTIVE correct answer awards 5 seconds.
+  const timeDelta=mode==='timed' ? (isCorrect?(streak%10===0?5:0):-5) : 0;
+  if(mode==='timed') deadline+=timeDelta*1000;
+  lastResult={isCorrect,skipped,expected,timeDelta};
   updateStats(); reveal(lastResult);
-  if (mode==='timed') autoNextId=setTimeout(()=>{if(state==='play')nextQuestion();},1250);
+  if(mode==='timed') {
+    tick();
+    if(state!=='play') return;
+    autoNextId=setTimeout(()=>{if(state==='play')nextQuestion();},680);
+  }
 }
 function reveal(result) {
-  const {isCorrect,skipped,expected}=result;
+  const {isCorrect,skipped,expected,timeDelta=0}=result;
+  const timed=mode==='timed';
   $('answerPanel').hidden=true; $('feedbackPanel').hidden=false;
   $('feedbackEmblem').textContent=isCorrect?'✦':'♡';
   $('feedbackEmblem').classList.toggle('try',!isCorrect);
   const nice=['いいね、その調子！','ばっちり！','正解！ひとつ身についたね。','いい感じ！'];
-  $('feedbackTitle').textContent=isCorrect?nice[Math.floor(Math.random()*nice.length)]:(skipped?'図を見て、ひとつ覚えよう。':'あと一歩。今の確認が力になるよ。');
-  $('feedbackSubtitle').textContent=isCorrect?'単位円でも確かめてみよう。':'ここから分かれば、次は大丈夫。';
+  $('feedbackTitle').textContent=timed && timeDelta===5 ? '10連続正解！' :
+    (timed && !isCorrect ? (skipped?'ひとつ覚えて次へ！':'次にいこう！') : (isCorrect?nice[Math.floor(Math.random()*nice.length)]:(skipped?'図を見て、ひとつ覚えよう。':'あと一歩。今の確認が力になるよ。')));
+  $('feedbackSubtitle').textContent=timed?(isCorrect?'その調子で次へ！':'次で取り返そう。'):
+    (isCorrect?'位置と座標を確認しよう。':'ここから分かれば、次は大丈夫。');
   $('revealedAnswer').innerHTML=expected==='undef'?(svgMath(texQuestion(current.fn,current.angle.rad).replace('?', '').trim())+' <span class="undefined-label">定義なし</span>'):svgMath(texAnswer(current.fn,current.angle.rad,expected));
-  $('coordinateX').innerHTML=svgMath(texCoordinate('x',current.angle.cos));
-  $('coordinateY').innerHTML=svgMath(texCoordinate('y',current.angle.sin));
-  if(current.fn==='sin') $('answerExplanation').textContent='sin は円周上の点の「縦の位置（y座標）」。上ならプラス、下ならマイナスです。';
-  else if(current.fn==='cos') $('answerExplanation').textContent='cos は円周上の点の「横の位置（x座標）」。右ならプラス、左ならマイナスです。';
-  else if(expected==='undef') $('answerExplanation').textContent='tan は sin ÷ cos。ここでは cos = 0 なので、0で割ることはできず「定義なし」です。';
-  else $('answerExplanation').textContent='tan は sin ÷ cos、つまり y ÷ x。符号は縦と横の向きの組み合わせで決まります。';
-  $('circleDrawing').innerHTML=unitCircleSvg(current.angle);
+  $('explanationLayout').hidden=timed;
+  const adjust=$('timeAdjustment');
+  adjust.hidden=!timed || timeDelta===0;
+  if(timeDelta!==0) {
+    adjust.className='time-adjustment '+(timeDelta>0?'time-gain':'time-loss');
+    adjust.textContent=timeDelta>0?'✦ 10問連続正解！ 残り時間 ＋5秒':'ミス・パス：残り時間 −5秒';
+  }
+  if(!timed) {
+    $('coordinateX').innerHTML=svgMath(texCoordinate('x',current.angle.cos));
+    $('coordinateY').innerHTML=svgMath(texCoordinate('y',current.angle.sin));
+  }
+  if(current.fn==='sin') $('answerExplanation').textContent='sin は縦の位置（y座標）。上側は＋、下側は−です。';
+  else if(current.fn==='cos') $('answerExplanation').textContent='cos は横の位置（x座標）。右側は＋、左側は−です。';
+  else if(expected==='undef') $('answerExplanation').textContent='tan は sin ÷ cos。cos = 0 なので、定義されません。';
+  else $('answerExplanation').textContent='tan は y ÷ x。縦と横の符号に注目しよう。';
+  $('circleDrawing').innerHTML=timed?'':unitCircleSvg(current.angle);
   $('nextButton').textContent=mode==='timed'?'次の問題へ →':'次の問題へ →';
-  if (mode!=='timed') $('nextButton').focus({preventScroll:true});
+  $('nextButton').hidden=timed;
+  if(!timed) $('nextButton').focus({preventScroll:true});
 }
 function unitCircleSvg(angle) {
   const cx=180,cy=180,r=122,theta=angle.deg*Math.PI/180;
@@ -312,11 +403,10 @@ function unitCircleSvg(angle) {
   const arcEndX=Number((cx+40*Math.cos(deg*Math.PI/180)).toFixed(2));
   const arcEndY=Number((cy-40*Math.sin(deg*Math.PI/180)).toFixed(2));
   const arc=deg===0?'':`<path d="M ${cx} ${cy} L ${cx+40} ${cy} A 40 40 0 ${deg>180?1:0} 0 ${arcEndX} ${arcEndY} Z" fill="#ddd8fb" opacity=".75"/>`;
-  const pointLabelX=(angle.deg===90||angle.deg===270)?244:Math.max(30,Math.min(330,fx+(fx>cx?-15:15)));
-  const pointLabelY=(angle.deg===90)?72:(angle.deg===270?306:Math.max(28,Math.min(330,fy+(fy>cy?24:-14))));
   const activeX=angle.cos==='0'?cx:fx;
-  return `<svg viewBox="0 0 360 360" role="img" aria-label="単位円の${angle.deg}度の位置。x座標は${prettyValue(angle.cos)}、y座標は${prettyValue(angle.sin)}">
-  <rect width="360" height="360" fill="#fafaff" rx="18"/>
+  return `<div class="circle-angle-heading">角度 <span>${svgMath(texValue(angle.rad))}</span><small>（${angle.deg}°）</small></div>
+  <svg viewBox="0 0 360 330" role="img" aria-label="単位円の${angle.deg}度の位置。x座標は${prettyValue(angle.cos)}、y座標は${prettyValue(angle.sin)}">
+  <rect width="360" height="330" fill="#fafaff" rx="18"/>
   <line x1="28" y1="180" x2="331" y2="180" stroke="#b3b6ce" stroke-width="1.3"/>
   <line x1="180" y1="332" x2="180" y2="29" stroke="#b3b6ce" stroke-width="1.3"/>
   <path d="M 326 175 L 334 180 L 326 185 M 175 34 L 180 26 L 185 34" fill="none" stroke="#b3b6ce" stroke-width="1.6" stroke-linecap="round"/>
@@ -334,17 +424,15 @@ function unitCircleSvg(angle) {
   <line x1="${fx}" y1="${fy}" x2="${fx}" y2="180" stroke="#7a719a" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/>
   <circle cx="180" cy="180" r="3.8" fill="#6d6b8e"/>
   <circle cx="${fx}" cy="${fy}" r="7.5" fill="#6159c7" stroke="white" stroke-width="3"/>
-  <foreignObject x="${Math.max(6,pointLabelX-44)}" y="${Math.max(5,pointLabelY-20)}" width="88" height="42"><div xmlns="http://www.w3.org/1999/xhtml" class="circle-angle-math">${svgMath(texValue(angle.rad))}</div></foreignObject>
   <text x="192" y="198" font-size="12" fill="#9b9db2" font-family="Georgia,serif">O</text>
-  <g transform="translate(20,340)"><rect x="0" y="-10" width="9" height="9" rx="3" fill="#42ae9c"/><text x="15" y="-2" fill="#6e728e" font-family="sans-serif" font-size="11">cos = x</text><rect x="107" y="-10" width="9" height="9" rx="3" fill="#eea58a"/><text x="122" y="-2" fill="#6e728e" font-family="sans-serif" font-size="11">sin = y</text></g>
-  </svg>`;
+  </svg><div class="circle-legend"><span><i class="legend-x"></i>横：cos</span><span><i class="legend-y"></i>縦：sin</span></div>`;
 }
 function tick() {
   if (state!=='play'||mode!=='timed') return;
   const remain=Math.max(0,deadline-performance.now());
   const sec=Math.ceil(remain/1000);
   $('timerText').innerHTML=sec+'<span class="unit"> 秒</span>';
-  $('timerFill').style.width=(remain/600)+'%';
+  $('timerFill').style.width=Math.min(100,remain/600)+'%';
   $('timerFill').classList.toggle('urgent',remain<=10000);
   if(remain<=0)finish();
 }
@@ -361,7 +449,7 @@ function finish() {
   $('resultMessage').textContent=isNew?'自己ベスト更新！少しずつできることが増えているね。':(correct?'今日の挑戦が、次の正解につながるよ。':'まずは挑戦できたことがスタート！次もいこう。');
   showScreen('result');
 }
-function goHome() { clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;showScreen('home'); }
+function goHome() { clearInterval(timerId);clearTimeout(autoNextId);timerId=null;autoNextId=null;document.body.classList.remove('timed-mode');showScreen('home'); }
 function handleKey(e) {
   if (state!=='play'||e.altKey||e.ctrlKey||e.metaKey||e.repeat) return;
   if(e.key==='Enter') { e.preventDefault(); if($('feedbackPanel').hidden)submit();else nextQuestion(); return; }
